@@ -1,0 +1,12 @@
+{
+    "title": "مرحبا",
+    "to-second-page": "جحش",
+    "pages": {
+        "home": "الرئيسية",
+        "courses": "الدورات",
+        "about_us": "من نحن"
+    },
+    "buttons": {
+        "register": "تسجيل الدخول"
+    }
+}
