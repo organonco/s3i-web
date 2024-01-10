@@ -22,10 +22,11 @@ declare module '@mui/material/styles/createPalette' {
 }
 
 const baseOptions: ThemeOptions = {
+    direction: 'rtl',
     palette: {
         primary: {
             main: '#57AFA8',
-            // light: will be calculated from palette.primary.main,
+            light: '#92D6D1',
             // dark: will be calculated from palette.primary.main,
             // contrastText: will be calculated to contrast with palette.primary.main
         },
@@ -36,17 +37,59 @@ const baseOptions: ThemeOptions = {
             contrastText: '#47008F',
         },
         background: {
+            primary: {
+                main: '#57AFA8',
+                active: '#92D6D1',
+                hover: '#92D6D1'
+            },
+            paper: '#F9F9F9',
+            // primary: '#57AFA8',
             shadow: '#F6F6F6',
             lightShadow: '#F8F7F7'
+        },
+        text: {
+            primary: '#000000',
+            secondary: '#57AFA8',
         }
     },
     components: {
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    padding: 20,
+                    borderRadius: 16
+                }
+            }
+        },
+        MuiTextField: {
+            defaultProps: {
+                inputProps: {
+                    sx: {
+                        height: 20
+                    }
+                }
+            },
+            styleOverrides: {
+                root: {
+
+                },
+            }
+        },
         MuiButton: {
             styleOverrides: {
                 root: {
                     fontWeight: 500,
                     fontSize: 18,
                     borderRadius: 11
+                },
+                contained: {
+                    color: 'white'
+                },
+                containedPrimary: {
+                    backgroundColor: '#57AFA8 !important',
+                },
+                containedSecondary: {
+                    backgroundColor: '#3D86AA !important',
                 },
                 outlined: {
                     backgroundColor: '#DAE9E8 !important',

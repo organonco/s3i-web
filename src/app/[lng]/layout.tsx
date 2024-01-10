@@ -1,5 +1,5 @@
 // import Footer from './footer'
-import Header from '@/components/layout/index';
+import Header from '@/components/layout/header';
 import { Grid } from '@mui/material';
 
 export default function Layout({

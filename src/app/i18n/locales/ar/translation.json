@@ -7,6 +7,90 @@
         "about_us": "من نحن"
     },
     "buttons": {
-        "register": "تسجيل الدخول"
+        "register": "انشاء حساب",
+        "login": "تسجيل الدخول"
+    },
+    "placeholders": {
+        "token": "رمز الاشتراك",
+        "phone": "رقم الهاتف",
+        "password": "كلمة السر",
+        "name_ar": "الاسم الثلاثي",
+        "name_en": "الاسم الثلاثي",
+        "old_password": "كلمة السر القديمة",
+        "new_password": "كلمة السر الجديدة",
+        "new_password_confirmation": "تأكيد كلمة السر"
+    },
+    "labels": {
+        "token": "رمز الاشتراك",
+        "phone": "رقم الهاتف",
+        "password": "كلمة السر",
+        "password_confirmation": "تأكيد كلمة السر",
+        "name_ar": "الاسم الثلاثي (باللغة العربية)",
+        "name_en": "الاسم الثلاثي (باللغة الانكليزية)",
+        "email": "الايميل",
+        "nationality": "المحافظة",
+        "date_of_birth": "المواليد",
+        "address": "العنوان",
+        "education_level": "التحصيل العلمي",
+        "reference": "كيف وصلت الينا",
+        "old_password": "كلمة السر القديمة",
+        "new_password": "كلمة السر الجديدة",
+        "new_password_confirmation": "تأكيد كلمة السر"
+    },
+    "error": {
+        "phone": {
+            "required": "يجب ادخال الحقل",
+            "phone": "الرقم خاطئ"
+        },
+        "token": {
+            "required": "يجب ادخال الحقل"
+        },
+        "password": {
+            "required": "يجب ادخال الحقل",
+            "min_8": "على الاقل 8 محارف",
+            "small_big": "يجب ان تحتوي على احرف كبيرة و صغيرة"
+        },
+        "password_confirmation": {
+            "required": "يجب ادخال الحقل",
+            "Password_must_match": "غير متطابقة مع كلمة السر"
+        },
+        "email": {
+            "required": "يجب ادخال الحقل",
+            "email": "الايميل خاطئ"
+        },
+        "name_ar": {
+            "required": "يجب ادخال الحقل"
+        },
+        "name_en": {
+            "required": "يجب ادخال الحقل"
+        },
+        "nationality_id": {
+            "required": "يجب ادخال الحقل"
+        },
+        "date_of_birth": {
+            "required": "يجب ادخال الحقل",
+            "valid_date": "التاريخ غير صالح"
+        },
+        "address": {
+            "required": "يجب ادخال الحقل"
+        },
+        "education_level_id": {
+            "required": "يجب ادخال الحقل"
+        },
+        "reference": {
+            "required": "يجب ادخال الحقل"
+        },
+        "old_password": {
+            "required": "يجب ادخال الحقل"
+        },
+        "new_password": {
+            "required": "يجب ادخال الحقل",
+            "min_8": "على الاقل 8 محارف",
+            "small_big": "يجب ان تحتوي على احرف كبيرة و صغيرة"
+        },
+        "new_password_confirmation": {
+            "required": "يجب ادخال الحقل",
+            "Password_must_match": "غير متطابقة مع كلمة السر"
+        }
     }
 }
