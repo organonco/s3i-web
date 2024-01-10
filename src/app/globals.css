@@ -20,7 +20,7 @@ body {
   color: rgb(var(--foreground-rgb));
   font-size: large;
   overflow-x: hidden;
-  padding-inline: 300px;
+  padding-inline: 450px;
   background: linear-gradient(to bottom,
       transparent,
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));

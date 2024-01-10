@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { FC } from "react";
-import { StyledBox } from "./styled-box";
+import { StyledBox } from "./box";
 
 interface props { title: string, subTitle: string, imageURL: string }
 
