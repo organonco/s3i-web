@@ -54,7 +54,6 @@ export const createCoursesSlice: StateCreator<CoursesSlice> = (set, get, api) =>
             draftState.courseDetails = null
         }))
         fetchCourseDetails(courseId).then((data) => set(produce(draftState => {
-            console.log(data.data)
             draftState.courseDetails = data.data
             draftState.loadingCourseDetails = false
         })))

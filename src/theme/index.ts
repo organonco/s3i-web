@@ -26,7 +26,8 @@ const baseOptions: ThemeOptions = {
     palette: {
         primary: {
             main: '#57AFA8',
-            light: '#92D6D1',
+            light: '#DAF4F4',
+            dark: '#2D6276'
             // dark: will be calculated from palette.primary.main,
             // contrastText: will be calculated to contrast with palette.primary.main
         },
@@ -40,16 +41,19 @@ const baseOptions: ThemeOptions = {
             primary: {
                 main: '#57AFA8',
                 active: '#92D6D1',
-                hover: '#92D6D1'
+                hover: '#92D6D1',
             },
             paper: '#F9F9F9',
             // primary: '#57AFA8',
             shadow: '#F6F6F6',
-            lightShadow: '#F8F7F7'
+            lightShadow: '#F9FFFF',
         },
         text: {
             primary: '#000000',
             secondary: '#57AFA8',
+        },
+        success: {
+            main: '#49BF89'
         }
     },
     components: {
@@ -61,19 +65,48 @@ const baseOptions: ThemeOptions = {
                 }
             }
         },
+        MuiSelect: {
+            styleOverrides: {
+                root: {
+                    "& .MuiSvgIcon-root": {
+                        right: "unset",
+                        left: "7px",
+                    },
+                }
+            }
+        },
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    left: 'inherit',
+                    right: '1.75rem',
+                    transformOrigin: 'right',
+                },
+            },
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                notchedOutline: {
+                    textAlign: 'right',
+                },
+            },
+        },
         MuiTextField: {
             defaultProps: {
                 inputProps: {
                     sx: {
-                        height: 20
+                        height: 20,
+                    }
+                },
+                InputLabelProps: {
+                    sx: {
+                        left: 'auto',
+                        right: 'auto',
+                        transformOrigin: 'top right',
+                        textAlign: 'right'
                     }
                 }
             },
-            styleOverrides: {
-                root: {
-
-                },
-            }
         },
         MuiButton: {
             styleOverrides: {

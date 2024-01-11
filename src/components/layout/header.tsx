@@ -50,7 +50,7 @@ function LinkTab(props: LinkTabProps) {
     );
 }
 
-export default function DrawerAppBar({ lng }: Props) {
+export function Header({ lng }: Props) {
     const { push } = useRouter()
     let pathname = usePathname().slice(4) ?? '/'
     pathname = '/' + pathname
@@ -66,7 +66,8 @@ export default function DrawerAppBar({ lng }: Props) {
                     event as React.MouseEvent<HTMLAnchorElement, MouseEvent>,
                 ))
         ) {
-            push(newValue)
+            // console.log(tabArray[newValue])
+            push(tabArray[newValue])
         }
     };
 
@@ -75,7 +76,9 @@ export default function DrawerAppBar({ lng }: Props) {
             <Box>
                 <Tabs value={tabArray.indexOf(pathname)} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '10%', marginLeft: 50 } }}>
                     <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url} />
-                    <LinkTab label={t('pages.' + sitemap.courses.title)} href={sitemap.courses.url} />
+                    <LinkTab label={t('pages.' + sitemap.courses.index.title)} href={sitemap.courses.url} />
+                    <LinkTab label={t('pages.' + sitemap.teachers.title)} href={sitemap.teachers.url} />
+                    <LinkTab label={t('pages.' + sitemap.partners.title)} href={sitemap.partners.url} />
                     <LinkTab label={t('pages.' + sitemap.about_us.title)} href={sitemap.about_us.url} />
                 </Tabs>
             </Box>

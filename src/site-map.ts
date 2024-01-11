@@ -10,10 +10,15 @@ const makeSiteMap = <T extends SiteMap>(siteMap: T): T => siteMap;
 
 export const sitemap = makeSiteMap({
     home: { title: 'home', url: '/' },
-    courses: { title: 'courses', url: '/courses' },
+    courses: {
+        index: { title: 'courses', url: '/courses' },
+        id: (id = '[category]') => { return { title: id, url: `/courses/${id}` } },
+        courseDetails: (category_id = '[category]', course_id = '[course]') => { return { title: course_id, url: `/courses/${category_id}/${course_id}` } },
+    },
     about_us: { title: 'about_us', url: '/about-us' },
     login: { title: 'login', url: '/login' },
     register: { title: 'register', url: '/register' },
-    id: (id = '[category-id]') => { return { title: id, url: `/${id}` } },
-    thank_you: { title: 'thank_you', url: '/thank-you' }
+    thank_you: { title: 'thank_you', url: '/thank-you' },
+    partners: { title: 'partners', url: '/partners' },
+    teachers: { title: 'teachers', url: '/teachers' },
 });

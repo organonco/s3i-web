@@ -11,7 +11,7 @@ export const registerValidationSchema = Yup.object().shape({
     reference: Yup.string().required('required'),
     password: Yup.string().min(8, 'min_8').required('required'),
     password_confirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Password_must_match').required('required'),
-    date_of_birth: Yup.date().typeError('valid_date').required('required'),
+    date_of_birth: Yup.date().typeError('valid_date'),
     nationality_id: Yup.string().required('required'),
-    education_level_id: Yup.string().required('required'),
+    education_level_id: Yup.string(),
 });

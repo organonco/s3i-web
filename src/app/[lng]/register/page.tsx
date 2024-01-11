@@ -24,6 +24,7 @@ export default function Page({
 
     const handleSubmit = (values: FormikValues, { setSubmitting }) => {
         const redirectToThankYou = () => push(sitemap.thank_you.url)
+        console.log(values)
         registerUser(values, redirectToThankYou, (value: boolean) => setSubmitting(value))
     }
     useEffect(() => {
@@ -42,7 +43,7 @@ export default function Page({
                         <StyledTextField translateKey="address" name="address" required />
                         <StyledTextField translateKey="reference" name="reference" required />
                         <StyledTextField translateKey="password" name="password" required type='password' />
-                        <StyledTextField translateKey="new_password_confirmation" name="new_password_confirmation" required type='password' />
+                        <StyledTextField translateKey="password_confirmation" name="password_confirmation" required type='password' />
 
                         <Grid container lg={12}>
                             <Grid container lg={4} sx={{ pl: 2 }}>
@@ -52,7 +53,7 @@ export default function Page({
                                 <StyledSelect translateKey="nationality" name="nationality_id" options={registerInfo?.nationalities ?? []} />
                             </Grid>
                             <Grid lg={4} sx={{ pr: 2 }}>
-                                <StyledDatePicker />
+                                <StyledDatePicker name='date_of_birth' />
                             </Grid>
                         </Grid>
 

@@ -1,5 +1,6 @@
 // import Footer from './footer'
-import Header from '@/components/layout/header';
+'use client';
+import { Footer, Header } from '@/components';
 import { Grid } from '@mui/material';
 
 export default function Layout({
@@ -10,14 +11,14 @@ export default function Layout({
     children: React.ReactNode
 }) {
     return (
-        <Grid container sx={{ marginY: 6 }} >
+        <Grid container sx={{ marginTop: 6, minHeight: '100vh' }} >
             <Grid item lg={12}>
                 <Header lng={lng} />
             </Grid>
-            <Grid item lg={12} style={{ marginTop: 70 }}>
+            <Grid item lg={12} style={{ marginTop: 100, marginBottom: 170 }}>
                 <main>{children}</main>
             </Grid>
-            {/* <Footer /> */}
+            <Footer />
         </Grid>
     )
 }

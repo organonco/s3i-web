@@ -4,7 +4,15 @@
     "pages": {
         "home": "الرئيسية",
         "courses": "الدورات",
-        "about_us": "من نحن"
+        "about_us": "من نحن",
+        "partners": "شركائنا",
+        "teachers": "الكادر التدريسي"
+    },
+    "texts": {
+        "new_courses": "الدورات الجديدة",
+        "flixable_learning": "التعلم المرن",
+        "professional": "الجاهزية المهنية",
+        "high_quality_content": "محتوى عالي الجودة"
     },
     "buttons": {
         "register": "انشاء حساب",

@@ -37,6 +37,9 @@ export const StyledTextField: FC<Props> = (props) => {
         <TextField
             id="outlined"
             label={t('labels.' + props.translateKey)}
+            dir='rtl'
+            {...field}
+            InputLabelProps={{ dir: 'rtl' }}
             {...props}
             InputProps={{
                 sx: textInputStyle,
