@@ -22,6 +22,7 @@ export interface UserSlice {
     fetchNotification: () => void
     fetchNotificationCount: () => void
     markNotificationsAsRead: (id: string) => void
+    updateUserStatus: (status: USER_STATUS) => void
 }
 
 
@@ -54,7 +55,6 @@ export const createUserSlice: StateCreator<UserSlice> = (set, get, api) => ({
                 draftState.token = data.token
                 draftState.authenticatedStatus = USER_STATUS.LOGGED_IN
             }))
-            console.log(data.token)
             localStorage.setItem('token', data.token);
             setSubmitting(false)
             redirectToApp()
@@ -98,5 +98,11 @@ export const createUserSlice: StateCreator<UserSlice> = (set, get, api) => ({
             set(produce(draftState => { draftState.profileInfo = data.data }))
             stopLoading()
         }).catch(() => stopLoading())
+    },
+    updateUserStatus: (status: USER_STATUS) => {
+        set(produce(draftState => {
+            draftState.authenticatedStatus = status
+        }))
+
     }
 })

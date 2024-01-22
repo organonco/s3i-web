@@ -129,5 +129,28 @@
             "required": "يجب ادخال الحقل",
             "Password_must_match": "غير متطابقة مع كلمة السر"
         }
+    },
+    "toast": {
+        "downloaded_successfully": "تم تحميل الملف بنجاح",
+        "uploaded_successfully": "تم رفع الملف بنجاح",
+        "invalid_credentials": "كلمة السر أو رقم الهاتف غير صحيح",
+        "account_frozen": "حسابك مجمد",
+        "you_have_no_course": "ليس لديك دورات خاصة بك",
+        "go_to_courses": "اذهب الى دوراتي",
+        "quiz_submitted": "تم تقديم الاختبار بنجاح",
+        "invalid_token": "رمز خاطئ"
+    },
+    "popup": {
+        "subtitle": {
+            "subscribe": "ادخل رمز الاشتراك بالدورة"
+        }
+    },
+    "courseItemTypes": {
+        "video": "درس",
+        "meeting": "اجتماع",
+        "text": "وظيفة",
+        "multiple_choice": "اختبار",
+        "homework": "رفع ملف",
+        "file": "ملف مرفق"
     }
 }

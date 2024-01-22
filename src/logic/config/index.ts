@@ -39,7 +39,9 @@ export enum COURSE_ITEM {
     HOMEWORK = 'homework',
     MEETING = 'meeting',
     VIDEO = 'video',
-    QUIZ = 'quiz'
+    QUIZ = 'quiz',
+    MULTIPLE = 'multiple_choice',
+    TEXT = 'text'
 }
 
 export enum QUESTION_TYPE {
@@ -47,3 +49,5 @@ export enum QUESTION_TYPE {
     CHECK = 'check',
     RADIO = 'radio'
 }
+
+
