@@ -1,11 +1,10 @@
 "use client";
 import { AddvertisedCard } from '@/components';
 import { CourseCard } from '@/components/course-card';
-import { Category } from '@/logic/interfaces';
 import { useCoursesStore } from '@/logic/store';
-import { sitemap } from '@/site-map';
-import { Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { t } from 'i18next';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -24,7 +23,7 @@ export default function Page({
     const macbookIphone = require('/src/assets/download.jpg');
     const macbookIphone1 = require('/src/assets/1509606.png');
     const macbookIphon2 = require('/src/assets/download.png');
-    const redirectToDetails = (category: Category) => push(sitemap.id(category.id).url)
+    const siteIcon = require('/src/assets/logo.png');
     const welcomeCards = [
         {
             icon_url: macbookIphon2
@@ -40,7 +39,17 @@ export default function Page({
         }]
 
     return (
-        <Grid container gap={15} justifyContent={'center'}>
+        <Grid container gap={10} justifyContent={'center'} mt={5}>
+            <Grid item lg={12} >
+                <Box sx={{ width: '100%', height: 400, position: 'relative', backgroundColor: 'background.primary.hover' }}>
+                    <Image
+                        alt='ايقونة'
+                        src={siteIcon}
+                        layout='fill'
+                        objectFit='contain'
+                    />
+                </Box>
+            </Grid>
             <Grid container item lg={10} sx={{ justifyContent: 'space-between' }} >
                 {welcomeCards.map(category => <Grid
                     key={category.name}
