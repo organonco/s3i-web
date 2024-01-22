@@ -1,7 +1,10 @@
 'use client';
 import { useTranslation } from '@/app/i18n/client';
+import { USER_STATUS } from '@/logic/config';
+import { useCoursesStore } from '@/logic/store';
 import { sitemap } from '@/site-map';
-import { Button, Tab, Tabs } from '@mui/material';
+import { Notifications } from '@mui/icons-material';
+import { Avatar, Button, Grid, IconButton, Tab, Tabs } from '@mui/material';
 import Box from '@mui/material/Box';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
@@ -52,6 +55,7 @@ function LinkTab(props: LinkTabProps) {
 
 export function Header({ lng }: Props) {
     const { push } = useRouter()
+    const authenticatedStatus = useCoursesStore(state => state.authenticatedStatus)
     let pathname = usePathname().split('/')[2] ?? '/'
     pathname = '/' + pathname
     const tabArray = ['/', '/courses', '/about-us']
@@ -84,7 +88,14 @@ export function Header({ lng }: Props) {
                 </Tabs>
             </Box>
             <Box>
-                <Button variant='outlined' onClick={() => push(sitemap.login.url)}>{t('buttons.login')}</Button>
+                {authenticatedStatus === USER_STATUS.LOGGED_IN ? <Grid container alignItems={'center'}>
+                    <Avatar sx={{ bgcolor: 'primary.main' }}>N</Avatar>
+                    <IconButton size='large'>
+                        <Notifications sx={{ height: 30, width: 30 }} />
+                    </IconButton>
+                </Grid>
+                    : <Button variant='outlined' onClick={() => push(sitemap.login.url)}>{t('buttons.login')}</Button>}
+
             </Box>
         </Box>
     );
