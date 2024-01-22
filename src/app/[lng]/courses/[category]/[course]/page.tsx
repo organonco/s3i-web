@@ -38,7 +38,7 @@ export default function Page({
                 </div>
             </Grid>
             <Grid item container md={6} direction={'column'} justifyContent={'center'}>
-                {authenticatedStatus !== USER_STATUS.LOGGED_IN ? <Button onClick={redirectToLogin} variant='contained'>
+                {authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button onClick={redirectToLogin} variant='contained'>
                     {t('buttons.login')}
                 </Button>
                     // if the user is logged in and subscribed
@@ -48,7 +48,7 @@ export default function Page({
                         </Grid>)}
                     </Grid>
                         // if the user is logged in but not subscribed to the course
-                        : <>
+                        : courseDetails?.is_subscribed === false ? <>
                             <Button variant='contained' onClick={subscribePopup.handleOpen}>{t('buttons.subscribe')}</Button>
                             <Dialog
                                 open={subscribePopup.isOpen}
@@ -57,7 +57,7 @@ export default function Page({
                             >
                                 <SubscribeDialogContent closePopup={subscribePopup.handleClose} />
                             </Dialog>
-                        </>}
+                        </> : <></>}
             </Grid>
         </Grid>
     )

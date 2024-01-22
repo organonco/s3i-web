@@ -5,12 +5,15 @@ import { PropsWithChildren, useEffect } from "react";
 
 
 export const AppProvider = (props: PropsWithChildren) => {
-    const { fetchNotificationCount, fetchCategoriesInfo, authenticatedStatus, updateUserStatus } = useCoursesStore();
+    const { fetchNotificationCount, fetchProfileInfo, authenticatedStatus, updateUserStatus } = useCoursesStore();
     useEffect(() => {
         const getData = () => {
             try {
                 let accessTokenObj = localStorage.getItem('token') ?? ''
-                if (accessTokenObj !== null) updateUserStatus(USER_STATUS.LOGGED_IN)
+                if (accessTokenObj !== null) {
+                    updateUserStatus(USER_STATUS.LOGGED_IN)
+                    fetchProfileInfo()
+                }
                 else updateUserStatus(USER_STATUS.NOT_LOGGEN_IN)
 
             } catch (e) {
