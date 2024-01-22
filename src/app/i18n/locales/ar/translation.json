@@ -8,15 +8,44 @@
         "partners": "شركائنا",
         "teachers": "الكادر التدريسي"
     },
+    "titles": {
+        "thanks_for_registration": "شكرا على انشاء حساب جديد"
+    },
     "texts": {
-        "new_courses": "الدورات الجديدة",
+        "or": "أو",
+        "no_account": "ليس لديك حساب؟ ",
+        "dark_mode": "الوضع الداكن",
+        "error": "لقد حدث خطأ",
         "flixable_learning": "التعلم المرن",
         "professional": "الجاهزية المهنية",
-        "high_quality_content": "محتوى عالي الجودة"
+        "high_quality_content": "محتوى عالي الجودة",
+        "should_login": "عليك تسجيل الدخول لرؤية كورساتك",
+        "professor_feedback": "تصحيح الأستاذ",
+        "your_homework": "الوظيفة التي قمت بتحميلها",
+        "new_courses": "الدورات الجديدة",
+        "most_requested_courses": "الدورات الأكثر طلباً"
     },
     "buttons": {
-        "register": "انشاء حساب",
-        "login": "تسجيل الدخول"
+        "login": "تسجيل الدخول",
+        "register": "إنشاء حساب",
+        "new_account": "انشئ حساب جديد!",
+        "continue_to_login": "متابعة الى تسجيل الدخول",
+        "back_to_register": "انشاء حساب جديد",
+        "logout": "تسجيل الخروج",
+        "change_password": "تغيير كلمة السر",
+        "save": "حفظ",
+        "introduction_video": "فيديو تعريفي",
+        "submit_test": "تقديم الاختبار",
+        "QUIZ": "الاختبار",
+        "subscribe": "اشترك بالدورة",
+        "intro_video": "فيديو تعريفي",
+        "download": "تحميل الملف",
+        "upload": "رفع الملف",
+        "open_meeting": "الذهاب الى الاجتماع",
+        "open_video": "الذهاب الى الدرس",
+        "open_multiple": "الذهاب الى الاختبار",
+        "open_text": "الذهاب الى الوظيفة",
+        "view_feedback": "الذهاب الى النتيجة"
     },
     "placeholders": {
         "token": "رمز الاشتراك",

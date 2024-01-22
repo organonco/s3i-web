@@ -1,3 +1,4 @@
+"use client";
 import axios from 'axios';
 import { API_BASE_URL } from '../config';
 
@@ -20,13 +21,12 @@ export const client = (() => {
 })();
 
 export const apiClient = async function (options) {
-  // const token = appStore.getState().token
-  // const { token } = useStore(appStore);
-  // const appstate = await AsyncStorage.getItem('app-state');
-  // const token = appstate && JSON.parse(appstate).state.token
-  // if (token) {
-  //   client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  // }
+  let accessTokenObj = localStorage.getItem('token') ?? ''
+
+  console.log(accessTokenObj)
+  if (accessTokenObj) {
+    client.defaults.headers.common['Authorization'] = `Bearer ${accessTokenObj}`;
+  }
 
   const onSuccess = function (response) {
     const { data } = response;

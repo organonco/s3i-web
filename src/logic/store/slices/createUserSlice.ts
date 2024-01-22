@@ -54,6 +54,8 @@ export const createUserSlice: StateCreator<UserSlice> = (set, get, api) => ({
                 draftState.token = data.token
                 draftState.authenticatedStatus = USER_STATUS.LOGGED_IN
             }))
+            console.log(data.token)
+            localStorage.setItem('token', data.token);
             setSubmitting(false)
             redirectToApp()
         }).catch((error) => {

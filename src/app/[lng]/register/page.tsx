@@ -6,7 +6,9 @@ import { RegisterInfo } from "@/logic/interfaces";
 import { useCoursesStore } from "@/logic/store";
 import { sitemap } from "@/site-map";
 import { Button, Grid } from "@mui/material";
+import dayjs from "dayjs";
 import { Form, Formik, FormikValues } from "formik";
+import moment from "moment";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { registerValidationSchema } from './validation-schema';
@@ -19,13 +21,13 @@ export default function Page({
     // const fetchCategoriesInfo = useCoursesStore(state => state.fetchCategoriesInfo)
     const { t } = useTranslation(lng, 'translation')
     const { push } = useRouter()
-    const initialValues: RegisterInfo = { name_ar: '', name_en: '', phone: '', email: '', date_of_birth: '', nationality_id: '', education_level_id: '', reference: '', address: '', password: '', password_confirmation: '' };
+    const initialValues: RegisterInfo = { name_ar: '', name_en: '', phone: '', email: '', date_of_birth: dayjs(Date.now()), nationality_id: '', education_level_id: '', reference: '', address: '', password: '', password_confirmation: '' };
     const { registerUser, fetchRegisterInfo, registerInfo } = useCoursesStore()
 
     const handleSubmit = (values: FormikValues, { setSubmitting }) => {
         const redirectToThankYou = () => push(sitemap.thank_you.url)
-        console.log(values)
-        registerUser(values, redirectToThankYou, (value: boolean) => setSubmitting(value))
+        const newValues = { ...values, date_of_birth: moment(values.date_of_birth).format('YYYY-MM-DD') }
+        registerUser(newValues, redirectToThankYou, (value: boolean) => setSubmitting(value))
     }
     useEffect(() => {
         fetchRegisterInfo()

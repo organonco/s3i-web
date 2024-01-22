@@ -1,3 +1,4 @@
+import { Dayjs } from "dayjs"
 import { GeneralObject } from "."
 
 export interface RegisterInfo {
@@ -7,7 +8,7 @@ export interface RegisterInfo {
     password: string
     password_confirmation: string
     email: string
-    date_of_birth: string
+    date_of_birth: Dayjs
     nationality_id: string
     education_level_id: string
     address: string
