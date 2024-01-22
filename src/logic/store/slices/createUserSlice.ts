@@ -65,11 +65,14 @@ export const createUserSlice: StateCreator<UserSlice> = (set, get, api) => ({
         })
     },
     fetchProfileInfo: () => fetchProfileData().then((data) => set(produce(draftState => { draftState.profileInfo = data.data }))),
-    logUserOut: () => set(produce(draftState => {
-        draftState.token = ''
-        draftState.authenticatedStatus = USER_STATUS.NOT_LOGGEN_IN
-        draftState.notificationNumber = 0
-    })),
+    logUserOut: () => {
+        localStorage.removeItem('token');
+        set(produce(draftState => {
+            draftState.token = ''
+            draftState.authenticatedStatus = USER_STATUS.NOT_LOGGEN_IN
+            draftState.notificationNumber = 0
+        }))
+    },
     fetchNotification: () => {
         set(produce(draftState => { draftState.loadingNotifications = true }))
         getNotification().then((data) => {

@@ -45,7 +45,8 @@
         "open_video": "الذهاب الى الدرس",
         "open_multiple": "الذهاب الى الاختبار",
         "open_text": "الذهاب الى الوظيفة",
-        "view_feedback": "الذهاب الى النتيجة"
+        "view_feedback": "الذهاب الى النتيجة",
+        "ignore": "تجاهل"
     },
     "placeholders": {
         "token": "رمز الاشتراك",
@@ -141,8 +142,12 @@
         "invalid_token": "رمز خاطئ"
     },
     "popup": {
+        "title": {
+            "logout": "هل أنت متأكد؟"
+        },
         "subtitle": {
-            "subscribe": "ادخل رمز الاشتراك بالدورة"
+            "subscribe": "ادخل رمز الاشتراك بالدورة",
+            "logout": "لا يمكنك رؤية كورساتك بعد تسجيل الخروج"
         }
     },
     "courseItemTypes": {

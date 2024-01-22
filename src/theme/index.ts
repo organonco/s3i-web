@@ -124,6 +124,9 @@ const baseOptions: ThemeOptions = {
                 containedSecondary: {
                     backgroundColor: '#3D86AA !important',
                 },
+                containedError: {
+                    backgroundColor: '#E64646 !important',
+                },
                 outlined: {
                     backgroundColor: '#DAE9E8 !important',
                     borderColor: 'inherit !important'

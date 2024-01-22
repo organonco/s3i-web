@@ -1,11 +1,13 @@
 'use client';
 import { useTranslation } from '@/app/i18n/client';
 import { USER_STATUS } from '@/logic/config';
+import { usePopup } from '@/logic/hooks';
 import { useCoursesStore } from '@/logic/store';
 import { sitemap } from '@/site-map';
 import { Logout, Notifications } from '@mui/icons-material';
-import { Avatar, Badge, Button, ClickAwayListener, Grid, IconButton, Popper, Tabs, Typography } from '@mui/material';
+import { Avatar, Badge, Button, ClickAwayListener, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, IconButton, Popper, Slide, Tabs, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
+import { TransitionProps } from '@mui/material/transitions';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import { LinkTab, samePageLinkNavigation } from '..';
@@ -17,11 +19,19 @@ interface Props {
     window?: () => Window;
 }
 
+const Transition = React.forwardRef(function Transition(
+    props: TransitionProps & {
+        children: React.ReactElement<any, any>;
+    },
+    ref: React.Ref<unknown>,
+) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
 
 export function Header({ lng }: Props) {
     const { push } = useRouter()
-    const { authenticatedStatus, notificationNumber, profileInfo } = useCoursesStore()
+    const { authenticatedStatus, notificationNumber, profileInfo, logUserOut } = useCoursesStore()
     let pathname = usePathname().split('/')[2] ?? '/'
     pathname = '/' + pathname
     const tabArray = ['/', '/courses', '/about-us']
@@ -57,6 +67,16 @@ export function Header({ lng }: Props) {
 
     const profileOpen = Boolean(profileanchorEl);
     const ProfilePopperId = profileOpen ? 'simple-popper' : undefined;
+    const logoutPopup = usePopup()
+
+    const handleLogOutClick = () => {
+        handleToggleProfile()
+        logoutPopup.handleOpen()
+    }
+    const handleLogoutAction = () => {
+        logUserOut()
+        logoutPopup.handleClose()
+    }
 
     return (
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center' }}>
@@ -88,11 +108,34 @@ export function Header({ lng }: Props) {
                                             <Typography >{profileInfo?.email ?? ''}</Typography>
                                         </div>
                                     </Grid>
-                                    <Button color='error' sx={{ justifyContent: 'space-between' }} fullWidth endIcon={<Logout />}>{t('buttons.logout')}</Button>
+                                    <Button color='error' sx={{ justifyContent: 'space-between' }} fullWidth endIcon={<Logout />} onClick={handleLogOutClick}>
+                                        {t('buttons.logout')}
+                                    </Button>
                                 </Grid>
                             </Box>
                         </ClickAwayListener>
                     </Popper>
+                    <Dialog
+                        open={logoutPopup.isOpen}
+                        TransitionComponent={Transition}
+                        keepMounted
+                        onClose={logoutPopup.handleClose}
+                        aria-describedby="alert-dialog-slide-description"
+                        fullWidth
+                    >
+                        <DialogTitle color={'error'} > {t('popup.title.logout')}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText color={'text.primary'} id="alert-dialog-slide-description">
+                                {t('popup.subtitle.logout')}
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions sx={{ justifyContent: 'space-between' }}>
+                            <Grid item lg={12} container justifyContent={'space-between'}>
+                                <Grid item lg={5}><Button fullWidth variant='contained' color='error' onClick={handleLogoutAction}>{t('buttons.logout')}</Button></Grid>
+                                <Grid item lg={5}><Button fullWidth variant='contained' onClick={logoutPopup.handleClose}>{t('buttons.ignore')}</Button></Grid>
+                            </Grid>
+                        </DialogActions>
+                    </Dialog>
 
                     <IconButton size='large' onClick={handleClick}>
                         <Badge badgeContent={notificationNumber} color="info">
