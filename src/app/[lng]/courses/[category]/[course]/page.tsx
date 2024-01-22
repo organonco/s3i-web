@@ -1,8 +1,7 @@
 "use client";
-import { CourseCard } from '@/components/course-card';
+import { StyledImage } from '@/components';
 import { useCoursesStore } from '@/logic/store';
-import { sitemap } from '@/site-map';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -13,28 +12,22 @@ export default function Page({
     params: { lng: any, category: string, course: string }
 }) {
     const { push } = useRouter()
-    const fetchCategoryCourses = useCoursesStore(state => state.fetchCategoryCourses)
-    const courses = useCoursesStore(state => state.courses)
+    const { loadingCourseDetails, fetchCourseDetails, courseDetails, authenticatedStatus, subscribeToCourse } = useCoursesStore()
 
     useEffect(() => {
-        fetchCategoryCourses(category)
-    }, [category])
+        fetchCourseDetails(course)
+    }, [course])
 
-
-    const redirectToDetails = (courseId: string) => push(sitemap.courseDetails(category, courseId).url)
 
     return (
-        <Grid container gap={15} justifyContent={'center'}>
-            <Grid item lg={12} alignItems='center' textAlign='center'>
-                <Grid container item lg={12} sx={{ gap: 4, justifyContent: 'center' }} >
-                    {courses?.map(course => <Grid
-                        key={course.id}
-                        onClick={() => redirectToDetails(course.id)}
-                        sx={{ backgroundColor: 'background.lightShadow', width: 280, height: 250, borderRadius: 3 }}
-                    >
-                        <CourseCard imageURL={course.image_url} subTitle={course.name} title={course.name} />
-                    </Grid>)}
-                </Grid>
+        <Grid container gap={5} justifyContent={'center'}>
+            <Grid md={12} textAlign={'center'}>
+                <Typography variant='h4' color={'primary.main'}>{courseDetails?.name}</Typography>
+            </Grid>
+            <Grid md={12} textAlign={'center'}>
+                <div style={{ width: '100%', height: 300, position: 'relative', borderRadius: '50px', overflow: 'hidden' }}>
+                    <StyledImage imageURL={courseDetails?.image_url} />
+                </div>
             </Grid>
         </Grid>
     )

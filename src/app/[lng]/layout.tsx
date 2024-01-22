@@ -11,11 +11,11 @@ export default function Layout({
     children: React.ReactNode
 }) {
     return (
-        <Grid container sx={{ marginTop: 6, minHeight: '100vh' }} >
+        <Grid container sx={{ marginTop: 6, minHeight: '94.9vh' }} >
             <Grid item lg={12}>
                 <Header lng={lng} />
             </Grid>
-            <Grid item lg={12} style={{ marginTop: 100, marginBottom: 170 }}>
+            <Grid item lg={12} style={{ marginTop: 30, marginBottom: 170 }}>
                 <main>{children}</main>
             </Grid>
             <Footer />

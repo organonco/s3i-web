@@ -52,7 +52,7 @@ function LinkTab(props: LinkTabProps) {
 
 export function Header({ lng }: Props) {
     const { push } = useRouter()
-    let pathname = usePathname().slice(4) ?? '/'
+    let pathname = usePathname().split('/')[2] ?? '/'
     pathname = '/' + pathname
     const tabArray = ['/', '/courses', '/about-us']
     const { t } = useTranslation(lng, 'translation')
@@ -70,6 +70,7 @@ export function Header({ lng }: Props) {
             push(tabArray[newValue])
         }
     };
+    console.log(pathname)
 
     return (
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center' }}>

@@ -20,7 +20,7 @@ export default function Page({
     const loginUser = useCoursesStore(state => state.loginUser)
 
     const handleSubmit = (values: FormikValues, { setSubmitting }) => {
-        const valuesredirectToApp = () => push(sitemap.login.url)
+        const valuesredirectToApp = () => push(sitemap.home.url)
         loginUser(values, valuesredirectToApp, (value: boolean) => setSubmitting(value))
     }
     const handleRedirectToRegister = () => push(sitemap.register.url)
@@ -34,7 +34,7 @@ export default function Page({
                             <Form>
                                 <Grid container direction={'column'} gap={6} justifyContent={'center'}>
                                     <StyledTextField translateKey="phone" name="phone" required />
-                                    <StyledTextField translateKey="password" name="password" required />
+                                    <StyledTextField translateKey="password" name="password" required type="password" />
                                     <Button variant="contained" type="submit" disabled={isSubmitting}>
                                         {t('buttons.login')}
                                     </Button>
