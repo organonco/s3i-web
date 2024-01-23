@@ -95,6 +95,7 @@ export const createUserSlice: StateCreator<UserSlice> = (set, get, api) => ({
     updatePassword: (passwordConfigs: PasswordConfigs, redirectAfterUpdate: () => void, setSubmitting: Function) => {
         changePassword(passwordConfigs).then(() => {
             redirectAfterUpdate()
+            toast.success(t('toast.password_changed'));
             setSubmitting(false)
         }).catch(() => setSubmitting(false))
     },

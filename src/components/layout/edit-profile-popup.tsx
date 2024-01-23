@@ -1,6 +1,6 @@
 import { EditProfileInfo } from "@/logic/interfaces";
 import { useCoursesStore } from "@/logic/store";
-import { Button, DialogActions, DialogContent, DialogTitle, Grid } from "@mui/material";
+import { Button, DialogActions, DialogContent, DialogTitle, Divider, Grid } from "@mui/material";
 import dayjs from "dayjs";
 import { Form, Formik } from "formik";
 import { t } from "i18next";
@@ -37,9 +37,10 @@ export const EditProfilePopup: FC<{ closePopup: () => void }> = (props) => {
         <Formik initialValues={initialValues} validationSchema={registerValidationSchema} onSubmit={handleSubmit}>
             {({ isSubmitting, isValid }) => (
                 <Form>
-                    <DialogTitle>Subscribe</DialogTitle>
+                    <DialogTitle variant="h5" color={'primary'}>{t('popup.title.update_profile')}</DialogTitle>
+                    <Divider />
                     <DialogContent>
-                        <Grid container direction={'column'} gap={2} lg={12}>
+                        <Grid container direction={'column'} gap={2} lg={12} my={3}>
                             <StyledTextField translateKey="name_ar" name="name_ar" required />
                             <StyledTextField translateKey="name_en" name="name_en" required />
                             <StyledTextField translateKey="phone" name="phone" required />

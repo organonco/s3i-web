@@ -9,6 +9,7 @@ import { TransitionProps } from '@mui/material/transitions';
 import { t } from 'i18next';
 import { useRouter } from 'next/navigation';
 import React, { FC } from 'react';
+import { ChangePasswordPopup } from './change-password-popup';
 import { EditProfilePopup } from './edit-profile-popup';
 import { LogoutPopup } from './logout-popup';
 
@@ -24,6 +25,7 @@ const Transition = React.forwardRef(function Transition(
 export const UserProfilePopper: FC<{}> = (props) => {
     const logoutPopup = usePopup()
     const editProfilePopup = usePopup()
+    const changePasswordPopup = usePopup()
     const { push } = useRouter()
     const { profileInfo, logUserOut } = useCoursesStore()
 
@@ -41,8 +43,11 @@ export const UserProfilePopper: FC<{}> = (props) => {
     }
     const handleEditProfiledClick = () => {
         handleToggleProfile()
-        // logUserOut()
         editProfilePopup.handleOpen()
+    }
+    const handleChangePasswordClick = () => {
+        handleToggleProfile()
+        changePasswordPopup.handleOpen()
     }
     const redirectToProfile = () => {
         handleToggleProfile()
@@ -77,7 +82,7 @@ export const UserProfilePopper: FC<{}> = (props) => {
                                 <Divider />
                             </Grid>
                             <Grid item lg={12}>
-                                <Button color='info' sx={{ justifyContent: 'space-between' }} fullWidth endIcon={<LockReset />} onClick={handleEditProfiledClick}>
+                                <Button color='info' sx={{ justifyContent: 'space-between' }} fullWidth endIcon={<LockReset />} onClick={handleChangePasswordClick}>
                                     {t('buttons.change_password')}
                                 </Button>
                                 <Button color='error' sx={{ justifyContent: 'space-between' }} fullWidth endIcon={<Logout />} onClick={handleLogOutClick}>
@@ -107,6 +112,16 @@ export const UserProfilePopper: FC<{}> = (props) => {
                 fullWidth
             >
                 {editProfilePopup.isOpen && <EditProfilePopup closePopup={editProfilePopup.handleClose} />}
+            </Dialog>
+            <Dialog
+                open={changePasswordPopup.isOpen}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={changePasswordPopup.handleClose}
+                aria-describedby="alert-dialog-slide-description"
+                fullWidth
+            >
+                {changePasswordPopup.isOpen && <ChangePasswordPopup closePopup={changePasswordPopup.handleClose} />}
             </Dialog>
         </>
     )
