@@ -39,7 +39,7 @@ export default function Page({
         }]
 
     return (
-        <Grid container gap={10} justifyContent={'center'} mt={5}>
+        <Grid container gap={10} justifyContent={'center'} >
             <Grid item lg={12} >
                 <Box sx={{ width: '100%', height: 400, position: 'relative', backgroundColor: 'background.primary.hover' }}>
                     <Image
@@ -57,8 +57,8 @@ export default function Page({
                     <AddvertisedCard icon={category.icon_url} name={t(`texts.${category.name}`)} />
                 </Grid>)}
             </Grid>
-            <Grid item lg={12} alignItems='center' textAlign='center'>
-                <Typography color='primary' variant='h4' marginBottom={5}>{t('texts.new_courses')}</Typography>
+            <Grid item lg={12} alignItems='center' textAlign='center' mt={6}>
+                <Typography color='primary' variant='h3' marginBottom={5}>{t('texts.new_courses')}</Typography>
                 <Grid container item lg={12} sx={{ justifyContent: 'space-between' }} >
                     {newCourses.slice(0, 3).map(course => <Grid key={course.id} sx={{ backgroundColor: 'background.lightShadow', width: 280, height: 250, borderRadius: 3 }}>
                         <CourseCard imageURL={course.image_url} subTitle={course.name} title={course.name} />

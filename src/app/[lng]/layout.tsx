@@ -17,7 +17,7 @@ export default function Layout({
                 <Grid item lg={12}>
                     <Header lng={lng} />
                 </Grid>
-                <Grid item lg={12} style={{ marginTop: 30, marginBottom: 170 }}>
+                <Grid item lg={12} style={{ marginTop: 70, marginBottom: 170 }}>
                     <main>{children}</main>
                 </Grid>
                 <Footer />

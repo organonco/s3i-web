@@ -34,7 +34,7 @@ export function Header({ lng }: Props) {
     const { authenticatedStatus, notificationNumber, profileInfo, logUserOut } = useCoursesStore()
     let pathname = usePathname().split('/')[2] ?? '/'
     pathname = '/' + pathname
-    const tabArray = ['/', '/courses', '/about-us']
+    const tabArray = [sitemap.home.url, sitemap.courses.index.url, sitemap.teachers.url, sitemap.partners.url, sitemap.about_us.url]
     const { t } = useTranslation(lng, 'translation')
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         // event.type can be equal to focus with selectionFollowsFocus.
@@ -46,7 +46,7 @@ export function Header({ lng }: Props) {
                     event as React.MouseEvent<HTMLAnchorElement, MouseEvent>,
                 ))
         ) {
-            // console.log(tabArray[newValue])
+            console.log(tabArray[newValue])
             push(tabArray[newValue])
         }
     };
