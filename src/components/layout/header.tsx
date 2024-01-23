@@ -46,7 +46,6 @@ export function Header({ lng }: Props) {
                     event as React.MouseEvent<HTMLAnchorElement, MouseEvent>,
                 ))
         ) {
-            console.log(tabArray[newValue])
             push(tabArray[newValue])
         }
     };
@@ -77,11 +76,15 @@ export function Header({ lng }: Props) {
         logUserOut()
         logoutPopup.handleClose()
     }
-
+    const router = useRouter()
+    const redirectToProfile = () => {
+        handleToggleProfile()
+        router.push(sitemap.profile.url)
+    }
     return (
-        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center' }}>
+        <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 2, height: 70, backgroundColor: 'success.light' }}>
             <Box>
-                <Tabs value={tabArray.indexOf(pathname)} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '10%', marginLeft: 50 } }}>
+                <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '10%', marginLeft: 50 } }}>
                     <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url} />
                     <LinkTab label={t('pages.' + sitemap.courses.index.title)} href={sitemap.courses.index.url} />
                     <LinkTab label={t('pages.' + sitemap.teachers.title)} href={sitemap.teachers.url} />
@@ -99,13 +102,13 @@ export function Header({ lng }: Props) {
                         anchorEl={profileanchorEl}
                     >
                         <ClickAwayListener onClickAway={handleToggleProfile}>
-                            <Box sx={{ p: 3, bgcolor: 'background.paper', width: 350 }}>
+                            <Box sx={{ p: 3, bgcolor: 'background.shadow', width: 350 }}>
                                 <Grid container lg={12} gap={2}>
-                                    <Grid container item direction='row' md={12} gap={3}>
+                                    <Grid container item direction='row' md={12} gap={3} onClick={redirectToProfile} sx={{ cursor: 'pointer' }}>
                                         <Avatar sx={{ bgcolor: 'primary.main' }} onClick={handleToggleProfile}>{profileInfo?.name_ar.charAt(0) ?? ''}</Avatar>
                                         <div>
                                             <Typography >{profileInfo?.name_ar ?? ''}</Typography>
-                                            <Typography >{profileInfo?.email ?? ''}</Typography>
+                                            <Typography >{profileInfo?.phone ?? ''}</Typography>
                                         </div>
                                     </Grid>
                                     <Button color='error' sx={{ justifyContent: 'space-between' }} fullWidth endIcon={<Logout />} onClick={handleLogOutClick}>

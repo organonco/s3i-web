@@ -21,4 +21,5 @@ export const sitemap = makeSiteMap({
     thank_you: { title: 'thank_you', url: '/thank-you' },
     partners: { title: 'partners', url: '/partners' },
     teachers: { title: 'teachers', url: '/teachers' },
+    profile: { title: 'profile', url: '/profile' }
 });

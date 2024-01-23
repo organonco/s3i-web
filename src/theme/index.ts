@@ -53,7 +53,8 @@ const baseOptions: ThemeOptions = {
             secondary: '#57AFA8',
         },
         success: {
-            main: '#49BF89'
+            main: '#49BF89',
+            light: '#FFFFFF'
         }
     },
     components: {

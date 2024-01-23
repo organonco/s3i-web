@@ -1,7 +1,7 @@
 "use client";
 import { CategoryCard } from '@/components/category-card';
 import { CourseCard } from '@/components/course-card';
-import { Category } from '@/logic/interfaces';
+import { Category, Course } from '@/logic/interfaces';
 import { useCoursesStore } from '@/logic/store';
 import { sitemap } from '@/site-map';
 import { Grid, Typography } from '@mui/material';
@@ -25,6 +25,7 @@ export default function Page({
     }, [])
 
     const redirectToDetails = (category: Category) => push(sitemap.courses.id(category.id).url)
+    const redirectToCourse = (course: Course) => push(sitemap.courses.courseDetails(course.category_id, course.id).url)
 
     return (
         <Grid container gap={15} justifyContent={'center'}>
@@ -39,7 +40,10 @@ export default function Page({
             <Grid item lg={12} alignItems='center' textAlign='center'>
                 <Typography color='primary' variant='h4' marginBottom={5}>{t('texts.new_courses')}</Typography>
                 <Grid container item lg={12} sx={{ gap: 4, justifyContent: 'center' }} >
-                    {newCourses.map(course => <Grid key={course.id} sx={{ backgroundColor: 'background.lightShadow', width: 280, height: 250, borderRadius: 3 }}>
+                    {newCourses.map(course => <Grid
+                        onClick={() => redirectToCourse(course)}
+                        key={course.id}
+                        sx={{ backgroundColor: 'background.lightShadow', width: 280, height: 250, borderRadius: 3 }}>
                         <CourseCard imageURL={course.image_url} subTitle={course.name} title={course.name} />
                     </Grid>)}
                 </Grid>

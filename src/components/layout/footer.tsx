@@ -22,7 +22,7 @@ const IconWithText = ({ title, icon }: { title: string, icon: ReactNode }) => <G
 export const Footer: FC<Props> = (props) => {
     return (
         <Box sx={{ backgroundColor: 'primary.dark', width: '100%', height: 130, alignSelf: 'end', padding: 3, paddingInline: 10 }}>
-            <Grid container lg={12} >
+            <Grid container item lg={12} >
                 <Grid item container md={4}>
                     <Grid item md={6}>
                         <Link href={sitemap.home.url}>   <LinkText title={sitemap.home.title} /></Link>

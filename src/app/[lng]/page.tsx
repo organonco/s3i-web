@@ -1,7 +1,9 @@
 "use client";
 import { AddvertisedCard } from '@/components';
 import { CourseCard } from '@/components/course-card';
+import { Course } from '@/logic/interfaces';
 import { useCoursesStore } from '@/logic/store';
+import { sitemap } from '@/site-map';
 import { Box, Grid, Typography } from '@mui/material';
 import { t } from 'i18next';
 import Image from 'next/image';
@@ -38,6 +40,8 @@ export default function Page({
             , name: 'professional'
         }]
 
+    const redirectToCourse = (course: Course) => push(sitemap.courses.courseDetails(course.category_id, course.id).url)
+
     return (
         <Grid container gap={10} justifyContent={'center'} >
             <Grid item lg={12} >
@@ -60,7 +64,10 @@ export default function Page({
             <Grid item lg={12} alignItems='center' textAlign='center' mt={6}>
                 <Typography color='primary' variant='h3' marginBottom={5}>{t('texts.new_courses')}</Typography>
                 <Grid container item lg={12} sx={{ justifyContent: 'space-between' }} >
-                    {newCourses.slice(0, 3).map(course => <Grid key={course.id} sx={{ backgroundColor: 'background.lightShadow', width: 280, height: 250, borderRadius: 3 }}>
+                    {newCourses.slice(0, 3).map(course => <Grid
+                        key={course.id}
+                        onClick={() => redirectToCourse(course)}
+                        sx={{ backgroundColor: 'background.lightShadow', width: 280, height: 250, borderRadius: 3 }}>
                         <CourseCard imageURL={course.image_url} subTitle={course.name} title={course.name} />
                     </Grid>)}
                 </Grid>
