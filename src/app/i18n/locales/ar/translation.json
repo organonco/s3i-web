@@ -9,7 +9,8 @@
         "teachers": "الكادر التدريسي"
     },
     "titles": {
-        "thanks_for_registration": "شكرا على انشاء حساب جديد"
+        "thanks_for_registration": "شكرا على انشاء حساب جديد",
+        "notifications": "الاشعارات"
     },
     "texts": {
         "or": "أو",

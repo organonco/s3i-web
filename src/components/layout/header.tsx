@@ -99,7 +99,7 @@ export function Header({ lng }: Props) {
                         anchorEl={profileanchorEl}
                     >
                         <ClickAwayListener onClickAway={handleToggleProfile}>
-                            <Box sx={{ p: 2, bgcolor: 'background.paper', width: 300 }}>
+                            <Box sx={{ p: 3, bgcolor: 'background.paper', width: 350 }}>
                                 <Grid container lg={12} gap={2}>
                                     <Grid container item direction='row' md={12} gap={3}>
                                         <Avatar sx={{ bgcolor: 'primary.main' }} onClick={handleToggleProfile}>{profileInfo?.name_ar.charAt(0) ?? ''}</Avatar>

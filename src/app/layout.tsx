@@ -3,6 +3,8 @@ import { theme } from '@/theme/index';
 import { ThemeProvider } from '@mui/material/styles';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Slide, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,6 +23,18 @@ export default function RootLayout({
     <html lang="ar" dir='rtl'>
       <body className={inter.className}>
         <div dir="rtl">
+          <ToastContainer
+            position={'top-left'}
+            newestOnTop={false}
+            theme='colored'
+            closeOnClick
+            rtl
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            limit={3}
+            transition={Slide}
+          />
           <ThemeProvider theme={theme}>
             {children}
           </ThemeProvider>

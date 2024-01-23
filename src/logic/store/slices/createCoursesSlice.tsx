@@ -1,6 +1,8 @@
 import { Category, Course, CourseDetails, CourseItemDetails, QuizDetails, RegisterInfoAPI } from "@/logic/interfaces"
 import { fetchCategories, fetchCategoryDetails, fetchCourseDetails, fetchCourseQuiz, fetchHomeworkDetails, fetchNewCourses, fetchUserCourses, submitUserQuiz, subscribeCourse } from "@/logic/services"
+import { t } from "i18next"
 import { produce } from "immer"
+import { toast } from "react-toastify"
 import { StateCreator } from "zustand"
 
 export interface CoursesSlice {
@@ -118,7 +120,7 @@ export const createCoursesSlice: StateCreator<CoursesSlice> = (set, get, api) =>
             set(produce(draftState => {
                 draftState.quizDetails = data.data
                 draftState.isQuizSubmitted = data.data.is_submitted
-                // ToastAndroid.show(t('toast.quiz_submitted'), ToastAndroid.SHORT);
+                toast.error(t('toast.quiz_submitted'));
             }))
         }).catch(() => stopLoading())
     }

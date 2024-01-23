@@ -1,7 +1,9 @@
 import { USER_STATUS } from "@/logic/config"
 import { EditProfileInfo, LoginInfo, PasswordConfigs, ProfileInfo, RegisterInfo, RegisterInfoAPI } from "@/logic/interfaces"
 import { changePassword, fetchProfileData, fetchRegisterData, getNotification, getNotificationNumber, login, readNotifications, registerUser, updateProfileInfo } from "@/logic/services"
+import { t } from "i18next"
 import { produce } from "immer"
+import { toast } from 'react-toastify'
 import { StateCreator } from "zustand"
 
 export interface UserSlice {
@@ -60,8 +62,8 @@ export const createUserSlice: StateCreator<UserSlice> = (set, get, api) => ({
             redirectToApp()
         }).catch((error) => {
             setSubmitting(false)
-            // if (error.data.code == 'invalid_credentials') ToastAndroid.show(t('toast.' + error.data.code), ToastAndroid.SHORT);
-            // if (error.data.code == 'account_frozen') ToastAndroid.show(t('toast.' + error.data.code), ToastAndroid.SHORT);
+            if (error.data.code == 'invalid_credentials') toast.error(t('toast.' + error.data.code));
+            if (error.data.code == 'account_frozen') toast.error(t('toast.' + error.data.code));
         })
     },
     fetchProfileInfo: () => fetchProfileData().then((data) => set(produce(draftState => { draftState.profileInfo = data.data }))),
