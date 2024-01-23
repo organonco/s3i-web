@@ -1,17 +1,16 @@
 'use client';
 import { useTranslation } from '@/app/i18n/client';
 import { USER_STATUS } from '@/logic/config';
-import { usePopup } from '@/logic/hooks';
 import { useCoursesStore } from '@/logic/store';
 import { sitemap } from '@/site-map';
-import { Edit, LockReset, Logout, Notifications } from '@mui/icons-material';
-import { Avatar, Badge, Button, ClickAwayListener, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, IconButton, Popper, Slide, Tabs, Typography } from '@mui/material';
+import { Notifications } from '@mui/icons-material';
+import { Badge, Button, Grid, IconButton, Popper, Tabs } from '@mui/material';
 import Box from '@mui/material/Box';
-import { TransitionProps } from '@mui/material/transitions';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import { LinkTab, samePageLinkNavigation } from '..';
 import { NotificationList } from './notifications-list';
+import { UserProfilePopper } from './user-info-popper';
 
 
 interface Props {
@@ -19,14 +18,6 @@ interface Props {
     window?: () => Window;
 }
 
-const Transition = React.forwardRef(function Transition(
-    props: TransitionProps & {
-        children: React.ReactElement<any, any>;
-    },
-    ref: React.Ref<unknown>,
-) {
-    return <Slide direction="up" ref={ref} {...props} />;
-});
 
 
 export function Header({ lng }: Props) {
@@ -58,29 +49,6 @@ export function Header({ lng }: Props) {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
 
-    const [profileanchorEl, setprofileAnchorEl] = React.useState<null | HTMLElement>(null);
-
-    const handleToggleProfile = (event: React.MouseEvent<HTMLElement>) => {
-        setprofileAnchorEl(profileanchorEl ? null : event.currentTarget);
-    };
-
-    const profileOpen = Boolean(profileanchorEl);
-    const ProfilePopperId = profileOpen ? 'simple-popper' : undefined;
-    const logoutPopup = usePopup()
-
-    const handleLogOutClick = () => {
-        handleToggleProfile()
-        logoutPopup.handleOpen()
-    }
-    const handleLogoutAction = () => {
-        logUserOut()
-        logoutPopup.handleClose()
-    }
-    const router = useRouter()
-    const redirectToProfile = () => {
-        handleToggleProfile()
-        router.push(sitemap.profile.url)
-    }
     return (
         <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 2, height: 70, backgroundColor: 'success.light' }}>
             <Box>
@@ -94,72 +62,14 @@ export function Header({ lng }: Props) {
             </Box>
             <Box>
                 {authenticatedStatus === USER_STATUS.LOGGED_IN ? <Grid container alignItems={'center'} gap={2}>
-
-                    <Avatar sx={{ bgcolor: 'primary.main', cursor: 'pointer' }} onClick={handleToggleProfile}>{profileInfo?.name_ar.charAt(0) ?? ''}</Avatar>
-                    <Popper
-                        id={ProfilePopperId}
-                        open={profileOpen}
-                        anchorEl={profileanchorEl}
-                    >
-                        <ClickAwayListener onClickAway={handleToggleProfile}>
-                            <Box sx={{ p: 3, bgcolor: 'background.paper', width: 350, marginTop: 1 }}>
-                                <Grid container lg={12} gap={2}>
-                                    <Grid container md={12}>
-                                        <Grid item container gap={3} direction='row' lg={9}>
-                                            <Avatar sx={{ bgcolor: 'primary.main' }} onClick={handleToggleProfile}>{profileInfo?.name_ar.charAt(0) ?? ''}</Avatar>
-                                            <div>
-                                                <Typography >{profileInfo?.name_ar ?? ''}</Typography>
-                                                <Typography >{profileInfo?.phone ?? ''}</Typography>
-                                            </div>
-                                        </Grid>
-                                        <Grid item lg={3} container justifyContent={'flex-end'}>
-                                            <IconButton size='large' onClick={redirectToProfile}>
-                                                <Edit sx={{ height: 20, width: 20 }} />
-                                            </IconButton>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid item lg={12}>
-                                        <Divider />
-                                    </Grid>
-                                    <Grid item lg={12}>
-                                        <Button color='info' sx={{ justifyContent: 'space-between' }} fullWidth endIcon={<LockReset />} onClick={handleLogOutClick}>
-                                            {t('buttons.change_password')}
-                                        </Button>
-                                        <Button color='error' sx={{ justifyContent: 'space-between' }} fullWidth endIcon={<Logout />} onClick={handleLogOutClick}>
-                                            {t('buttons.logout')}
-                                        </Button>
-                                    </Grid>
-                                </Grid>
-                            </Box>
-                        </ClickAwayListener>
-                    </Popper>
-                    <Dialog
-                        open={logoutPopup.isOpen}
-                        TransitionComponent={Transition}
-                        keepMounted
-                        onClose={logoutPopup.handleClose}
-                        aria-describedby="alert-dialog-slide-description"
-                        fullWidth
-                    >
-                        <DialogTitle color={'error'} > {t('popup.title.logout')}</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText color={'text.primary'} id="alert-dialog-slide-description">
-                                {t('popup.subtitle.logout')}
-                            </DialogContentText>
-                        </DialogContent>
-                        <DialogActions sx={{ justifyContent: 'space-between' }}>
-                            <Grid item lg={12} container justifyContent={'space-between'}>
-                                <Grid item lg={5}><Button fullWidth variant='contained' color='error' onClick={handleLogoutAction}>{t('buttons.logout')}</Button></Grid>
-                                <Grid item lg={5}><Button fullWidth variant='contained' onClick={logoutPopup.handleClose}>{t('buttons.ignore')}</Button></Grid>
-                            </Grid>
-                        </DialogActions>
-                    </Dialog>
+                    <UserProfilePopper />
 
                     <IconButton size='large' onClick={handleClick}>
                         <Badge badgeContent={notificationNumber} color="info">
                             <Notifications sx={{ height: 30, width: 30 }} />
                         </Badge>
                     </IconButton>
+
                     <Popper
                         id={id}
                         open={open}

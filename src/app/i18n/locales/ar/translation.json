@@ -140,7 +140,8 @@
         "you_have_no_course": "ليس لديك دورات خاصة بك",
         "go_to_courses": "اذهب الى دوراتي",
         "quiz_submitted": "تم تقديم الاختبار بنجاح",
-        "invalid_token": "رمز خاطئ"
+        "invalid_token": "رمز خاطئ",
+        "profile_updated": "تم تعديل البروفايل بنجاح"
     },
     "popup": {
         "title": {

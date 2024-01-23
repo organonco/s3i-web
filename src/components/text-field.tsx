@@ -32,7 +32,6 @@ export const StyledTextField: FC<Props> = (props) => {
 
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
-
     return (
         <TextField
             id="outlined"

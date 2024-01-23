@@ -101,6 +101,7 @@ export const createUserSlice: StateCreator<UserSlice> = (set, get, api) => ({
     saveProfileData: (profileInfo: EditProfileInfo, navigateToProfile: () => void, stopLoading: () => void) => {
         updateProfileInfo(profileInfo).then((data) => {
             set(produce(draftState => { draftState.profileInfo = data.data }))
+            toast.success(t('toast.profile_updated'));
             stopLoading()
         }).catch(() => stopLoading())
     },
