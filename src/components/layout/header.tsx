@@ -4,8 +4,8 @@ import { USER_STATUS } from '@/logic/config';
 import { usePopup } from '@/logic/hooks';
 import { useCoursesStore } from '@/logic/store';
 import { sitemap } from '@/site-map';
-import { Logout, Notifications } from '@mui/icons-material';
-import { Avatar, Badge, Button, ClickAwayListener, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, IconButton, Popper, Slide, Tabs, Typography } from '@mui/material';
+import { Edit, LockReset, Logout, Notifications } from '@mui/icons-material';
+import { Avatar, Badge, Button, ClickAwayListener, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, IconButton, Popper, Slide, Tabs, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import { TransitionProps } from '@mui/material/transitions';
 import { usePathname, useRouter } from 'next/navigation';
@@ -102,18 +102,33 @@ export function Header({ lng }: Props) {
                         anchorEl={profileanchorEl}
                     >
                         <ClickAwayListener onClickAway={handleToggleProfile}>
-                            <Box sx={{ p: 3, bgcolor: 'background.shadow', width: 350 }}>
+                            <Box sx={{ p: 3, bgcolor: 'background.paper', width: 350, marginTop: 1 }}>
                                 <Grid container lg={12} gap={2}>
-                                    <Grid container item direction='row' md={12} gap={3} onClick={redirectToProfile} sx={{ cursor: 'pointer' }}>
-                                        <Avatar sx={{ bgcolor: 'primary.main' }} onClick={handleToggleProfile}>{profileInfo?.name_ar.charAt(0) ?? ''}</Avatar>
-                                        <div>
-                                            <Typography >{profileInfo?.name_ar ?? ''}</Typography>
-                                            <Typography >{profileInfo?.phone ?? ''}</Typography>
-                                        </div>
+                                    <Grid container md={12}>
+                                        <Grid item container gap={3} direction='row' lg={9}>
+                                            <Avatar sx={{ bgcolor: 'primary.main' }} onClick={handleToggleProfile}>{profileInfo?.name_ar.charAt(0) ?? ''}</Avatar>
+                                            <div>
+                                                <Typography >{profileInfo?.name_ar ?? ''}</Typography>
+                                                <Typography >{profileInfo?.phone ?? ''}</Typography>
+                                            </div>
+                                        </Grid>
+                                        <Grid item lg={3} container justifyContent={'flex-end'}>
+                                            <IconButton size='large' onClick={redirectToProfile}>
+                                                <Edit sx={{ height: 20, width: 20 }} />
+                                            </IconButton>
+                                        </Grid>
                                     </Grid>
-                                    <Button color='error' sx={{ justifyContent: 'space-between' }} fullWidth endIcon={<Logout />} onClick={handleLogOutClick}>
-                                        {t('buttons.logout')}
-                                    </Button>
+                                    <Grid item lg={12}>
+                                        <Divider />
+                                    </Grid>
+                                    <Grid item lg={12}>
+                                        <Button color='info' sx={{ justifyContent: 'space-between' }} fullWidth endIcon={<LockReset />} onClick={handleLogOutClick}>
+                                            {t('buttons.change_password')}
+                                        </Button>
+                                        <Button color='error' sx={{ justifyContent: 'space-between' }} fullWidth endIcon={<Logout />} onClick={handleLogOutClick}>
+                                            {t('buttons.logout')}
+                                        </Button>
+                                    </Grid>
                                 </Grid>
                             </Box>
                         </ClickAwayListener>
