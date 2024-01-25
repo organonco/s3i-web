@@ -1,3 +1,4 @@
+export * from './accordion'
 export * from './advertisement-card'
 export * from './box'
 export * from './button'

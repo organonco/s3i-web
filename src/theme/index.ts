@@ -48,9 +48,12 @@ const baseOptions: ThemeOptions = {
             shadow: '#F6F6F6',
             lightShadow: '#F9FFFF',
         },
+        action: {
+            disabledBackground: '#E5E5E5 !important',
+        },
         text: {
             primary: '#000000',
-            secondary: '#57AFA8',
+            secondary: '#808080',
         },
         success: {
             main: '#49BF89',
@@ -114,7 +117,7 @@ const baseOptions: ThemeOptions = {
                 root: {
                     fontWeight: 500,
                     fontSize: 18,
-                    borderRadius: 11
+                    borderRadius: 11,
                 },
                 contained: {
                     color: 'white'

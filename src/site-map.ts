@@ -14,6 +14,8 @@ export const sitemap = makeSiteMap({
         index: { title: 'courses', url: '/courses' },
         id: (id = '[category]') => { return { title: id, url: `/courses/${id}` } },
         courseDetails: (category_id = '[category]', course_id = '[course]') => { return { title: course_id, url: `/courses/${category_id}/${course_id}` } },
+        video_player: (category_id = '[category]', course_id = '[course]') => { return { title: 'video_player', url: `/courses/${category_id}/${course_id}/video-player` } },
+        quiz: (category_id = '[category]', course_id = '[course]') => { return { title: 'quiz', url: `/courses/${category_id}/${course_id}/quiz` } },
     },
     about_us: { title: 'about_us', url: '/about-us' },
     login: { title: 'login', url: '/login' },
@@ -21,5 +23,5 @@ export const sitemap = makeSiteMap({
     thank_you: { title: 'thank_you', url: '/thank-you' },
     partners: { title: 'partners', url: '/partners' },
     teachers: { title: 'teachers', url: '/teachers' },
-    profile: { title: 'profile', url: '/profile' }
+    profile: { title: 'profile', url: '/profile' },
 });

@@ -40,7 +40,7 @@ export default function Page({
             , name: 'professional'
         }]
 
-    const redirectToCourse = (course: Course) => push(sitemap.courses.courseDetails(course.category_id, course.id).url)
+    const redirectToCourse = (course: Course) => push(sitemap.courses.courseDetails(course.category.id, course.id).url)
 
     return (
         <Grid container gap={10} justifyContent={'center'} >

@@ -1,42 +1,43 @@
 import { COURSE_ITEM } from "@/logic/config";
-import { CourseItemDetails } from "@/logic/interfaces";
+import { CourseDetails, CourseItemDetails } from "@/logic/interfaces";
+import { sitemap } from "@/site-map";
+import { AttachFile, CameraAlt, Check, Note, Timer, Upload } from "@mui/icons-material";
 import { Grid, Typography } from "@mui/material";
 import { t } from "i18next";
-import { useState } from "react";
-import { StyledButton, TimerButton } from ".";
+import { useRouter } from "next/navigation";
+import { FC, ReactNode } from "react";
+import { StyledAccordion, StyledButton, TimerButton } from ".";
 
 
 interface CourseItemComponentPropsInterface {
     courseItem: CourseItemDetails
+    courseDetails: CourseDetails
 }
 
-const iconsMap: { [key: string]: string } = {
-    "video": "camera",
-    "meeting": "timer",
-    "text": "notebook-edit",
-    "multiple_choice": "check-bold",
-    "homework": "upload",
-    "file": "attachment"
+const iconsMap: { [key: string]: ReactNode } = {
+    "video": <CameraAlt />,
+    "meeting": <Timer />,
+    "text": <Note />,
+    "multiple_choice": <Check />,
+    "homework": <Upload />,
+    "file": <AttachFile />
 }
 
 
 export const CourseItemComponent: FC<CourseItemComponentPropsInterface> = (props) => {
-    const [expanded, setExpanded] = useState(false);
-    const handlePress = () => { setExpanded(!expanded) }
-    const getButtonStyle = () => !expanded ? {} : { borderBottomEndRadius: 0, borderBottomStartRadius: 0 }
+    const { push } = useRouter()
     const type = props.courseItem.type == COURSE_ITEM.QUIZ ? props.courseItem.object.type : props.courseItem.type
     const openURL = () => {
-        // Linking.openURL(courseItem?.object.url)
+        window.open(props.courseItem.url);
     }
 
-    const goToVideoPlayer = () => { }
-    const goToQuiz = () => { }
+    const goToVideoPlayer = () => push(sitemap.courses.video_player(props.courseDetails.category.id, props.courseDetails.id).url)
+    const goToQuiz = () => push(sitemap.courses.quiz(props.courseDetails.category.id, props.courseDetails.id).url)
 
     const getCourseItemDetails = () => {
         switch (type) {
             case COURSE_ITEM.FILE:
-                return <StyledButton onClick={() => { }} title={t('buttons.download')} style={{ alignSelf: 'center' }}
-                />
+                return <StyledButton onClick={() => { }} title={t('buttons.download')} />
             case COURSE_ITEM.MEETING:
                 return <>
                     {
@@ -99,18 +100,13 @@ export const CourseItemComponent: FC<CourseItemComponentPropsInterface> = (props
     return (
         <>{
             props.courseItem.type == 'section' ?
-                < >
-                    <Typography style={{ textAlign: 'center', }}>{props.courseItem.object.name}</Typography>
-                </ > :
+                <Typography variant='h5' textAlign={'center'} color='primary.dark' my={3}> {props.courseItem.object.name}</Typography>
+                :
                 <Grid item md={12}>
-                    <StyledButton onClick={handlePress} title={t('courseItemTypes.' + type)} icon={iconsMap[type]} />
-                    {
-                        !expanded ? null :
-                            <>
-                                <Typography style={{ textAlign: 'center', marginBottom: 10 }}> {props.courseItem.object.name} </Typography>
-                                {getCourseItemDetails()}
-                            </>
-                    }
+                    <StyledAccordion title={t('courseItemTypes.' + type)} icon={iconsMap[type]}>
+                        <Typography style={{ textAlign: 'center', marginBottom: 10 }}> {props.courseItem.object.name} </Typography>
+                        {getCourseItemDetails()}
+                    </StyledAccordion>
                 </Grid >
         }
         </>

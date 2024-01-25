@@ -1,4 +1,4 @@
-import { COURSE_ITEM, QUESTION_TYPE } from '@/config'
+import { COURSE_ITEM, QUESTION_TYPE } from '../config'
 
 export interface GeneralObject {
     id: string
@@ -11,7 +11,7 @@ export interface Course {
     id: string
     name: string
     description: string
-    category_id: string
+    category: GeneralObject
     image_url: string
 }
 export interface CourseDetails extends Course {
@@ -51,6 +51,16 @@ export interface CourseItemDetails {
     has_feedback?: boolean
     feedback?: string | null
     is_submitted?: boolean
+    type: COURSE_ITEM
+    object: {
+        type: COURSE_ITEM
+        time?: string
+        name?: string
+        is_submitted?: boolean
+        time_limit?: string
+        submission?: boolean
+        date?: string
+    }
     submission?: {
         has_feedback?: boolean
         feedback?: string

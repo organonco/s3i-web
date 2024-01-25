@@ -3,10 +3,10 @@ import { FC } from "react";
 import { StyledButton } from ".";
 
 interface TimerButtonProps {
-    title: string
+    title?: string
     handleClick: () => void
-    time: string
-    date: string
+    time?: string
+    date?: string
 }
 export const TimerButton: FC<TimerButtonProps> = ({ title, handleClick, time, date }) => {
 
@@ -33,8 +33,7 @@ export const TimerButton: FC<TimerButtonProps> = ({ title, handleClick, time, da
 
     return (
         <StyledButton
-            sx={{ alignSelf: 'center', marginTop: 10 }}
-            onPress={handleClick}
+            onClick={handleClick}
             title={t('buttons.open_meeting')}
             disabled={past || !date}
         />

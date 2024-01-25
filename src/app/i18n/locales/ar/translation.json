@@ -74,7 +74,13 @@
         "reference": "كيف وصلت الينا",
         "old_password": "كلمة السر القديمة",
         "new_password": "كلمة السر الجديدة",
-        "new_password_confirmation": "تأكيد كلمة السر"
+        "new_password_confirmation": "تأكيد كلمة السر",
+        "meeting_not_set": "لم يتم تحديد وقت الاجتماع",
+        "quiz_time_limit": "وقت الاختبار ",
+        "minute": " دقيقة",
+        "no_time_limit": "الاختبار غير مؤقت",
+        "file_submitted": "تم رفع الملف",
+        "quiz_submitted": "تم تقديم الاختبار"
     },
     "error": {
         "phone": {

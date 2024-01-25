@@ -44,7 +44,7 @@ export default function Page({
                     // if the user is logged in and subscribed
                     : courseDetails?.is_subscribed ? <Grid container>
                         {courseDetails?.items?.map(courseItem => <Grid item md={12} key={courseItem.id} container direction='column' gap={5}>
-                            <CourseItemComponent courseItem={courseItem} />
+                            <CourseItemComponent courseItem={courseItem} courseDetails={courseDetails} />
                         </Grid>)}
                     </Grid>
                         // if the user is logged in but not subscribed to the course
