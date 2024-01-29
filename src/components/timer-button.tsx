@@ -13,8 +13,6 @@ export const TimerButton: FC<TimerButtonProps> = ({ title, handleClick, time, da
     const meetingDateTime = new Date(`${date}T${time}`);
     const past = date && new Date() > meetingDateTime;
 
-    console.log(past);
-
     const datetime = () => {
         if (date)
             return " - (" +

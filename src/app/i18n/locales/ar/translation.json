@@ -80,7 +80,8 @@
         "minute": " دقيقة",
         "no_time_limit": "الاختبار غير مؤقت",
         "file_submitted": "تم رفع الملف",
-        "quiz_submitted": "تم تقديم الاختبار"
+        "quiz_submitted": "تم تقديم الاختبار",
+        "no_feedback": "يتم عرض النتيجة بعد تصحيح الأستاذ"
     },
     "error": {
         "phone": {

@@ -9,6 +9,7 @@ interface Props {
     translateKey: string,
     required?: boolean
     type?: string,
+    numberOfLines?: number
 }
 const textInputStyle = {
     color: '#000000',
@@ -39,6 +40,8 @@ export const StyledTextField: FC<Props> = (props) => {
             dir='rtl'
             {...field}
             InputLabelProps={{ dir: 'rtl' }}
+            rows={props.numberOfLines ?? 1}
+            multiline
             {...props}
             InputProps={{
                 sx: textInputStyle,

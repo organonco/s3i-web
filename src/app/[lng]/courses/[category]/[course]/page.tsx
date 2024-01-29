@@ -29,13 +29,16 @@ export default function Page({
 
     return (
         <Grid container gap={5} justifyContent={'center'}>
-            <Grid md={12} textAlign={'center'}>
-                <Typography variant='h4' color={'primary.main'}>{courseDetails?.name}</Typography>
+            <Grid md={12} textAlign={'center'} mb={2}>
+                <Typography variant='h3' color={'primary.main'}>{courseDetails?.name}</Typography>
             </Grid>
-            <Grid md={12} textAlign={'center'}>
+            <Grid container gap={2} md={12} textAlign={'center'} justifyContent={'center'}>
                 <div style={{ width: '100%', height: 300, position: 'relative', borderRadius: '50px', overflow: 'hidden' }}>
                     <StyledImage imageURL={courseDetails?.image_url} />
                 </div>
+                <Grid item md={6} container>
+                    <Typography textAlign={'center'}>{courseDetails?.description}</Typography>
+                </Grid>
             </Grid>
             <Grid item container md={6} direction={'column'} justifyContent={'center'}>
                 {authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button onClick={redirectToLogin} variant='contained'>
@@ -68,7 +71,6 @@ export default function Page({
 const SubscribeDialogContent: FC<{ closePopup: () => void }> = (props) => {
     const { courseDetails, subscribeToCourse } = useCoursesStore()
     const handleSubmit = (values: { token: string }, { setSubmitting }) => {
-        console.log(values)
         subscribeToCourse(values, courseDetails?.id ?? '', props.closePopup, () => setSubmitting(false))
     }
     return (

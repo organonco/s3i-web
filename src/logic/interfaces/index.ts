@@ -43,6 +43,7 @@ export interface QuizDetails {
     feedback: string | null
 }
 export interface CourseItemDetails {
+    id: string
     name: string
     file_url?: string
     url?: string
@@ -53,6 +54,7 @@ export interface CourseItemDetails {
     is_submitted?: boolean
     type: COURSE_ITEM
     object: {
+        file_url?: string
         type: COURSE_ITEM
         time?: string
         name?: string
@@ -60,6 +62,7 @@ export interface CourseItemDetails {
         time_limit?: string
         submission?: boolean
         date?: string
+        url?: string
     }
     submission?: {
         has_feedback?: boolean

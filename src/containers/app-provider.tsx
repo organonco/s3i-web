@@ -10,8 +10,6 @@ export const AppProvider = (props: PropsWithChildren) => {
         const getData = () => {
             try {
                 let accessTokenObj = localStorage.getItem('token')
-                console.log('accessTokenObj')
-                console.log(accessTokenObj)
                 if (accessTokenObj !== null) {
                     updateUserStatus(USER_STATUS.LOGGED_IN)
                     fetchProfileInfo()

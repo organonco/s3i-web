@@ -23,7 +23,6 @@ export const client = (() => {
 export const apiClient = async function (options) {
   let accessTokenObj = localStorage.getItem('token') ?? ''
 
-  console.log(accessTokenObj)
   if (accessTokenObj) {
     client.defaults.headers.common['Authorization'] = `Bearer ${accessTokenObj}`;
   }

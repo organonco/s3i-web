@@ -11,8 +11,6 @@ export const StyledDatePicker: FC<Props> = (props) => {
     const [field, meta] = useField(props);
     const { setFieldValue } = useFormikContext();
     const handleChange = (date: Date | null) => {
-        // console.log(moment(date).format('YYYY-MM-DD'))
-        console.log(date)
         setFieldValue(field.name, date.toString())
     }
     return (

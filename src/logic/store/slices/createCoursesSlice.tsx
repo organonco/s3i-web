@@ -1,5 +1,5 @@
 import { Category, Course, CourseDetails, CourseItemDetails, QuizDetails, RegisterInfoAPI } from "@/logic/interfaces"
-import { fetchCategories, fetchCategoryDetails, fetchCourseDetails, fetchCourseQuiz, fetchHomeworkDetails, fetchNewCourses, fetchUserCourses, submitUserQuiz, subscribeCourse } from "@/logic/services"
+import { fetchCategories, fetchCategoryDetails, fetchCourseDetails, fetchCourseQuiz, fetchHomeworkDetails, fetchNewCourses, fetchUserCourses, handleUploadFile, submitUserQuiz, subscribeCourse } from "@/logic/services"
 import { t } from "i18next"
 import { produce } from "immer"
 import { toast } from "react-toastify"
@@ -28,6 +28,7 @@ export interface CoursesSlice {
     fetchMyCourses: (handleException: () => void) => void
     subscribeToCourse: (values: { token: string }, courseId: string, closeDialog: () => void, stopLoading: () => void) => void
     submitQuiz: (id: string, quizDetails: QuizDetails, stopLoading: () => void) => void
+    uploadFile: (id: string, file: File) => void
 }
 
 
@@ -120,8 +121,11 @@ export const createCoursesSlice: StateCreator<CoursesSlice> = (set, get, api) =>
             set(produce(draftState => {
                 draftState.quizDetails = data.data
                 draftState.isQuizSubmitted = data.data.is_submitted
-                toast.error(t('toast.quiz_submitted'));
+                toast.success(t('toast.quiz_submitted'));
             }))
         }).catch(() => stopLoading())
+    },
+    uploadFile: (id: string, file: File) => {
+        handleUploadFile(id, file).then(() => toast.success(t('toast.uploaded_successfully')))
     }
 })
