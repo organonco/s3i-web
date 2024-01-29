@@ -40,7 +40,7 @@ export default function Page({
                     <Typography textAlign={'center'}>{courseDetails?.description}</Typography>
                 </Grid>
             </Grid>
-            <Grid item container md={6} direction={'column'} justifyContent={'center'}>
+            <Grid item container md={7} direction={'column'} justifyContent={'center'}>
                 {authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button onClick={redirectToLogin} variant='contained'>
                     {t('buttons.login')}
                 </Button>
