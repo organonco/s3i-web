@@ -20,7 +20,7 @@ export const StyledRadioButton: FC<Props> = (props) => {
                 {...props}
                 {...field}
             >
-                {props.options.map(option => <FormControlLabel key={option.id} control={<Radio checked={currentValue === option.id} />} {...props} {...field} label={option.text} value={option.id} />)}
+                {props.options.map(option => <FormControlLabel color={currentValue === option.id ? "primary.main" : 'text.primary'} key={option.id} control={<Radio checked={currentValue === option.id} />} {...props} {...field} label={option.text} value={option.id} />)}
             </RadioGroup>
         </Box>
     )

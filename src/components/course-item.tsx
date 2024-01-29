@@ -75,7 +75,7 @@ export const CourseItemComponent: FC<CourseItemComponentPropsInterface> = (props
     const getCourseItemDetails = () => {
         switch (type) {
             case COURSE_ITEM.FILE:
-                return <FileDownloader courseItem={props.courseItem} />
+                return <FileDownloader url={props.courseItem.object.file_url} />
             // return <a download href={props.courseItem.object.file_url}> Get file </a>
             case COURSE_ITEM.MEETING:
                 return <>
@@ -130,7 +130,7 @@ export const CourseItemComponent: FC<CourseItemComponentPropsInterface> = (props
                         props.courseItem.object.submission == null ? null :
                             <Typography style={{ textAlign: 'center' }}>{t('labels.file_submitted')}</Typography>
                     }
-                    <Homework courseItem={props.courseItem} />
+                    <Homework courseDetails={props.courseDetails} courseItem={props.courseItem} />
                 </>
         }
     }

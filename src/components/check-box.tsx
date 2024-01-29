@@ -16,7 +16,13 @@ export const StyledCheckBox: FC<Props> = (props) => {
         <Box sx={{ width: '100%' }}>
             <FormGroup>
                 {/* <Field name={props.name}> */}
-                {props.options.map(option => <FormControlLabel key={option.id} control={<Checkbox checked={currentValue.includes(option.id)} />} {...props} {...field} label={option.text} value={option.id} />)}
+                {props.options.map(option => <FormControlLabel
+                    key={option.id}
+                    color={currentValue.includes(option.id) ? "red" : 'text.primary'}
+                    control={<Checkbox checked={currentValue.includes(option.id)} />}
+                    {...props} {...field}
+                    label={option.text}
+                    value={option.id} />)}
                 {/* </Field> */}
             </FormGroup>
         </Box>

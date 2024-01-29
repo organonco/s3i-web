@@ -47,10 +47,10 @@ export default function Page({
                             {!isQuizSubmitted && <Grid item lg={12}>
                                 <StyledButton title={t("buttons.submit_test")} onClick={handleSubmit} loading={isSubmitting} disabled={isSubmitting && isValid} />
                             </Grid>}
-                            {quizDetails.feedback && <>
-                                <Typography variant="h4">{t('texts.professor_feedback') + ': '}</Typography>
-                                <Typography variant='h6'>{quizDetails.feedback}</Typography>
-                            </>}
+                            {quizDetails.feedback && <Grid item md={12} my={4}>
+                                <Typography variant='h3' color='primary.main' mb={2}>{t('texts.professor_feedback') + ': '}</Typography>
+                                <Typography variant='h6'>{quizDetails?.feedback}</Typography>
+                            </Grid>}
                         </Form>
                     )
                 }}
