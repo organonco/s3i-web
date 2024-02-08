@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: { domains: ['thisdomainisonlyfortestingpurposes.xyz'], formats: ['image/avif', 'image/webp'], },
+    images: { domains: ['www.s3i.training'], formats: ['image/avif', 'image/webp'], },
 }
 
 module.exports = nextConfig
