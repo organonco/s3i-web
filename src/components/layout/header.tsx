@@ -11,7 +11,7 @@ import React from 'react';
 import { LinkTab, samePageLinkNavigation } from '..';
 import { NotificationList } from './notifications-list';
 import { UserProfilePopper } from './user-info-popper';
-
+import Image from 'next/image';
 
 interface Props {
     lng: any
@@ -48,9 +48,13 @@ export function Header({ lng }: Props) {
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
+    const siteIcon = require('/src/assets/logo.png');
 
     return (
-        <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 2, height: 70, backgroundColor: 'success.light' }}>
+        <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingY: 2, backgroundColor: 'success.light' , paddingX: 20, marginBottom: 10}}>
+            <Box>
+                <Image alt="logo" src={siteIcon} height={50}/>
+            </Box>
             <Box>
                 <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '10%', marginLeft: 50 } }}>
                     <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url} />

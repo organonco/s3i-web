@@ -140,6 +140,15 @@ const baseOptions: ThemeOptions = {
     }
 }
 
+import { Cairo } from 'next/font/google';
+const cairo = Cairo({ subsets: ['latin'] })
+
+
 export const theme = createTheme({
-    ...baseOptions
+    ...baseOptions,
+    typography: {
+        fontFamily: [
+            cairo.style.fontFamily
+        ]
+    }    
 });

@@ -17,7 +17,6 @@ export default function Page({
 
     return (
         <Grid container gap={15} justifyContent={'center'} >
-            <Typography variant='h2' color={'primary'}>{t('titles.thanks_for_registration')}</Typography>
         </Grid>
     )
 }

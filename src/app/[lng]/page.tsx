@@ -44,16 +44,6 @@ export default function Page({
 
     return (
         <Grid container gap={10} justifyContent={'center'} >
-            <Grid item lg={12} >
-                <Box sx={{ width: '100%', height: 400, position: 'relative', backgroundColor: 'background.primary.hover' }}>
-                    <Image
-                        alt='ايقونة'
-                        src={siteIcon}
-                        layout='fill'
-                        objectFit='contain'
-                    />
-                </Box>
-            </Grid>
             <Grid container item lg={10} sx={{ justifyContent: 'space-between' }} >
                 {welcomeCards.map(category => <Grid
                     key={category.name}

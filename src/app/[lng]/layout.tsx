@@ -13,11 +13,11 @@ export default function Layout({
 }) {
     return (
         <AppProvider>
-            <Grid container sx={{ marginTop: 3, minHeight: '98vh' }} >
+            <Grid container sx={{ minHeight: '98vh' }} >
                 <Grid item lg={12} sx={{ position: 'sticky', top: 0, zIndex: 1 }}>
                     <Header lng={lng} />
                 </Grid>
-                <Grid item lg={12} style={{ marginTop: 70, marginBottom: 170 }}>
+                <Grid item lg={12} style={{ marginBottom: 170 }}>
                     <main>{children}</main>
                 </Grid>
                 <Footer />
