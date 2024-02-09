@@ -50,7 +50,7 @@ export function Header({ lng }: Props) {
     const siteIcon = require('/src/assets/logo.png');
 
     return (
-        <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 5, paddingX: 10, marginBottom: 0, backgroundColor: 'white'}}>
+        <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 8, paddingX: 10, marginBottom: 0, backgroundColor: 'white'}}>
             <Box>
                 <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '5%', marginRight: 40, marginLeft: 50, height: 4, borderRadius: 20 } }}>
                     <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url}/>
@@ -79,12 +79,12 @@ export function Header({ lng }: Props) {
                             <NotificationList open handleClick={handleClick} />
                         </Popper>
                     </Grid>
-                        : authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button variant='outlined' onClick={() => push(sitemap.login.url)}>{t('buttons.login')}</Button>
+                        : authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button variant="outlined" style={{color: "#329996", padding: 10, paddingRight: 40, paddingLeft: 40, fontSize: 24, marginTop: 0}} onClick={() => push(sitemap.login.url)}>{t('buttons.login')}</Button>
                             : <></>}
 
                 </Box>
                 <Box>
-                    <Image alt="logo" src={siteIcon} height={50} />
+                    <Image alt="logo" src={siteIcon} height={60} />
                 </Box>
             </Box>
 
