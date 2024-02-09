@@ -23,13 +23,11 @@ interface Props {
 export function Header({ lng }: Props) {
     const { push } = useRouter()
     const { authenticatedStatus, notificationNumber, profileInfo, logUserOut } = useCoursesStore()
-    let pathname = usePathname().split('/')[2] ?? '/'
+    let pathname = usePathname().split('/')[2] ?? ''
     pathname = '/' + pathname
     const tabArray = [sitemap.home.url, sitemap.courses.index.url, sitemap.teachers.url, sitemap.partners.url, sitemap.about_us.url]
     const { t } = useTranslation(lng, 'translation')
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-        // event.type can be equal to focus with selectionFollowsFocus.
-
         if (
             event.type !== 'click' ||
             (event.type === 'click' &&
@@ -46,46 +44,50 @@ export function Header({ lng }: Props) {
         setAnchorEl(anchorEl ? null : event.currentTarget);
     };
 
+
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
     const siteIcon = require('/src/assets/logo.png');
 
     return (
-        <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingY: 2, backgroundColor: 'success.light' , paddingX: 20, marginBottom: 10}}>
+        <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingY: 10, paddingX: 10, marginBottom: 10, backgroundColor: 'white'}}>
             <Box>
-                <Image alt="logo" src={siteIcon} height={50}/>
-            </Box>
-            <Box>
-                <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '10%', marginLeft: 50 } }}>
-                    <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url} />
+                <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '5%', marginRight: 40, marginLeft: 50, height: 4, borderRadius: 20 } }}>
+                    <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url}/>
                     <LinkTab label={t('pages.' + sitemap.courses.index.title)} href={sitemap.courses.index.url} />
                     <LinkTab label={t('pages.' + sitemap.teachers.title)} href={sitemap.teachers.url} />
                     <LinkTab label={t('pages.' + sitemap.partners.title)} href={sitemap.partners.url} />
                     <LinkTab label={t('pages.' + sitemap.about_us.title)} href={sitemap.about_us.url} />
                 </Tabs>
             </Box>
-            <Box>
-                {authenticatedStatus === USER_STATUS.LOGGED_IN ? <Grid container alignItems={'center'} gap={2}>
-                    <UserProfilePopper />
+            <Box sx={{ display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', backgroundColor: 'success.light', marginBottom: 10}} gap={4}>
+                <Box>
+                    {authenticatedStatus === USER_STATUS.LOGGED_IN ? <Grid container alignItems={'center'} gap={2}>
+                        <UserProfilePopper />
 
-                    <IconButton size='large' onClick={handleClick}>
-                        <Badge badgeContent={notificationNumber} color="info">
-                            <Notifications sx={{ height: 30, width: 30 }} />
-                        </Badge>
-                    </IconButton>
+                        <IconButton size='large' onClick={handleClick}>
+                            <Badge badgeContent={notificationNumber} color="info">
+                                <Notifications sx={{ height: 30, width: 30 }} />
+                            </Badge>
+                        </IconButton>
 
-                    <Popper
-                        id={id}
-                        open={open}
-                        anchorEl={anchorEl}
-                    >
-                        <NotificationList open handleClick={handleClick} />
-                    </Popper>
-                </Grid>
-                    : authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button variant='outlined' onClick={() => push(sitemap.login.url)}>{t('buttons.login')}</Button>
-                        : <></>}
+                        <Popper
+                            id={id}
+                            open={open}
+                            anchorEl={anchorEl}
+                        >
+                            <NotificationList open handleClick={handleClick} />
+                        </Popper>
+                    </Grid>
+                        : authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button variant='outlined' onClick={() => push(sitemap.login.url)}>{t('buttons.login')}</Button>
+                            : <></>}
 
+                </Box>
+                <Box>
+                    <Image alt="logo" src={siteIcon} height={50} />
+                </Box>
             </Box>
+
         </Box>
     );
 }

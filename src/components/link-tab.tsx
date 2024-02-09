@@ -7,7 +7,7 @@ export function samePageLinkNavigation(
 ) {
     if (
         event.defaultPrevented ||
-        event.button !== 0 || // ignore everything but left-click
+        event.button !== 0 ||
         event.metaKey ||
         event.ctrlKey ||
         event.altKey ||
@@ -27,9 +27,8 @@ export function LinkTab(props: LinkTabProps) {
     return (
         <Tab
             component="a"
-            sx={{ fontSize: 21, textAlign: 'start', fontWeight: 500 }}
+            sx={{ fontSize: 24, textAlign: 'start', fontWeight: 500, paddingX: 5 }}
             onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-                // Routing libraries handle this, you can remove the onClick handle when using them.
                 if (samePageLinkNavigation(event)) {
                     event.preventDefault();
                 }
