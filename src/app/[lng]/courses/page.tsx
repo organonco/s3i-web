@@ -38,12 +38,24 @@ export default function Page({
                 </Grid>)}
             </Grid>
             <Grid item lg={12} alignItems='center' textAlign='center'>
-                <Typography color='primary' variant='h4' marginBottom={5}>{t('texts.new_courses')}</Typography>
+                <Typography color='primary.dark' variant='h3' marginBottom={5} fontWeight={'bold'}>{t('texts.most_requested_courses')}</Typography>
                 <Grid container item lg={12} sx={{ gap: 4, justifyContent: 'center' }} >
                     {newCourses.map(course => <Grid
                         onClick={() => redirectToCourse(course)}
                         key={course.id}
-                        sx={{ backgroundColor: 'background.lightShadow', width: 280, height: 250, borderRadius: 3 }}>
+                        sx={{ backgroundColor: 'background.lightShadow', width: 400, height: 400, borderRadius: 3, marginX: 10, marginY: 5 }}>
+                        <CourseCard imageURL={course.image_url} subTitle={course.name} title={course.name} />
+                    </Grid>)}
+                </Grid>
+            </Grid>
+
+            <Grid item lg={12} alignItems='center' textAlign='center'>
+                <Typography color='primary.dark' variant='h3' marginBottom={5} fontWeight={'bold'}>{t('texts.new_courses')}</Typography>
+                <Grid container item lg={12} sx={{ gap: 4, justifyContent: 'center' }} >
+                    {newCourses.map(course => <Grid
+                        onClick={() => redirectToCourse(course)}
+                        key={course.id}
+                        sx={{ backgroundColor: 'background.lightShadow', width: 400, height: 400, borderRadius: 3, marginX: 10, marginY: 5 }}>
                         <CourseCard imageURL={course.image_url} subTitle={course.name} title={course.name} />
                     </Grid>)}
                 </Grid>

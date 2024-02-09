@@ -29,7 +29,7 @@ export const StyledTextField: FC<Props> = (props) => {
                 {t('error.' + props.translateKey + '.' + errors[props.name])}
             </Typography>
         }
-    }
+    }Visibility
 
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);

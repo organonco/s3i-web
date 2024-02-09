@@ -13,7 +13,6 @@ export default function Page({
 }: {
     params: { lng: any }
 }) {
-    // const fetchCategoriesInfo = useCoursesStore(state => state.fetchCategoriesInfo)
     const { t } = useTranslation(lng, 'translation')
     const { push } = useRouter()
     const initialValues = { phone: '', password: '' }

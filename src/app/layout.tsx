@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'S3i',
+  title: 'سعي',
 }
 
 export default function RootLayout({

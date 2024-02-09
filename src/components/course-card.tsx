@@ -8,14 +8,16 @@ interface props { title: string, subTitle: string, imageURL: string }
 
 export const CourseCard: FC<props> = (props) => {
     return (
-        <StyledBox>
-            {/* <Image src={props.imageURL} alt='course' width={170} height={100} style={{ objectFit: "cover" }} /> */}
-            <div style={{ width: '100%', height: 150, position: 'relative' }}>
+        <StyledBox backgroundColor={'background.paper'}>
+            <div style={{ width: '100%', position: 'relative', objectFit: 'cover', height: "100%" }}>
                 <StyledImage imageURL={props.imageURL} />
             </div>
-            <Box sx={{ width: '100%', alignItems: 'start', display: 'flex', flexDirection: 'column', gap: 1 }}>
-                <Typography color='primary' variant='h7'>{props.title}</Typography>
-                <Typography variant='caption'>{props.subTitle}</Typography>
+            <Box sx={{ width: '100%', justifyContent: 'space-between', display: 'flex', flexDirection: 'column', gap: 1, marginTop: 3, marginX: 4 }}>
+                <Box sx={{ justifyContent: 'space-between', display: 'flex', flexDirection: 'row', gap: 1 }}>
+                    <Typography color='primary' fontWeight={'bold'} fontSize={18}>{props.title}</Typography>
+                    <Typography variant="caption" color="white" sx={{ backgroundColor: '#2D6276', borderRadius: 5, paddingY: 1, paddingX: 2 }}> سجل الآن </Typography>
+                </Box>
+                <Typography color='primary.dark' fontWeight={'bold'} fontSize={12} textAlign={'right'} textOverflow={'ellipsis'} noWrap >{props.subTitle}</Typography>
             </Box>
         </StyledBox>
     )

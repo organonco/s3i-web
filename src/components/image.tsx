@@ -8,10 +8,10 @@ interface Props {
 export const StyledImage: FC<Props> = (props) => {
     return (
         <Image src={props.imageURL}
-            alt="لا يمكن تحميل الصورة"
+            alt=""
             layout='fill'
-            objectFit='contain'
-        //  className="rounded-full" 
+            objectFit='cover'
+            style={{borderTopLeftRadius: 10, borderTopRightRadius: 10}}
         />
     )
 }
