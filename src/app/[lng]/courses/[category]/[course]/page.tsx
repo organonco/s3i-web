@@ -4,7 +4,7 @@ import { USER_STATUS } from '@/logic/config';
 import { usePopup } from '@/logic/hooks';
 import { useCoursesStore } from '@/logic/store';
 import { sitemap } from '@/site-map';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Typography } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { t } from 'i18next';
 import { useRouter } from 'next/navigation';
@@ -29,24 +29,21 @@ export default function Page({
 
     return (
         <Grid container gap={5} justifyContent={'center'}>
-            <Grid md={12} textAlign={'center'} mb={2}>
-                <Typography variant='h3' color={'primary.main'}>{courseDetails?.name}</Typography>
-            </Grid>
             <Grid container gap={2} md={12} textAlign={'center'} justifyContent={'center'}>
-                <div style={{ width: '100%', height: 300, position: 'relative', borderRadius: '50px', overflow: 'hidden' }}>
+                <div style={{ width: 400, height: 400, position: 'relative', borderRadius: '50px', overflow: 'hidden' }}>
                     <StyledImage imageURL={courseDetails?.image_url} />
                 </div>
-                <Grid item md={6} container>
-                    <Typography textAlign={'center'}>{courseDetails?.description}</Typography>
+                <Grid item md={6} container sx={{ alignContent: 'center', paddingX: 10 }}>
+                    <Typography variant='h3' color={'primary.main'} sx={{marginBottom: 5}}>{courseDetails?.name}</Typography>
+                    <Typography textAlign={'right'} sx={{whiteSpace: 'pre-wrap'}}>{courseDetails?.description}</Typography>
                 </Grid>
             </Grid>
             <Grid item container md={7} direction={'column'} justifyContent={'center'}>
                 {authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button onClick={redirectToLogin} variant='contained'>
                     {t('buttons.login')}
                 </Button>
-                    // if the user is logged in and subscribed
                     : courseDetails?.is_subscribed ? <Grid container>
-                        {courseDetails?.items?.map(courseItem => <Grid item md={12} key={courseItem.id} container direction='column' gap={5}>
+                        {courseDetails?.items?.map(courseItem => <Grid item md={12} key={courseItem.id} container direction='column' gap={5} sx={{marginBottom: 2}}>
                             <CourseItemComponent courseItem={courseItem} courseDetails={courseDetails} />
                         </Grid>)}
                     </Grid>

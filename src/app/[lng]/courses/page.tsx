@@ -44,7 +44,7 @@ export default function Page({
                         onClick={() => redirectToCourse(course)}
                         key={course.id}
                         sx={{ backgroundColor: 'background.lightShadow', width: 400, height: 400, borderRadius: 3, marginX: 10, marginY: 5 }}>
-                        <CourseCard imageURL={course.image_url} subTitle={course.name} title={course.name} />
+                        <CourseCard imageURL={course.image_url} subTitle={course.name} title={course.name} isSubscribed={course.is_subscribed}/>
                     </Grid>)}
                 </Grid>
             </Grid>
@@ -56,7 +56,7 @@ export default function Page({
                         onClick={() => redirectToCourse(course)}
                         key={course.id}
                         sx={{ backgroundColor: 'background.lightShadow', width: 400, height: 400, borderRadius: 3, marginX: 10, marginY: 5 }}>
-                        <CourseCard imageURL={course.image_url} subTitle={course.name} title={course.name} />
+                        <CourseCard imageURL={course.image_url} subTitle={course.name} title={course.name} isSubscribed={course.is_subscribed}/>
                     </Grid>)}
                 </Grid>
             </Grid>

@@ -25,7 +25,7 @@ export interface CoursesSlice {
     fetchCategoryCourses: (categoryId: string) => void
     fetchCourseQuizDetails: (quizId: string) => void
     fetchCourseHomeworkDetails: (id: string) => void
-    fetchMyCourses: (handleException: () => void) => void
+    fetchMyCourses: () => void
     subscribeToCourse: (values: { token: string }, courseId: string, closeDialog: () => void, stopLoading: () => void) => void
     submitQuiz: (id: string, quizDetails: QuizDetails, stopLoading: () => void) => void
     uploadFile: (id: string, file: File) => void
@@ -100,7 +100,7 @@ export const createCoursesSlice: StateCreator<CoursesSlice> = (set, get, api) =>
             draftState.loadingCourseHomework = false
         })))
     },
-    fetchMyCourses: (handleException: () => void) => {
+    fetchMyCourses: () => {
         set(produce(draftState => {
             draftState.loadingMyCourses = true
             draftState.myCourses = []
@@ -112,7 +112,6 @@ export const createCoursesSlice: StateCreator<CoursesSlice> = (set, get, api) =>
             }))
         }).catch(() => {
             set(produce(draftState => { draftState.loadingMyCourses = false }))
-            handleException()
         })
     },
     submitQuiz: (id: string, quizDetails: QuizDetails, stopLoading: () => void) => {

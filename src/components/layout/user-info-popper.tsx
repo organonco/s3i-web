@@ -68,8 +68,8 @@ export const UserProfilePopper: FC<{}> = (props) => {
             >
                 <ClickAwayListener onClickAway={handleToggleProfile}>
                     <Box sx={{ p: 3, bgcolor: 'background.paper', width: 350, marginTop: 1 }}>
-                        <Grid container lg={12} gap={2}>
-                            <Grid container md={12}>
+                        <Grid container gap={2}>
+                            <Grid container >
                                 <Grid item container gap={3} direction='row' lg={9} sx={{paddingRight: 2}}> 
                                     <div>
                                         <Typography >{profileInfo?.name_ar ?? ''}</Typography>

@@ -27,27 +27,31 @@ export const Homework: FC<{ courseDetails: CourseDetails, courseItem: CourseItem
                 <StyledButton onClick={goToDetails} title={t('buttons.view_feedback')}
                 />
                 : <Grid container gap={2}>
-                    <Button
+                    {!selectedFile && <Button
                         variant="contained"
                         component="label"
                         fullWidth
-                        color='secondary'
+                        color='primary'
+                        disabled={!selectedFile}
                     >
-                        select File
+                        اختيار الملف
                         <input
                             onChange={handleCapture}
                             type="file"
                             hidden
                         />
-                    </Button>
+                    </Button>}
+
                     {selectedFile && <Typography variant='caption' color='primary.main' ><AttachFile />{selectedFile.name}</Typography>}
-                    <Button
-                        variant="contained"
-                        component="label"
-                        fullWidth
-                        onClick={sendFile}
-                        disabled={selectedFile === null}
-                    >{t('buttons.upload')}</Button>
+                    {selectedFile &&
+                        <Button
+                            variant="contained"
+                            component="label"
+                            fullWidth
+                            onClick={sendFile}
+                            disabled={selectedFile === null}
+                        >{t('buttons.upload')}</Button>
+                    }
                 </Grid>
             }
         </Grid>

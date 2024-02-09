@@ -1,7 +1,7 @@
 import { COURSE_ITEM } from "@/logic/config";
 import { CourseDetails, CourseItemDetails } from "@/logic/interfaces";
 import { sitemap } from "@/site-map";
-import { AttachFile, CameraAlt, Check, Note, Timer, Upload } from "@mui/icons-material";
+import { AttachFile, CameraAlt, Check, Note, Timer, Upload, VideoCameraFront, VideoFile, YouTube } from "@mui/icons-material";
 import { Grid, Typography } from "@mui/material";
 import { t } from "i18next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -17,7 +17,7 @@ interface CourseItemComponentPropsInterface {
 }
 
 const iconsMap: { [key: string]: ReactNode } = {
-    "video": <CameraAlt />,
+    "video": <YouTube />,
     "meeting": <Timer />,
     "text": <Note />,
     "multiple_choice": <Check />,
@@ -138,9 +138,9 @@ export const CourseItemComponent: FC<CourseItemComponentPropsInterface> = (props
     return (
         <>{
             props.courseItem.type == 'section' ?
-                <Typography variant='h5' textAlign={'center'} color='primary.dark' my={3}> {props.courseItem.object.name}</Typography>
+                <Typography variant='h4' textAlign={'center'} color='primary.dark' my={2}> {props.courseItem.object.name}</Typography>
                 :
-                <Grid item md={12}>
+                <Grid sx={{paddingX: 20}}>
                     <StyledAccordion title={t('courseItemTypes.' + type)} icon={iconsMap[type]}>
                         <Typography style={{ textAlign: 'center', marginBottom: 10 }}> {props.courseItem.object.name} </Typography>
                         {getCourseItemDetails()}

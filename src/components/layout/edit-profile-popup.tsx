@@ -14,7 +14,6 @@ const registerValidationSchema = Yup.object().shape({
     name_en: Yup.string().required('required'),
     email: Yup.string().email('email').required('required'),
     address: Yup.string().required('required'),
-    reference: Yup.string().required('required'),
     date_of_birth: Yup.date().typeError('valid_date').required('required'),
     nationality_id: Yup.string().required('required'),
     education_level_id: Yup.string().required('required'),
@@ -46,7 +45,7 @@ export const EditProfilePopup: FC<{ closePopup: () => void }> = (props) => {
                             <StyledTextField translateKey="phone" name="phone" required />
                             <StyledTextField translateKey="email" name="email" />
                             <StyledTextField translateKey="address" name="address" required />
-                            <StyledTextField translateKey="reference" name="reference" required />
+                            <StyledTextField translateKey="reference" name="reference" />
                             <Grid container lg={12}>
                                 <Grid container lg={4} sx={{ pl: 2 }}>
                                     <StyledSelect translateKey="education_level" name="education_level_id" options={registerInfo?.education_levels ?? []} />

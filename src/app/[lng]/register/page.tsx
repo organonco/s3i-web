@@ -46,7 +46,7 @@ export default function Page({
                                     <StyledTextField translateKey="phone" name="phone" required />
                                     <StyledTextField translateKey="email" name="email" />
                                     <StyledTextField translateKey="address" name="address" required />
-                                    <StyledTextField translateKey="reference" name="reference" required />
+                                    <StyledTextField translateKey="reference" name="reference" />
                                     <StyledTextField translateKey="password" name="password" required type='password' />
                                     <StyledTextField translateKey="password_confirmation" name="password_confirmation" required type='password' />
 

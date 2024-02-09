@@ -26,7 +26,8 @@ export function Header({ lng }: Props) {
     const { authenticatedStatus, notificationNumber, profileInfo, logUserOut } = useCoursesStore()
     let pathname = usePathname().split('/')[2] ?? ''
     pathname = '/' + pathname
-    const tabArray = [sitemap.home.url, sitemap.courses.index.url, sitemap.teachers.url, sitemap.partners.url, sitemap.about_us.url]
+    const tabArray = [sitemap.home.url, sitemap.my_courses.url, sitemap.courses.index.url, sitemap.teachers.url, sitemap.partners.url, sitemap.about_us.url]
+
     const { t } = useTranslation(lng, 'translation')
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         if (
@@ -55,6 +56,9 @@ export function Header({ lng }: Props) {
             <Box>
                 <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '5%', marginRight: 40, marginLeft: 50, height: 4, borderRadius: 20 } }}>
                     <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url}/>
+                    {authenticatedStatus == USER_STATUS.LOGGED_IN  && 
+                    <LinkTab label={t('pages.' + sitemap.my_courses.title)} href={sitemap.my_courses.url} />
+                    }
                     <LinkTab label={t('pages.' + sitemap.courses.index.title)} href={sitemap.courses.index.url} />
                     <LinkTab label={t('pages.' + sitemap.teachers.title)} href={sitemap.teachers.url} />
                     <LinkTab label={t('pages.' + sitemap.partners.title)} href={sitemap.partners.url} />
