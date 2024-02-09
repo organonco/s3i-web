@@ -4,6 +4,7 @@ import { USER_STATUS } from '@/logic/config';
 import { usePopup } from '@/logic/hooks';
 import { useCoursesStore } from '@/logic/store';
 import { sitemap } from '@/site-map';
+import { YouTube } from '@mui/icons-material';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { t } from 'i18next';
@@ -39,17 +40,21 @@ export default function Page({
                 </Grid>
             </Grid>
             <Grid item container md={7} direction={'column'} justifyContent={'center'}>
-                {authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button onClick={redirectToLogin} variant='contained'>
+
+                <Button color='error' sx={{ backgroundColor: 'white', borderColor: 'red', borderWidth: 1, borderStyle: 'solid', paddingX: 10, marginX: 20, marginTop: 10 }} href={courseDetails?.introduction_video_url} target='_blank'> فيديو تعريفي</Button>
+                {authenticatedStatus === USER_STATUS.LOGGED_IN && courseDetails?.is_subscribed && <Button variant="contained" sx={{paddingX: 10, marginX: 20, marginTop: 1}} href={courseDetails?.telegram_url} target='_blank'> مجموعة التلغرام</Button>}
+
+                {authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button onClick={redirectToLogin} variant='contained' sx={{paddingX: 10, marginX: 20, marginTop: 1}}>
                     {t('buttons.login')}
                 </Button>
-                    : courseDetails?.is_subscribed ? <Grid container>
+                    : courseDetails?.is_subscribed ? <Grid container sx={{marginTop: 10}}>
                         {courseDetails?.items?.map(courseItem => <Grid item md={12} key={courseItem.id} container direction='column' gap={5} sx={{marginBottom: 2}}>
                             <CourseItemComponent courseItem={courseItem} courseDetails={courseDetails} />
                         </Grid>)}
                     </Grid>
                         // if the user is logged in but not subscribed to the course
                         : courseDetails?.is_subscribed === false ? <>
-                            <Button variant='contained' onClick={subscribePopup.handleOpen}>{t('buttons.subscribe')}</Button>
+                            <Button variant='contained' onClick={subscribePopup.handleOpen} sx={{paddingX: 10, marginX: 20, marginTop: 1}}>{t('buttons.subscribe')}</Button>
                             <Dialog
                                 open={subscribePopup.isOpen}
                                 onClose={subscribePopup.handleClose}
@@ -74,12 +79,8 @@ const SubscribeDialogContent: FC<{ closePopup: () => void }> = (props) => {
         <Formik initialValues={{ token: '' }} validationSchema={Yup.object().shape({ token: Yup.string().required('required') })} onSubmit={handleSubmit}>
             {({ isSubmitting }) => (
                 <Form>
-                    <DialogTitle>Subscribe</DialogTitle>
+                    <DialogTitle>{t('popup.subtitle.subscribe')}</DialogTitle>
                     <DialogContent>
-                        <DialogContentText>
-                            {t('popup.subtitle.subscribe')}
-                        </DialogContentText>
-
                         <StyledTextField translateKey="token" name="token" required type="password" />
                     </DialogContent>
                     <DialogActions>
