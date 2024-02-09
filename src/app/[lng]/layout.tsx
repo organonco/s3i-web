@@ -17,7 +17,7 @@ export default function Layout({
                 <Grid item lg={12} sx={{ position: 'sticky', top: 0, zIndex: 1 }}>
                     <Header lng={lng} />
                 </Grid>
-                <Grid item lg={12} style={{  paddingRight: 200, paddingLeft: 200, paddingBottom: 200}}>
+                <Grid item lg={12} style={{ paddingBottom: 200}}>
                     <main>{children}</main>
                 </Grid>
                 <Footer />
