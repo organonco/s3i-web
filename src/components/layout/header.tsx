@@ -12,6 +12,7 @@ import { LinkTab, samePageLinkNavigation } from '..';
 import { NotificationList } from './notifications-list';
 import { UserProfilePopper } from './user-info-popper';
 import Image from 'next/image';
+import zIndex from '@mui/material/styles/zIndex';
 
 interface Props {
     lng: any
@@ -50,7 +51,7 @@ export function Header({ lng }: Props) {
     const siteIcon = require('/src/assets/logo.png');
 
     return (
-        <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 8, paddingX: 10, marginBottom: 0, backgroundColor: 'white', zIndex: 0}}>
+        <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 8, paddingX: 10, marginBottom: 0, backgroundColor: 'white'}}>
             <Box>
                 <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '5%', marginRight: 40, marginLeft: 50, height: 4, borderRadius: 20 } }}>
                     <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url}/>
@@ -75,6 +76,7 @@ export function Header({ lng }: Props) {
                             id={id}
                             open={open}
                             anchorEl={anchorEl}
+                            style={{ zIndex: 2 }}
                         >
                             <NotificationList open handleClick={handleClick} />
                         </Popper>

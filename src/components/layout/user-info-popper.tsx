@@ -3,7 +3,7 @@ import { usePopup } from '@/logic/hooks';
 import { useCoursesStore } from '@/logic/store';
 import { sitemap } from '@/site-map';
 import { Edit, LockReset, Logout } from '@mui/icons-material';
-import { Avatar, Button, ClickAwayListener, Dialog, Divider, Grid, IconButton, Popper, Slide, Typography } from '@mui/material';
+import { Avatar, Button, ClickAwayListener, Dialog, Divider, Grid, Icon, IconButton, Popper, Slide, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import { TransitionProps } from '@mui/material/transitions';
 import { t } from 'i18next';
@@ -12,6 +12,8 @@ import React, { FC } from 'react';
 import { ChangePasswordPopup } from './change-password-popup';
 import { EditProfilePopup } from './edit-profile-popup';
 import { LogoutPopup } from './logout-popup';
+import { Person } from '@mui/icons-material';
+
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -55,21 +57,23 @@ export const UserProfilePopper: FC<{}> = (props) => {
     }
     return (
         <>
-            <Avatar sx={{ bgcolor: 'primary.main', cursor: 'pointer' }} onClick={handleToggleProfile}>{profileInfo?.name_ar.charAt(0) ?? ''}</Avatar>
+            <IconButton size='large' onClick={handleToggleProfile}>
+                <Person sx={{ height: 30, width: 30 }} />
+            </IconButton>
             <Popper
                 id={ProfilePopperId}
                 open={profileOpen}
                 anchorEl={profileanchorEl}
+                style={{ zIndex: 2 }}
             >
                 <ClickAwayListener onClickAway={handleToggleProfile}>
                     <Box sx={{ p: 3, bgcolor: 'background.paper', width: 350, marginTop: 1 }}>
                         <Grid container lg={12} gap={2}>
                             <Grid container md={12}>
-                                <Grid item container gap={3} direction='row' lg={9}>
-                                    <Avatar sx={{ bgcolor: 'primary.main' }} onClick={handleToggleProfile}>{profileInfo?.name_ar.charAt(0) ?? ''}</Avatar>
+                                <Grid item container gap={3} direction='row' lg={9} sx={{paddingRight: 2}}> 
                                     <div>
                                         <Typography >{profileInfo?.name_ar ?? ''}</Typography>
-                                        <Typography >{profileInfo?.phone ?? ''}</Typography>
+                                        <Typography sx={{direction: 'ltr', textAlign: 'right'}}>{profileInfo?.phone ?? ''}</Typography>
                                     </div>
                                 </Grid>
                                 <Grid item lg={3} container justifyContent={'flex-end'}>
