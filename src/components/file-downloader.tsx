@@ -8,7 +8,6 @@ interface Props {
     text?: boolean
 }
 export const FileDownloader: FC<Props> = (props) => {
-    let accessTokenObj = localStorage.getItem('token') ?? ''
     const downloadFile = (fileUrl: string) => {
         var link = document.createElement("a");
         link.download = 'name';
