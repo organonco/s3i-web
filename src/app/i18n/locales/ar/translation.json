@@ -21,7 +21,7 @@
         "flixable_learning": "التعلم المرن",
         "professional": "الجاهزية المهنية",
         "high_quality_content": "محتوى عالي الجودة",
-        "should_login": "عليك تسجيل الدخول لرؤية كورساتك",
+        "should_login": "عليك تسجيل الدخول لرؤية دوراتك",
         "professor_feedback": "تصحيح الأستاذ",
         "your_homework": "الوظيفة التي قمت بتحميلها",
         "new_courses": "الدورات الجديدة",
@@ -160,7 +160,7 @@
         },
         "subtitle": {
             "subscribe": "ادخل رمز الاشتراك بالدورة",
-            "logout": "لا يمكنك رؤية كورساتك بعد تسجيل الخروج"
+            "logout": "لا يمكنك رؤية دوراتك بعد تسجيل الخروج"
         }
     },
     "courseItemTypes": {

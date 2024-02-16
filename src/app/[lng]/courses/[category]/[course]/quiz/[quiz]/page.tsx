@@ -30,32 +30,37 @@ export default function Page({
     }
 
     return (
-        <>
-            {quizDetails && <Formik initialValues={initialValues} onSubmit={handleSubmit} >
-                {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting, isValid }) => {
-                    return (
-                        <Form>
-                            {isQuizSubmitted && <Typography variant='h4' mb={4} textAlign='center' color='primary.main'>{t('labels.quiz_submitted')}</Typography>}
-                            {isQuizSubmitted && !quizDetails?.feedback && <Typography variant='h5' mb={4} textAlign='center' color='primary.main'>{t('labels.no_feedback')}</Typography>}
-                            {initialValues?.questions?.map((question, index) => {
-                                return (<Grid container item lg={12} direction={'column'} key={question.id}>
-                                    <Typography variant='h6' color='primary.main' sx={{ mb: 2 }}>{question.text}</Typography>
-                                    {RenderSwitchQuizItem(question, index, isQuizSubmitted)}
-                                    <Divider sx={{ my: 4 }} />
-                                </Grid>)
-                            })}
-                            {!isQuizSubmitted && <Grid item lg={12}>
-                                <StyledButton title={t("buttons.submit_test")} onClick={handleSubmit} loading={isSubmitting} disabled={isSubmitting && isValid} />
-                            </Grid>}
-                            {quizDetails.feedback && <Grid item md={12} my={4}>
-                                <Typography variant='h3' color='primary.main' mb={2}>{t('texts.professor_feedback') + ': '}</Typography>
-                                <Typography variant='h6'>{quizDetails?.feedback}</Typography>
-                            </Grid>}
-                        </Form>
-                    )
-                }}
-            </Formik>}
-        </>
+        <Grid container justifyContent={'center'}>
+            <Grid item lg={8} justifyContent={'center'}>
+                {quizDetails && <Formik initialValues={initialValues} onSubmit={handleSubmit} >
+                    {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting, isValid }) => {
+                        return (
+                            <Form>
+                                {isQuizSubmitted && <Typography variant='h4' mb={4} textAlign='center' color='primary.main'>{t('labels.quiz_submitted')}</Typography>}
+                                {isQuizSubmitted && !quizDetails?.feedback && <Typography variant='h5' mb={4} textAlign='center' color='primary.main'>{t('labels.no_feedback')}</Typography>}
+                                {initialValues?.questions?.map((question, index) => {
+                                    return (<Grid container item lg={12} direction={'column'} key={question.id}>
+                                        <Typography variant='h6' color='primary.main' sx={{ mb: 2 }}>{question.text}</Typography>
+                                        {RenderSwitchQuizItem(question, index, isQuizSubmitted)}
+                                        <Divider sx={{ my: 4 }} />
+                                    </Grid>)
+                                })}
+                                {!isQuizSubmitted &&
+                                    <Grid container justifyContent={'center'}>
+                                        <Grid item lg={4} style={{ alignContent: 'center', justifyContent: 'center' }}>
+                                            <StyledButton title={t("buttons.submit_test")} onClick={handleSubmit} loading={isSubmitting} disabled={isSubmitting && isValid} />
+                                        </Grid>
+                                    </Grid>}
+                                {quizDetails.feedback && <Grid item md={12} my={4}>
+                                    <Typography variant='h3' color='primary.main' mb={2}>{t('texts.professor_feedback') + ': '}</Typography>
+                                    <Typography variant='h6'>{quizDetails?.feedback}</Typography>
+                                </Grid>}
+                            </Form>
+                        )
+                    }}
+                </Formik>}
+            </Grid>
+        </Grid>
     );
 };
 

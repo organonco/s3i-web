@@ -48,7 +48,7 @@ export default function Page({
                 <Grid>
                     <Grid item sx={{paddingTop: 10}}>
                         <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}>طور مهاراتك بشكل أسرع</Typography>
-                        <Typography variant='h5' sx={{color: 'white', marginTop: 10, lineHeight: 2}}>واحدة من أفضل مواقع الكورسات العربية الأونلاين <br/> ويمكنك القول أنها منصة للتدريب الالكتروني الاحترافي</Typography>
+                        <Typography variant='h5' sx={{color: 'white', marginTop: 10, lineHeight: 2}}>واحدة من أفضل مواقع الدورات العربية الأونلاين <br/> ويمكنك القول أنها منصة للتدريب الالكتروني الاحترافي</Typography>
                         <Button style={{backgroundColor: "#329996", color: "white", padding: 10, paddingRight: 40, paddingLeft: 40, fontSize: 24, marginTop: 20}}>انضم الآن</Button>
                     </Grid>
                 </Grid>
