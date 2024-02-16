@@ -6,7 +6,7 @@ import { useCoursesStore } from '@/logic/store';
 import { Divider, Grid, Typography } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { t } from 'i18next';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 export default function Page({
@@ -15,9 +15,17 @@ export default function Page({
     params: { lng: any, quiz: string }
 }) {
 
-    const { submitQuiz, fetchCourseQuizDetails, quizDetails, isQuizSubmitted } = useCoursesStore();
+    const { submitQuiz, fetchCourseQuizDetails, quizDetails, isQuizSubmitted, startQuiz } = useCoursesStore();
+
+    const [startedAt, setStartedAt] = useState(null)
+
     useEffect(() => fetchCourseQuizDetails(quiz), [quiz])
 
+    useEffect(() => {
+        if(quizDetails != null)
+            setStartedAt(startQuiz(quizDetails?.id))
+    }, [quizDetails])
+    
     const handleSubmit = (values: any, { setSubmitting }) => submitQuiz(quiz, values, () => setSubmitting(false))
 
     const initialValues = {
@@ -29,6 +37,31 @@ export default function Page({
         }))
     }
 
+
+    const [countDownText, setCountDownText] = useState("")
+    const [expired, setExpired] = useState(false)
+
+    useEffect(() => {
+        if(startedAt != null){
+            let time_limit = quizDetails?.time_limit;
+            const countDownDate = new Date((new Date(startedAt).getTime()) + time_limit * 60000);
+            const interval = setInterval(function () {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                if (distance < 0 || Number.isNaN(distance)) {
+                    clearInterval(interval);
+                    setExpired(true)
+                }else{
+                    setCountDownText(hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0') + ":" + seconds.toString().padStart(2, '0'))
+                }
+            }, 1000);
+        }
+    }, [startedAt])
+
+
     return (
         <Grid container justifyContent={'center'}>
             <Grid item lg={8} justifyContent={'center'}>
@@ -36,19 +69,19 @@ export default function Page({
                     {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting, isValid }) => {
                         return (
                             <Form>
-                                {isQuizSubmitted && <Typography variant='h4' mb={4} textAlign='center' color='primary.main'>{t('labels.quiz_submitted')}</Typography>}
+                                <Typography variant='h4' style={{ textAlign: 'center' }} color="primary.main">{isQuizSubmitted ? t('labels.quiz_submitted') : expired ? t('labels.quiz_expired') : countDownText}</Typography>
                                 {isQuizSubmitted && !quizDetails?.feedback && <Typography variant='h5' mb={4} textAlign='center' color='primary.main'>{t('labels.no_feedback')}</Typography>}
                                 {initialValues?.questions?.map((question, index) => {
                                     return (<Grid container item lg={12} direction={'column'} key={question.id}>
                                         <Typography variant='h6' color='primary.main' sx={{ mb: 2 }}>{question.text}</Typography>
-                                        {RenderSwitchQuizItem(question, index, isQuizSubmitted)}
+                                        {RenderSwitchQuizItem(question, index, isQuizSubmitted, expired)}
                                         <Divider sx={{ my: 4 }} />
                                     </Grid>)
                                 })}
-                                {!isQuizSubmitted &&
+                                {!isQuizSubmitted && !expired && 
                                     <Grid container justifyContent={'center'}>
-                                        <Grid item lg={4} style={{ alignContent: 'center', justifyContent: 'center' }}>
-                                            <StyledButton title={t("buttons.submit_test")} onClick={handleSubmit} loading={isSubmitting} disabled={isSubmitting && isValid} />
+                                        <Grid item lg={6} style={{ alignContent: 'center', justifyContent: 'center' }}>
+                                            <StyledButton title={t("buttons.submit_test")} onClick={handleSubmit} disabled={isSubmitting && isValid} />
                                         </Grid>
                                     </Grid>}
                                 {quizDetails.feedback && <Grid item md={12} my={4}>
@@ -64,12 +97,12 @@ export default function Page({
     );
 };
 
-const RenderSwitchQuizItem = (question: QuizQuestion, index: number, isQuizSubmitted: boolean) => {
+const RenderSwitchQuizItem = (question: QuizQuestion, index: number, isQuizSubmitted: boolean, expired: boolean) => {
     switch (question.type) {
         case QUESTION_TYPE.TEXT:
             return <StyledTextField numberOfLines={5} key={question.id} name={`questions[${index}].object.value`} disabled={isQuizSubmitted} />
         case QUESTION_TYPE.RADIO:
-            return <StyledRadioButton key={question.id} name={`questions[${index}].object.value`} options={question.options} disabled={isQuizSubmitted} />
+            return <StyledRadioButton key={question.id} name={`questions[${index}].object.value`} options={question.options} disabled={isQuizSubmitted || expired} />
         case QUESTION_TYPE.CHECK:
             return <StyledCheckBox key={question.id} name={`questions[${index}].object.value`} options={question.options} disabled={isQuizSubmitted} />
         default:

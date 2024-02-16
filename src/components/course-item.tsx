@@ -9,6 +9,8 @@ import { FC, ReactNode, useCallback } from "react";
 import { StyledAccordion, StyledButton, TimerButton } from ".";
 import { FileDownloader } from "./file-downloader";
 import { Homework } from "./homework-component";
+import { useStore } from "zustand";
+import { useCoursesStore } from "@/logic/store";
 
 
 interface CourseItemComponentPropsInterface {
@@ -70,7 +72,12 @@ export const CourseItemComponent: FC<CourseItemComponentPropsInterface> = (props
         const video_url = sitemap.courses.video_player(props.courseDetails.category.id, props.courseDetails.id, videoId).url
         push(video_url)
     }
-    const goToQuiz = () => push(sitemap.courses.quiz(props.courseDetails.category.id, props.courseDetails.id, props.courseItem?.id).url)
+
+    const goToQuiz = () => {
+        push(sitemap.courses.quiz(props.courseDetails.category.id, props.courseDetails.id, props.courseItem?.id).url)
+    }
+
+
 
     const getCourseItemDetails = () => {
         switch (type) {

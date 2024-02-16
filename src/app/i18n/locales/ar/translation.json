@@ -82,7 +82,8 @@
         "no_time_limit": "الاختبار غير مؤقت",
         "file_submitted": "تم رفع الملف",
         "quiz_submitted": "تم تقديم الاختبار",
-        "no_feedback": "يتم عرض النتيجة بعد تصحيح الأستاذ"
+        "no_feedback": "يتم عرض النتيجة بعد تصحيح الأستاذ",
+        "quiz_expired": "انتهى وقت الاختبار"
     },
     "error": {
         "phone": {

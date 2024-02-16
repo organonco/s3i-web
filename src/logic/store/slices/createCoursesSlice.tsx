@@ -5,6 +5,14 @@ import { produce } from "immer"
 import { toast } from "react-toastify"
 import { StateCreator } from "zustand"
 
+
+
+interface QuizTimer {
+    id: string,
+    startedAt: string,
+}
+
+
 export interface CoursesSlice {
     registerInfo: RegisterInfoAPI | null
     categories: Category[],
@@ -29,6 +37,7 @@ export interface CoursesSlice {
     subscribeToCourse: (values: { token: string }, courseId: string, closeDialog: () => void, stopLoading: () => void) => void
     submitQuiz: (id: string, quizDetails: QuizDetails, stopLoading: () => void) => void
     uploadFile: (id: string, file: File) => void
+    startQuiz: (id: string) => string
 }
 
 
@@ -47,6 +56,7 @@ export const createCoursesSlice: StateCreator<CoursesSlice> = (set, get, api) =>
     loadingCourseHomework: false,
     quizDetails: null,
     isQuizSubmitted: false,
+
     fetchCategoriesInfo: () => {
         fetchCategories().then((data) => set(produce(draftState => { draftState.categories = data.data })))
         fetchNewCourses().then((data) => set(produce(draftState => { draftState.newCourses = data.data })))
@@ -126,5 +136,27 @@ export const createCoursesSlice: StateCreator<CoursesSlice> = (set, get, api) =>
     },
     uploadFile: (id: string, file: File) => {
         handleUploadFile(id, file).then(() => toast.success(t('toast.uploaded_successfully')))
+    },
+    startQuiz: (id: string) => {
+
+        let quizTimers = localStorage.getItem('quizTimers') ? JSON.parse(localStorage.getItem('quizTimers')) : []
+
+        let startedAt = null
+        quizTimers.forEach((QuizTimer: QuizTimer) => {
+            if (id == QuizTimer.id)
+                startedAt = QuizTimer.startedAt
+        })
+        if(startedAt != null)
+            return startedAt;
+        
+        let now = Date()
+
+        quizTimers.push({
+            id: id, startedAt: now
+        })
+        
+        localStorage.setItem('quizTimers', JSON.stringify(quizTimers));
+
+        return now
     }
 })
