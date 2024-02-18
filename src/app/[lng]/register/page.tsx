@@ -33,38 +33,36 @@ export default function Page({
         fetchRegisterInfo()
     }, [])
 
+    const isMobile = (window.innerWidth <= 768)
+
     return (
-        <Grid container justifyContent={'center'} alignContent='center' height='100%'>
-            <Card sx={{ minWidth: 600 }}>
+        <Grid container justifyContent={'center'} alignContent='center' height='100%' width={"100%"}>
+            <Card sx={{ minWidth: isMobile ? "100%" : 600, width: isMobile ? "100%" : "20%" }}>
                 <CardContent>
                     <Formik initialValues={initialValues} validationSchema={registerValidationSchema} onSubmit={handleSubmit}>
                         {({ isSubmitting }) => (
                             <Form>
-                                <Grid container direction={'column'} gap={2} lg={12}>
-                                    <StyledTextField translateKey="name_ar" name="name_ar" required />
-                                    <StyledTextField translateKey="name_en" name="name_en" required />
-                                    <StyledTextField translateKey="phone" name="phone" required />
-                                    <StyledTextField translateKey="email" name="email" />
-                                    <StyledTextField translateKey="address" name="address" required />
-                                    <StyledTextField translateKey="reference" name="reference" />
-                                    <StyledTextField translateKey="password" name="password" required type='password' />
-                                    <StyledTextField translateKey="password_confirmation" name="password_confirmation" required type='password' />
+                                <Grid item direction={'column'} sx={{ width: "100%"}}>
+                                    <Grid container direction={'column'} gap={2} lg={12} sx={{ width: "100%" }}>
+                                        <StyledTextField translateKey="name_ar" name="name_ar" required />
+                                        <StyledTextField translateKey="name_en" name="name_en" required />
+                                        <StyledTextField translateKey="phone" name="phone" required />
+                                        <StyledTextField translateKey="email" name="email" />
+                                        <StyledTextField translateKey="address" name="address" required />
+                                        <StyledTextField translateKey="reference" name="reference" />
+                                        <StyledTextField translateKey="password" name="password" required type='password' />
+                                        <StyledTextField translateKey="password_confirmation" name="password_confirmation" required type='password' />
 
-                                    <Grid container lg={12}>
-                                        <Grid container lg={4} sx={{ pl: 2 }}>
-                                            <StyledSelect translateKey="education_level" name="education_level_id" options={registerInfo?.education_levels ?? []} />
-                                        </Grid>
-                                        <Grid lg={4}>
-                                            <StyledSelect translateKey="nationality" name="nationality_id" options={registerInfo?.nationalities ?? []} />
-                                        </Grid>
-                                        <Grid lg={4} sx={{ pr: 2 }}>
-                                            <StyledDatePicker name='date_of_birth' />
-                                        </Grid>
+                                        <StyledSelect translateKey="education_level" name="education_level_id" options={registerInfo?.education_levels ?? []} />
+                                        <StyledSelect translateKey="nationality" name="nationality_id" options={registerInfo?.nationalities ?? []} />
+
+                                        <StyledDatePicker name='date_of_birth' />
+
+
+                                        <Button variant="contained" type="submit" disabled={isSubmitting} sx={{ mt: 4 }}>
+                                            {t('buttons.register')}
+                                        </Button>
                                     </Grid>
-
-                                    <Button variant="contained" type="submit" disabled={isSubmitting} sx={{ mt: 4 }}>
-                                        {t('buttons.register')}
-                                    </Button>
                                 </Grid>
                             </Form>
                         )}

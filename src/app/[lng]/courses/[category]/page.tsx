@@ -23,6 +23,8 @@ export default function Page({
 
     const redirectToDetails = (courseId: string) => push(sitemap.courses.courseDetails(category, courseId).url)
 
+    const isMobile = (window.innerWidth <= 768)
+
     return (
         <Grid container gap={15} justifyContent={'center'}>
             <Grid item lg={12} alignItems='center' textAlign='center'>
@@ -30,7 +32,7 @@ export default function Page({
                     {courses?.map(course => <Grid
                         key={course.id}
                         onClick={() => redirectToDetails(course.id)}
-                        sx={{ backgroundColor: 'background.lightShadow', width: 400, height: 400, borderRadius: 3 }}
+                        sx={{ backgroundColor: 'background.lightShadow', width: isMobile ? 300 : 400, height: isMobile ? 300 : 400, borderRadius: 3, marginX: isMobile ? 0 : 2, marginY: isMobile ? 1 : 5 }}
                     >
                         <CourseCard imageURL={course.image_url} subTitle={course.name} title={course.name} isSubscribed={course.is_subscribed} />
                     </Grid>)}

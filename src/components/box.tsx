@@ -7,7 +7,7 @@ interface Props {
 }
 export const StyledBox: FC<Props> = (props) => {
     return (
-        <Box padding={2} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', alignItems: 'center', cursor: 'pointer', "&:hover": { transform: "scale3d(1.02, 1.02, 1)" }, backgroundColor: props.backgroundColor? props.backgroundColor : "", borderRadius: 5, borderColor: "#efefef", borderWidth: 2}}>
+        <Box padding={2} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', alignItems: 'center', cursor: 'pointer', "&:hover": { transform: "scale3d(1.02, 1.02, 1)" }, borderRadius: 5, borderColor: "#efefef", borderWidth: 2}}>
             {props.children}
         </Box>
     )

@@ -24,9 +24,13 @@ export default function Page({
     }
     const handleRedirectToRegister = () => push(sitemap.register.url)
 
+
+    const isMobile = (window.innerWidth <= 768)
+
+
     return (
-        <Grid container justifyContent={'center'} alignContent='center' height='100%'>
-            <Card sx={{ minWidth: 600 }}>
+        <Grid container justifyContent={'center'} alignContent='center' height='100%' width={"100%"}>
+            <Card sx={{ minWidth: isMobile ? "100%" : 600, width: isMobile ? "100%" : "20%" }}>
                 <CardContent>
                     <Formik initialValues={initialValues} validationSchema={loginValidationSchema} onSubmit={handleSubmit}>
                         {({ isSubmitting }) => (

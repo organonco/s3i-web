@@ -27,24 +27,26 @@ export default function Page({
 
     const redirectToLogin = () => push(sitemap.login.url)
     const subscribePopup = usePopup()
+    const isMobile = (window.innerWidth <= 768)
+
 
     return (
         <Grid container gap={5} justifyContent={'center'}>
             <Grid container gap={2} md={12} textAlign={'center'} justifyContent={'center'}>
-                <div style={{ width: 400, height: 400, position: 'relative', borderRadius: '50px', overflow: 'hidden' }}>
+                <div style={{ width: isMobile ? 300 : 400, height: isMobile ? 300 : 400, position: 'relative', borderRadius: '50px', overflow: 'hidden' }}>
                     <StyledImage imageURL={courseDetails?.image_url} />
                 </div>
-                <Grid item md={6} container sx={{ alignContent: 'center', paddingX: 10 }}>
+                <Grid item md={6} container sx={{ alignContent: 'center', paddingX: isMobile ? 4 : 10 }}>
                     <Typography variant='h3' color={'primary.main'} sx={{marginBottom: 5}}>{courseDetails?.name}</Typography>
                     <Typography textAlign={'right'} sx={{whiteSpace: 'pre-wrap'}}>{courseDetails?.description}</Typography>
                 </Grid>
             </Grid>
             <Grid item container md={7} direction={'column'} justifyContent={'center'}>
 
-                <Button color='error' sx={{ backgroundColor: 'white', borderColor: 'red', borderWidth: 1, borderStyle: 'solid', paddingX: 10, marginX: 20, marginTop: 10 }} href={courseDetails?.introduction_video_url} target='_blank'> فيديو تعريفي</Button>
-                {authenticatedStatus === USER_STATUS.LOGGED_IN && courseDetails?.is_subscribed && <Button variant="contained" sx={{paddingX: 10, marginX: 20, marginTop: 1}} href={courseDetails?.telegram_url} target='_blank'> مجموعة التلغرام</Button>}
+                <Button color='error' sx={{ backgroundColor: 'white', borderColor: 'red', borderWidth: 1, borderStyle: 'solid', paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 10 }} href={courseDetails?.introduction_video_url} target='_blank'> فيديو تعريفي</Button>
+                {authenticatedStatus === USER_STATUS.LOGGED_IN && courseDetails?.is_subscribed && <Button variant="contained" sx={{paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 1}} href={courseDetails?.telegram_url} target='_blank'> مجموعة التلغرام</Button>}
 
-                {authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button onClick={redirectToLogin} variant='contained' sx={{paddingX: 10, marginX: 20, marginTop: 1}}>
+                {authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button onClick={redirectToLogin} variant='contained' sx={{paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 1}}>
                     {t('buttons.login')}
                 </Button>
                     : courseDetails?.is_subscribed ? <Grid container sx={{marginTop: 10}}>
@@ -54,7 +56,7 @@ export default function Page({
                     </Grid>
                         // if the user is logged in but not subscribed to the course
                         : courseDetails?.is_subscribed === false ? <>
-                            <Button variant='contained' onClick={subscribePopup.handleOpen} sx={{paddingX: 10, marginX: 20, marginTop: 1}}>{t('buttons.subscribe')}</Button>
+                            <Button variant='contained' onClick={subscribePopup.handleOpen} sx={{paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 1}}>{t('buttons.subscribe')}</Button>
                             <Dialog
                                 open={subscribePopup.isOpen}
                                 onClose={subscribePopup.handleClose}

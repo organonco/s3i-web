@@ -23,6 +23,11 @@ declare module '@mui/material/styles/createPalette' {
 
 const baseOptions: ThemeOptions = {
     direction: 'rtl',
+    typography: {
+        h2: {
+            fontSize: 10,
+        }
+    },
     palette: {
         primary: {
             main: '#57AFA8',
@@ -61,14 +66,6 @@ const baseOptions: ThemeOptions = {
         }
     },
     components: {
-        MuiPaper: {
-            styleOverrides: {
-                root: {
-                    padding: 20,
-                    borderRadius: 16
-                }
-            }
-        },
         MuiSelect: {
             styleOverrides: {
                 root: {
