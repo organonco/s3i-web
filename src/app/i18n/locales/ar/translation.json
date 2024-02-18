@@ -25,7 +25,8 @@
         "professor_feedback": "تصحيح الأستاذ",
         "your_homework": "الوظيفة التي قمت بتحميلها",
         "new_courses": "الدورات الجديدة",
-        "most_requested_courses": "الدورات الأكثر طلباً"
+        "most_requested_courses": "الدورات الأكثر طلباً",
+        "all_courses": "جميع الدوارت"
     },
     "buttons": {
         "login": "تسجيل الدخول",

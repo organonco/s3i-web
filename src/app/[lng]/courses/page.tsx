@@ -33,24 +33,12 @@ export default function Page({
                 {categories.map(category => <Grid
                     onClick={() => redirectToDetails(category)}
                     key={category.id}
-                    sx={{ borderColor: 'primary.light', opacity: 0.9, borderWidth: 0.1, backgroundColor: 'background.shadow', display: 'inline-block', width: 120, height: 120, justifyContent: 'center', alignContent: 'center', borderRadius: 3 }}>
+                    sx={{ borderColor: 'primary.light', opacity: 0.9, borderWidth: 0.1, backgroundColor: 'background.shadow', display: 'inline-block', width: 200, height: 200, justifyContent: 'center', alignContent: 'center', borderRadius: 5 }}>
                     <CategoryCard icon={category.icon_url} name={category.name} />
                 </Grid>)}
             </Grid>
             <Grid item lg={12} alignItems='center' textAlign='center'>
-                <Typography color='primary.dark' variant='h3' marginBottom={5} fontWeight={'bold'}>{t('texts.most_requested_courses')}</Typography>
-                <Grid container item lg={12} sx={{ gap: 4, justifyContent: 'center' }} >
-                    {newCourses.map(course => <Grid
-                        onClick={() => redirectToCourse(course)}
-                        key={course.id}
-                        sx={{ backgroundColor: 'background.lightShadow', width: 400, height: 400, borderRadius: 3, marginX: 10, marginY: 5 }}>
-                        <CourseCard imageURL={course.image_url} subTitle={course.name} title={course.name} isSubscribed={course.is_subscribed}/>
-                    </Grid>)}
-                </Grid>
-            </Grid>
-
-            <Grid item lg={12} alignItems='center' textAlign='center'>
-                <Typography color='primary.dark' variant='h3' marginBottom={5} fontWeight={'bold'}>{t('texts.new_courses')}</Typography>
+                <Typography color='primary.dark' variant='h3' marginBottom={5} fontWeight={'bold'}>{t('texts.all_courses')}</Typography>
                 <Grid container item lg={12} sx={{ gap: 4, justifyContent: 'center' }} >
                     {newCourses.map(course => <Grid
                         onClick={() => redirectToCourse(course)}

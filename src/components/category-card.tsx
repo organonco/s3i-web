@@ -12,15 +12,15 @@ interface Props {
 export const CategoryCard: FC<Props> = (props) => {
     return (
         <StyledBox>
-            <div style={{ width: '100%', height: 50, position: 'relative' }}>
+            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
                 <Image
-                    alt='Mountains'
+                    alt=""
                     src={props.icon}
                     layout='fill'
                     objectFit='contain'
                 />
             </div>
-            <Typography variant='caption'>{props.name}</Typography>
+            <Typography variant='h6' sx={{mt: 2}}>{props.name}</Typography>
         </StyledBox>
     )
 }
