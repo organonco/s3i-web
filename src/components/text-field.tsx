@@ -41,7 +41,7 @@ export const StyledTextField: FC<Props> = (props) => {
             {...field}
             InputLabelProps={{ dir: 'rtl' }}
             rows={props.numberOfLines ?? 1}
-            multiline
+            multiline={props.type == 'password' ? false : true}
             {...props}
             InputProps={{
                 sx: textInputStyle,
