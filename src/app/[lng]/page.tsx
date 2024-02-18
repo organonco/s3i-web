@@ -43,8 +43,8 @@ export default function Page({
     const redirectToCourse = (course: Course) => push(sitemap.courses.courseDetails(course.category.id, course.id).url)
     const studentsImage = require('/src/assets/students.png');
     return (
-        <Grid container gap={10} justifyContent={'center'} >
-            <Grid container item sx={{backgroundColor: "#123b45", width: "100%"}} justifyContent={'center'}>
+        <Grid container gap={10} justifyContent={'center'}>
+            <Grid container item sx={{backgroundColor: "#123b45", width: "100%", marginTop: -8, zIndex: 2}} justifyContent={'center'}>
                 <Grid>
                     <Grid item sx={{paddingTop: 10}}>
                         <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}>طور مهاراتك بشكل أسرع</Typography>

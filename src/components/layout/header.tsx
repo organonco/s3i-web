@@ -56,7 +56,7 @@ export function Header({ lng }: Props) {
     const siteIcon = require('/src/assets/logo.png');
 
     return (
-        <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 8, paddingX: 10, marginBottom: 0, backgroundColor: 'white' }}>
+        <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 2, paddingX: 10, marginBottom: 0, backgroundColor: 'white' }}>
             <Box>
                 <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '5%', marginRight: 40, marginLeft: 50, height: 4, borderRadius: 20 } }}>
                     <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url} />
