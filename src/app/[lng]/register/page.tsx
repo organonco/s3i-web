@@ -48,16 +48,13 @@ export default function Page({
                                         <StyledTextField translateKey="name_en" name="name_en" required />
                                         <StyledTextField translateKey="phone" name="phone" required />
                                         <StyledTextField translateKey="email" name="email" />
-                                        <StyledTextField translateKey="address" name="address" required />
+                                        <StyledDatePicker translateKey="date_of_birth" name='date_of_birth' />
+                                        <StyledSelect translateKey="nationality" name="nationality_id" options={registerInfo?.nationalities ?? []} />
+                                        <StyledTextField translateKey="address" name="address"/>
+                                        <StyledSelect translateKey="education_level" name="education_level_id" options={registerInfo?.education_levels ?? []} />
                                         <StyledTextField translateKey="reference" name="reference" />
                                         <StyledTextField translateKey="password" name="password" required type='password' />
                                         <StyledTextField translateKey="password_confirmation" name="password_confirmation" required type='password' />
-
-                                        <StyledSelect translateKey="education_level" name="education_level_id" options={registerInfo?.education_levels ?? []} />
-                                        <StyledSelect translateKey="nationality" name="nationality_id" options={registerInfo?.nationalities ?? []} />
-
-                                        <StyledDatePicker name='date_of_birth' />
-
 
                                         <Button variant="contained" type="submit" disabled={isSubmitting} sx={{ mt: 4 }}>
                                             {t('buttons.register')}

@@ -3,9 +3,11 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useField, useFormikContext } from 'formik';
 import { FC } from "react";
+import { t } from "i18next";
 
 interface Props {
-    name: string
+    name: string,
+    translateKey: string
 }
 export const StyledDatePicker: FC<Props> = (props) => {
     const [field, meta] = useField(props);
@@ -15,7 +17,9 @@ export const StyledDatePicker: FC<Props> = (props) => {
     }
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker sx={{ width: '100%' }} {...props} {...field} onChange={handleChange} />
+            <DatePicker  sx={{ width: '100%'}} {...props} {...field} onChange={handleChange} 
+            
+            />
         </LocalizationProvider>
     )
 }

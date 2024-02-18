@@ -52,7 +52,7 @@ export default function Page({
                     <Grid item sx={{paddingTop: 10}}>
                         <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold', fontSize: isMobile ? 40 : 64}}>طور مهاراتك بشكل أسرع</Typography>
                         <Typography variant='h5' sx={{color: 'white', marginTop: 10, lineHeight: 2, fontSize: isMobile ? 25: 30}}>واحدة من أفضل مواقع الدورات العربية الأونلاين <br/> ويمكنك القول أنها منصة للتدريب الالكتروني الاحترافي</Typography>
-                        <Button style={{backgroundColor: "#329996", color: "white", padding: 10, paddingRight: 40, paddingLeft: 40, fontSize: 24, marginTop: 20, marginBottom: 20}}>انضم الآن</Button>
+                        <Button style={{backgroundColor: "#329996", color: "white", padding: 10, paddingRight: 40, paddingLeft: 40, fontSize: 24, marginTop: 20, marginBottom: 20}} onClick={() => push(sitemap.register.url)}>انضم الآن</Button>
                     </Grid>
                 </Grid>
                 <Image src={studentsImage} alt="" style={{paddingRight: isMobile ? 0 : 100, paddingTop: 30, paddingBottom: 30, width: isMobile ? '80%' : '40%'}}/>
