@@ -48,8 +48,13 @@ export const createUserSlice: StateCreator<UserSlice> = (set, get, api) => ({
         })
     },
     registerUser: (userInfo: RegisterInfo, redirectToThankYou: () => void, setSubmitting: Function) => registerUser(userInfo).then(data => {
-        redirectToThankYou()
+        set(produce(draftState => {
+            draftState.token = data.token
+            draftState.authenticatedStatus = USER_STATUS.LOGGED_IN
+        }))
+        localStorage.setItem('token', data.token);
         setSubmitting(false)
+        redirectToThankYou()
     }),
     loginUser: (userInfo: LoginInfo, redirectToApp: () => void, setSubmitting: Function) => {
         login(userInfo).then((data) => {

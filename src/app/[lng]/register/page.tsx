@@ -25,7 +25,7 @@ export default function Page({
     const { registerUser, fetchRegisterInfo, registerInfo } = useCoursesStore()
 
     const handleSubmit = (values: FormikValues, { setSubmitting }) => {
-        const redirectToThankYou = () => push(sitemap.thank_you.url)
+        const redirectToThankYou = () => push(sitemap.home.url)
         const newValues = { ...values, date_of_birth: moment(values.date_of_birth).format('YYYY-MM-DD') }
         registerUser(newValues, redirectToThankYou, (value: boolean) => setSubmitting(value))
     }
