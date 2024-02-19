@@ -145,11 +145,15 @@ export const CourseItemComponent: FC<CourseItemComponentPropsInterface> = (props
     return (
         <>{
             props.courseItem.type == 'section' ?
-                <Typography variant='h4' textAlign={'center'} color='primary.dark' my={2}> {props.courseItem.object.name}</Typography>
+                <>
+                    <Typography variant='h4' textAlign={'center'} color='primary.dark' my={2}> {props.courseItem.object.name}</Typography>
+                    <Typography variant='body1' textAlign={'center'} color='primary.dark' mb={2}> {props.courseItem.object.description}</Typography>
+                </>
                 :
-                <Grid sx={{paddingX: 20}}>
+                <Grid sx={{ paddingX: 20 }}>
                     <StyledAccordion title={t('courseItemTypes.' + type)} icon={iconsMap[type]}>
                         <Typography style={{ textAlign: 'center', marginBottom: 10 }}> {props.courseItem.object.name} </Typography>
+                        <Typography style={{ textAlign: 'center', marginBottom: 10 }}> {props.courseItem.object.description} </Typography>
                         {getCourseItemDetails()}
                     </StyledAccordion>
                 </Grid >

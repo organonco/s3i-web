@@ -55,6 +55,7 @@ export interface CourseItemDetails {
     type: COURSE_ITEM
     object: {
         file_url?: string
+        description: string
         type: COURSE_ITEM
         time?: string
         name?: string
