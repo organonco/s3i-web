@@ -75,6 +75,10 @@ export function Header({ lng }: Props) {
             };
 
 
+    const pushAndClose = (url: string) => {
+        push(url)
+        setSideMenuOpen(false)
+    }
 
 
     return (
@@ -100,7 +104,7 @@ export function Header({ lng }: Props) {
                             <List>
                                 <ListItem disablePadding>
                                     <ListItemButton>
-                                        <ListItemText primary={t('pages.' + sitemap.home.title)} onClick={() => push(sitemap.home.url)} sx={{ textAlign: 'center' }} />
+                                        <ListItemText primary={t('pages.' + sitemap.home.title)} onClick={() => pushAndClose(sitemap.home.url)} sx={{ textAlign: 'center' }} />
                                     </ListItemButton>
                                 </ListItem>
 
@@ -108,7 +112,7 @@ export function Header({ lng }: Props) {
 
                                     <ListItem disablePadding>
                                         <ListItemButton>
-                                            <ListItemText primary={t('pages.' + sitemap.my_courses.title)} onClick={() => push(sitemap.my_courses.url)} sx={{ textAlign: 'center' }} />
+                                            <ListItemText primary={t('pages.' + sitemap.my_courses.title)} onClick={() => pushAndClose(sitemap.my_courses.url)} sx={{ textAlign: 'center' }} />
                                         </ListItemButton>
                                     </ListItem>
 
@@ -116,25 +120,25 @@ export function Header({ lng }: Props) {
 
                                 <ListItem disablePadding>
                                     <ListItemButton>
-                                        <ListItemText primary={t('pages.' + sitemap.courses.index.title)} onClick={() => push(sitemap.courses.index.url)} sx={{ textAlign: 'center' }} />
+                                        <ListItemText primary={t('pages.' + sitemap.courses.index.title)} onClick={() => pushAndClose(sitemap.courses.index.url)} sx={{ textAlign: 'center' }} />
                                     </ListItemButton>
                                 </ListItem>
 
                                 <ListItem disablePadding>
                                     <ListItemButton>
-                                        <ListItemText primary={t('pages.' + sitemap.teachers.title)} onClick={() => push(sitemap.teachers.url)} sx={{ textAlign: 'center' }} />
+                                        <ListItemText primary={t('pages.' + sitemap.teachers.title)} onClick={() => pushAndClose(sitemap.teachers.url)} sx={{ textAlign: 'center' }} />
                                     </ListItemButton>
                                 </ListItem>
 
                                 <ListItem disablePadding>
                                     <ListItemButton>
-                                        <ListItemText primary={t('pages.' + sitemap.partners.title)} onClick={() => push(sitemap.partners.url)} sx={{ textAlign: 'center' }} />
+                                        <ListItemText primary={t('pages.' + sitemap.partners.title)} onClick={() => pushAndClose(sitemap.partners.url)} sx={{ textAlign: 'center' }} />
                                     </ListItemButton>
                                 </ListItem>
 
                                 <ListItem disablePadding>
                                     <ListItemButton>
-                                        <ListItemText primary={t('pages.' + sitemap.about_us.title)} onClick={() => push(sitemap.about_us.url)} sx={{ textAlign: 'center' }} />
+                                        <ListItemText primary={t('pages.' + sitemap.about_us.title)} onClick={() => pushAndClose(sitemap.about_us.url)} sx={{ textAlign: 'center' }} />
                                     </ListItemButton>
                                 </ListItem>
 
@@ -143,7 +147,7 @@ export function Header({ lng }: Props) {
                                     authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN &&
                                     <ListItem disablePadding>
                                         <ListItemButton>
-                                            <ListItemText primary={t('buttons.login')} onClick={() => push(sitemap.login.url)} sx={{ textAlign: 'center', color: "primary.main"}} />
+                                            <ListItemText primary={t('buttons.login')} onClick={() => pushAndClose(sitemap.login.url)} sx={{ textAlign: 'center', color: "primary.main"}} />
                                         </ListItemButton>
                                     </ListItem>
                                 }
