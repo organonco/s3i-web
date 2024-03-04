@@ -1,9 +1,8 @@
 {
     "title": "مرحبا",
-    "to-second-page": "جحش",
     "pages": {
         "home": "الرئيسية",
-        "courses": "الدورات",
+        "courses": "الاختصاصات والدورات",
         "about_us": "من نحن",
         "partners": "شركائنا",
         "teachers": "الكادر التدريسي",
