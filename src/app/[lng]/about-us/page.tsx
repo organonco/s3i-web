@@ -3,8 +3,10 @@ import { Divider, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 import { useTranslation } from "@/app/i18n/client";
 
+
 export default function Page({ params: { lng } }) {
 
+    const isMobile = (window.innerWidth <= 768)
 
     const { t } = useTranslation(lng, 'translation')
 
@@ -27,7 +29,7 @@ export default function Page({ params: { lng } }) {
     }
 
     return (
-        <Grid container px={20}>
+        <Grid container px={isMobile ? 4 : 20}>
             {
                 sections.map((section) =>
                     <Grid item key={section}>
