@@ -41,28 +41,26 @@ export default function Page({
         }]
 
     const redirectToCourse = (course: Course) => push(sitemap.courses.courseDetails(course.category.id, course.id).url)
-    const studentsImage = require('/src/assets/students.png');
+    // const backgroundImage = require('/src/assets/home/background.jpg');
+    const logoImage = require('/src/assets/home/logo.png');
+    const middleImage = require('/src/assets/home/image.png');
 
     const isMobile = (window.innerWidth <= 768)
 
     return (
         <Grid container gap={10} justifyContent={'center'}>
-            <Grid container item sx={{backgroundColor: "#123b45", width: "100%", marginTop: -8, zIndex: 2, padding: isMobile ? 2 : 0}} justifyContent={'center'}>
+            <Grid container item sx={{backgroundImage: "url('https://admin.s3i.training/background.jpg')", width: "100%", marginTop: -8, zIndex: 2, padding: isMobile ? 2 : 0}} justifyContent={'center'}>
                 <Grid>
-                    <Grid item sx={{paddingTop: 10}}>
+                    <Grid item sx={{paddingTop: 10, paddingBottom: 10}}>
                         <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold', fontSize: isMobile ? 40 : 64}}>طور مهاراتك بشكل أسرع</Typography>
                         <Typography variant='h5' sx={{color: 'white', marginTop: 10, lineHeight: 2, fontSize: isMobile ? 25: 30}}>واحدة من أفضل مواقع الدورات العربية الأونلاين <br/> ويمكنك القول أنها منصة للتدريب الالكتروني الاحترافي</Typography>
                         <Button style={{backgroundColor: "#329996", color: "white", padding: 10, paddingRight: 40, paddingLeft: 40, fontSize: 24, marginTop: 20, marginBottom: 20}} onClick={() => push(sitemap.register.url)}>انضم الآن</Button>
                     </Grid>
                 </Grid>
-                <Image src={studentsImage} alt="" style={{paddingRight: isMobile ? 0 : 100, paddingTop: 30, paddingBottom: 30, width: isMobile ? '80%' : '40%'}}/>
+                <Image src={logoImage} alt="" style={{paddingRight: isMobile ? 0 : 100, paddingTop: 30, paddingBottom: 30, width: '30%'}}/>
             </Grid>
             <Grid container item lg={10} sx={{ justifyContent: 'center' }} >
-                {welcomeCards.map(category => <Grid
-                    key={category.name}
-                    sx={{ borderColor: 'primary.light', borderWidth: 2, backgroundColor: 'background.lightShadow', display: 'inline-block', width: isMobile ? 300 : 400, height: isMobile? 230 : 300, justifyContent: 'center', alignContent: 'center', borderRadius: 1, marginX: isMobile ? 0 : 5, marginY: 2}}>
-                    <AddvertisedCard icon={category.icon_url} name={t(`texts.${category.name}`)} />
-                </Grid>)}
+                <Image src={middleImage} alt="" style={{width: '80%'}}></Image>
             </Grid>
             <Grid item lg={12} alignItems='center' textAlign='center' mt={6}>
                 <Typography color='primary.dark' variant='h3' marginBottom={isMobile ? 2 : 5} fontWeight={'bold'} fontSize={isMobile ? 25 : 50}>{t('texts.new_courses')}</Typography>
