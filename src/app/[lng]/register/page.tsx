@@ -12,6 +12,7 @@ import moment from "moment";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { registerValidationSchema } from './validation-schema';
+import { ReferenceSelect } from "@/components/reference-select";
 
 export default function Page({
     params: { lng }
@@ -35,6 +36,8 @@ export default function Page({
 
     const isMobile = (window.innerWidth <= 768)
 
+    
+
     return (
         <Grid container justifyContent={'center'} alignContent='center' height='100%' width={"100%"}>
             <Card sx={{ minWidth: isMobile ? "100%" : 600, width: isMobile ? "100%" : "20%" }}>
@@ -52,10 +55,9 @@ export default function Page({
                                         <StyledSelect translateKey="nationality" name="nationality_id" options={registerInfo?.nationalities ?? []} />
                                         <StyledTextField translateKey="address" name="address"/>
                                         <StyledSelect translateKey="education_level" name="education_level_id" options={registerInfo?.education_levels ?? []} />
-                                        <StyledTextField translateKey="reference" name="reference" />
+                                        <ReferenceSelect name="reference" translateKey="reference"/>
                                         <StyledTextField translateKey="password" name="password" required type='password' />
                                         <StyledTextField translateKey="password_confirmation" name="password_confirmation" required type='password' />
-
                                         <Button variant="contained" type="submit" disabled={isSubmitting} sx={{ mt: 4 }}>
                                             {t('buttons.register')}
                                         </Button>

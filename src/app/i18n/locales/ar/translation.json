@@ -73,6 +73,7 @@
         "address": "العنوان",
         "education_level": "التحصيل العلمي",
         "reference": "كيف وصلت الينا",
+        "reference-other": "كيف وصلت الينا (غير ذلك)",
         "old_password": "كلمة السر القديمة",
         "new_password": "كلمة السر الجديدة",
         "new_password_confirmation": "تأكيد كلمة السر",
@@ -139,6 +140,9 @@
         "new_password_confirmation": {
             "required": "يجب ادخال الحقل",
             "Password_must_match": "غير متطابقة مع كلمة السر"
+        },
+        "reference-other": {
+            "required": "يجب ادخال الحقل"
         }
     },
     "toast": {
