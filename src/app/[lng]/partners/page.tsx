@@ -1,8 +1,6 @@
 "use client";
-import { sitemap } from '@/site-map';
-import { Grid, Typography } from '@mui/material';
-import { t } from 'i18next';
-import { useRouter } from 'next/navigation';
+import { TeacherCard } from '@/components/teacher-card';
+import { Grid } from '@mui/material';
 
 
 export default function Page({
@@ -10,13 +8,12 @@ export default function Page({
 }: {
     params: { lng: any }
 }) {
-    const { push } = useRouter()
-
-    const redirectToLogin = () => push(sitemap.login.url)
-    const redirectToRegister = () => push(sitemap.register.url)
 
     return (
         <Grid container gap={15} justifyContent={'center'} >
+            <TeacherCard name={"الهيئة الوطنية لخدمات تقانة المعلومات"} imageUrl={"https://admin.s3i.training/partners/1.png"} height={320} ></TeacherCard>
+            <TeacherCard name={"وزارة التنمية الإدارية"} imageUrl={"https://admin.s3i.training/partners/2.png"} height={320}></TeacherCard>
+            <TeacherCard name={"غرفة تجارة دمشق"} imageUrl={"https://admin.s3i.training/partners/3.jpg"} height={320}></TeacherCard>
         </Grid>
     )
 }

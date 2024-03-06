@@ -3,16 +3,17 @@ import { FC } from "react";
 
 interface Props {
     name: string,
-    imageUrl: string,
-    education: string,
-    bio: string
+    imageUrl: any,
+    education?: string,
+    bio?: string,
+    height?: Number
 }
 
 export const TeacherCard: FC<Props> = (props) => {
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, minWidth: 345 }}>
             <CardMedia
-                sx={{ height: 400 }}
+                sx={{ height: props.height || 400}}
                 image={props.imageUrl}
                 title={props.name}
             />
