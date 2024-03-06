@@ -1,12 +1,14 @@
 "use client";
 import { AddvertisedCard } from '@/components';
 import { CourseCard } from '@/components/course-card';
+import { USER_STATUS } from '@/logic/config';
 import { Course } from '@/logic/interfaces';
 import { useCoursesStore } from '@/logic/store';
 import { sitemap } from '@/site-map';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import { t } from 'i18next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -18,6 +20,7 @@ export default function Page({
 }) {
     const { push } = useRouter()
     const newCourses = useCoursesStore(state => state.newCourses)
+    const authenticatedStatus = useCoursesStore(state => state.authenticatedStatus)
     const fetchCategoriesInfo = useCoursesStore(state => state.fetchCategoriesInfo)
     useEffect(() => {
         fetchCategoriesInfo()
@@ -41,23 +44,31 @@ export default function Page({
         }]
 
     const redirectToCourse = (course: Course) => push(sitemap.courses.courseDetails(course.category.id, course.id).url)
-    // const backgroundImage = require('/src/assets/home/background.jpg');
+    
     const logoImage = require('/src/assets/home/logo.png');
     const middleImage = require('/src/assets/home/image.png');
+    const backgroundImage = require('/src/assets/home/background.jpg');
 
     const isMobile = (window.innerWidth <= 768)
 
     return (
         <Grid container gap={10} justifyContent={'center'}>
-            <Grid container item sx={{backgroundImage: "url('https://admin.s3i.training/background.jpg')", width: "100%", marginTop: -8, zIndex: 2, padding: isMobile ? 2 : 0}} justifyContent={'center'}>
+            <Image style={{position: 'absolute', 'top': 0, right: 0, width: '100%', height: '550px', objectFit: 'cover'}} src={backgroundImage} alt=""></Image>
+            <Grid container item sx={{backgroundImage: "url('')", width: "100%", marginTop: -8, zIndex: 2, padding: isMobile ? 2 : 0}} justifyContent={'space-around'} alignItems={'center'}>
                 <Grid>
                     <Grid item sx={{paddingTop: 10, paddingBottom: 10}}>
-                        <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold', fontSize: isMobile ? 40 : 64}}>طور مهاراتك بشكل أسرع</Typography>
-                        <Typography variant='h5' sx={{color: 'white', marginTop: 10, lineHeight: 2, fontSize: isMobile ? 25: 30}}>واحدة من أفضل مواقع الدورات العربية الأونلاين <br/> ويمكنك القول أنها منصة للتدريب الالكتروني الاحترافي</Typography>
-                        <Button style={{backgroundColor: "#329996", color: "white", padding: 10, paddingRight: 40, paddingLeft: 40, fontSize: 24, marginTop: 20, marginBottom: 20}} onClick={() => push(sitemap.register.url)}>انضم الآن</Button>
+                        <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold', fontSize: isMobile ? 40 : 64}}>منصة سعي للتدريب والتأهيل </Typography>
+                        <Typography variant='h2' sx={{color: 'white', lineHeight: 2, fontSize: isMobile ? 30 : 50, fontWeight: 'bold'}}>Study Without Ink</Typography>
+                        {
+                            authenticatedStatus == USER_STATUS.NOT_LOGGEN_IN && 
+                            <Button style={{backgroundColor: "#FFFFFF77", color: "white", padding: 5, paddingRight: 80, paddingLeft: 80, fontSize: 24, marginTop: 20, marginBottom: 20}} onClick={() => push(sitemap.login.url)}>تسجيل الدخول</Button>
+                        }
+                        <Link href="https://admin.s3i.training/app.apk" target='_blank'>
+                            <Button style={{marginRight: 10, backgroundColor: "#FFFFFF77", color: "white", padding: 5, paddingRight: 80, paddingLeft: 80, fontSize: 24, marginTop: 20, marginBottom: 20}}>تحميل التطبيق</Button>
+                        </Link>
                     </Grid>
                 </Grid>
-                <Image src={logoImage} alt="" style={{paddingRight: isMobile ? 0 : 100, paddingTop: 30, paddingBottom: 30, width: '30%'}}/>
+                <Image src={logoImage} alt="" style={{marginRight: isMobile ? 0 : 100, width: '300px', height: '300px'}}/>
             </Grid>
             <Grid container item lg={10} sx={{ justifyContent: 'center' }} >
                 <Image src={middleImage} alt="" style={{width: '80%'}}></Image>

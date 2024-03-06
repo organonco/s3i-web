@@ -147,7 +147,7 @@ export function Header({ lng }: Props) {
                                     authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN &&
                                     <ListItem disablePadding>
                                         <ListItemButton>
-                                            <ListItemText primary={t('buttons.login')} onClick={() => pushAndClose(sitemap.login.url)} sx={{ textAlign: 'center', color: "primary.main"}} />
+                                            <ListItemText primary={t('buttons.register')} onClick={() => pushAndClose(sitemap.register.url)} sx={{ textAlign: 'center', color: "primary.main"}} />
                                         </ListItemButton>
                                     </ListItem>
                                 }
@@ -164,9 +164,9 @@ export function Header({ lng }: Props) {
 
                 </Box>
                 :
-                <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 2, paddingX: 10, marginBottom: 0, backgroundColor: '#00000000' }}>
+                <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 2, paddingX: 10, marginBottom: 0}}>
                     <Box>
-                        <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '5%', marginRight: 40, marginLeft: 50, height: 4, borderRadius: 20 } }}>
+                        <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '5%', marginRight: 40, marginLeft: 50, height: 4, borderRadius: 20, backgroundColor: 'white' } }} textColor='secondary'>
                             <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url} />
                             {authenticatedStatus == USER_STATUS.LOGGED_IN &&
                                 <LinkTab label={t('pages.' + sitemap.my_courses.title)} href={sitemap.my_courses.url} />
@@ -178,7 +178,7 @@ export function Header({ lng }: Props) {
                         </Tabs>
                     </Box>
 
-                    <Box sx={{ display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', backgroundColor: 'success.light', marginBottom: 10 }} gap={4}>
+                    <Box sx={{ display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', marginBottom: 10 }} gap={4}>
                         <Box>
                             {authenticatedStatus === USER_STATUS.LOGGED_IN ? <Grid container alignItems={'center'} gap={2}>
                                 <UserProfilePopper />
@@ -198,12 +198,9 @@ export function Header({ lng }: Props) {
                                     <NotificationList open handleClick={handleClick} />
                                 </Popper>
                             </Grid>
-                                : authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button variant="outlined" style={{ color: "#329996", padding: 10, paddingRight: 40, paddingLeft: 40, fontSize: 24, marginTop: 0 }} onClick={() => push(sitemap.login.url)}>{t('buttons.login')}</Button>
+                                : authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button variant="outlined" style={{ color: "#329996", padding: 10, paddingRight: 40, paddingLeft: 40, fontSize: 24, marginTop: 0 }} onClick={() => push(sitemap.register.url)}>{t('buttons.register')}</Button>
                                     : <></>}
 
-                        </Box>
-                        <Box>
-                            <Image alt="logo" src={siteIcon} height={60} />
                         </Box>
                     </Box>
                 </Box>

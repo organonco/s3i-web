@@ -37,7 +37,7 @@ const baseOptions: ThemeOptions = {
             // contrastText: will be calculated to contrast with palette.primary.main
         },
         secondary: {
-            main: '#E0C2FF',
+            main: '#FFFFFF',
             light: '#F5EBFF',
             // dark: will be calculated from palette.secondary.main,
             contrastText: '#47008F',
@@ -58,7 +58,7 @@ const baseOptions: ThemeOptions = {
         },
         text: {
             primary: '#000000',
-            secondary: '#808080',
+            secondary: '#FFFFFF',
         },
         success: {
             main: '#49BF89',
