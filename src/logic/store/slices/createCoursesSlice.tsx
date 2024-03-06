@@ -1,5 +1,5 @@
 import { Category, Course, CourseDetails, CourseItemDetails, QuizDetails, RegisterInfoAPI } from "@/logic/interfaces"
-import { fetchCategories, fetchCategoryDetails, fetchCourseDetails, fetchCourseQuiz, fetchHomeworkDetails, fetchNewCourses, fetchUserCourses, handleUploadFile, submitUserQuiz, subscribeCourse } from "@/logic/services"
+import { fetchCategories, fetchCategoryDetails, fetchCourseDetails, fetchCourseQuiz, fetchHomeworkDetails, fetchNewCourses, fetchUserCourses, handleUploadFile, submitUserQuiz, subscribeCourse, fetchTeachers } from "@/logic/services"
 import { t } from "i18next"
 import { produce } from "immer"
 import { toast } from "react-toastify"
@@ -28,6 +28,7 @@ export interface CoursesSlice {
     loadingCourseHomework: boolean
     homework: CourseItemDetails | null
     isQuizSubmitted: boolean
+    teachers: []
     fetchCategoriesInfo: () => void
     fetchCourseDetails: (courseId: string) => void
     fetchCategoryCourses: (categoryId: string) => void
@@ -38,6 +39,7 @@ export interface CoursesSlice {
     submitQuiz: (id: string, quizDetails: QuizDetails, stopLoading: () => void) => void
     uploadFile: (id: string, file: File) => void
     startQuiz: (id: string) => string
+    fetchTeachersInfo: () => void
 }
 
 
@@ -56,11 +58,18 @@ export const createCoursesSlice: StateCreator<CoursesSlice> = (set, get, api) =>
     loadingCourseHomework: false,
     quizDetails: null,
     isQuizSubmitted: false,
+    teachers: [],
 
     fetchCategoriesInfo: () => {
         fetchCategories().then((data) => set(produce(draftState => { draftState.categories = data.data })))
         fetchNewCourses().then((data) => set(produce(draftState => { draftState.newCourses = data.data })))
     },
+
+    fetchTeachersInfo: () => {
+        fetchTeachers().then((data) => set(produce(draftState => { draftState.teachers = data.data.teachers })))
+    },
+
+
     fetchCourseDetails: (courseId: string) => {
         set(produce(draftState => {
             draftState.loadingCourseDetails = true

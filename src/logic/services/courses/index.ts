@@ -63,3 +63,9 @@ export const handleUploadFile = (id: string, file: File) => {
     }
   });
 }
+
+export const fetchTeachers = () => {
+  return axios.get(API_BASE_URL.baseURL + API_URLS.teachers, {
+    headers: {Accept: "application/json",}
+  });
+}

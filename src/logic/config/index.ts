@@ -23,7 +23,8 @@ export const API_URLS = {
     // Add more API URLs here as needed
     notification: '/notifications',
     count: '/count',
-    markAsRead: '/mark-as-read'
+    markAsRead: '/mark-as-read',
+    teachers: '/teachers'
 };
 
 
