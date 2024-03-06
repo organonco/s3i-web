@@ -58,7 +58,7 @@ const baseOptions: ThemeOptions = {
         },
         text: {
             primary: '#000000',
-            secondary: '#FFFFFF',
+            secondary: '#808080',
         },
         success: {
             main: '#49BF89',
