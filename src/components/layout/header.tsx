@@ -23,9 +23,11 @@ interface Props {
 
 export function Header({ lng }: Props) {
     const { push } = useRouter()
+
     const { authenticatedStatus, notificationNumber, profileInfo, logUserOut } = useCoursesStore()
     let pathname = usePathname().split('/')[2] ?? ''
     pathname = '/' + pathname
+    const isHome = pathname == '/'
 
     const tabArray =
         authenticatedStatus == USER_STATUS.LOGGED_IN ?
@@ -166,7 +168,7 @@ export function Header({ lng }: Props) {
                 :
                 <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 2, paddingX: 10, marginBottom: 0}}>
                     <Box>
-                        <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '5%', marginRight: 40, marginLeft: 50, height: 4, borderRadius: 20, backgroundColor: 'white' } }} textColor='secondary'>
+                        <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '5%', marginRight: 40, marginLeft: 50, height: 4, borderRadius: 20, backgroundColor: isHome ? 'white' : '#57AFA8' } }} textColor='white'>
                             <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url} />
                             {authenticatedStatus == USER_STATUS.LOGGED_IN &&
                                 <LinkTab label={t('pages.' + sitemap.my_courses.title)} href={sitemap.my_courses.url} />
