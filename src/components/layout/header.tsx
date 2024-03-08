@@ -55,7 +55,6 @@ export function Header({ lng }: Props) {
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
-    const siteIcon = require('/src/assets/logo.png');
     const isMobile = (window.innerWidth <= 768)
 
 
@@ -86,9 +85,9 @@ export function Header({ lng }: Props) {
     return (
         <>
             {isMobile ?
-                <Box sx={{ display: 'fixed', justifyContent: 'space-around', flexDirection: 'row', paddingTop: 2, paddingX: 10, marginBottom: 0, backgroundColor: 'white' }}>
+                <Box sx={{ display: 'fixed', justifyContent: 'space-around', flexDirection: 'row', paddingTop: 2, paddingX: 10, marginBottom: 0, backgroundColor: isHome ? 'transparent' : 'white' }}>
 
-                    <IconButton sx={{ position: 'absolute', right: 10 }} onClick={() => setSideMenuOpen(true)}>
+                    <IconButton sx={{ position: 'absolute', right: 10, color: 'white' }} onClick={() => setSideMenuOpen(true)}>
                         <Menu />
                     </IconButton>
 
@@ -149,7 +148,7 @@ export function Header({ lng }: Props) {
                                     authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN &&
                                     <ListItem disablePadding>
                                         <ListItemButton>
-                                            <ListItemText primary={t('buttons.register')} onClick={() => pushAndClose(sitemap.register.url)} sx={{ textAlign: 'center', color: "primary.main"}} />
+                                            <ListItemText primary={t('buttons.register')} onClick={() => pushAndClose(sitemap.register.url)} sx={{ textAlign: 'center', color: "primary.main" }} />
                                         </ListItemButton>
                                     </ListItem>
                                 }
@@ -158,15 +157,9 @@ export function Header({ lng }: Props) {
                             </List>
                         </Box>
                     </Drawer>
-
-                    <Box sx={{ display: 'fixed', justifyContent: 'space-around', flexDirection: 'row', backgroundColor: 'success.light', marginBottom: 10 }}>
-                        <Image alt="logo" src={siteIcon} height={40} />
-                    </Box>
-
-
                 </Box>
                 :
-                <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 2, paddingX: 10, marginBottom: 0}}>
+                <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 2, paddingX: 10, marginBottom: 0 }}>
                     <Box>
                         <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '5%', marginRight: 40, marginLeft: 50, height: 4, borderRadius: 20, backgroundColor: isHome ? 'white' : '#57AFA8' } }} textColor='white'>
                             <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url} />
