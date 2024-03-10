@@ -14,8 +14,7 @@ interface Props {
 
 const LinkText = (props: { title: string }) => <Typography variant="body1" color={'primary.light'}>{t(`pages.${props.title}`)}</Typography>
 const IconWithText = ({ title, icon, href }: { title: string, icon: ReactNode, href: string }) => <Grid container gap={2} sx={{ alignContent: 'center', justifyContent: 'center' }}>
-    {icon}
-    <Link href={href}><Typography color='white' variant="subtitle2" sx={{ direction: 'ltr' }}>{title}</Typography></Link>
+    <Link href={href} target="_blank">{icon}<Typography color='white' variant="subtitle2" sx={{ direction: 'ltr' }}>{title}</Typography></Link>
 </Grid>
 
 const isMobile = (window.innerWidth <= 768)
@@ -39,18 +38,18 @@ export const Footer: FC<Props> = (props) => {
                 <Grid item style={{ display: 'flex', flexDirection: "row", gap: 10 }}>
                     <IconWithText icon={
                         <Phone sx={{ color: 'white' }} />
-                    } title="" href="phone:963954141451" />
+                    } title="" href="tel:963954141451" />
 
                     <IconWithText icon={
                         <FacebookOutlined sx={{ color: 'white' }} />
                     } title="" href="https://www.facebook.com/s3i.training/" />
                     <IconWithText icon={
                         <Instagram sx={{ color: 'white' }} />
-                    } title="" href="https://api.whatsapp.com/send?phone=963954141451" />
+                    } title="" href="https://www.instagram.com/s3i.platform/" />
 
                     <IconWithText icon={
                         <WhatsApp sx={{ color: 'white' }} />
-                    } title="" href="https://www.instagram.com/s3i.platform/?utm_source=qr&r=nametag" />
+                    } title="" href="https://api.whatsapp.com/send?phone=963954141451" />
                 </Grid>
             </Grid>
             <Grid container item style={{ display: 'flex', flexDirection: "row", justifyContent: 'center', paddingTop: 20 }}>

@@ -57,35 +57,20 @@ export function Header({ lng }: Props) {
     const id = open ? 'simple-popper' : undefined;
     const isMobile = (window.innerWidth <= 768)
 
-
-
     const [sideMenuOpen, setSideMenuOpen] = React.useState(false);
-
-    const toggleDrawer =
-        (open: boolean) =>
-            (event: React.KeyboardEvent | React.MouseEvent) => {
-                if (
-                    event.type === 'keydown' &&
-                    ((event as React.KeyboardEvent).key === 'Tab' ||
-                        (event as React.KeyboardEvent).key === 'Shift')
-                ) {
-                    return;
-                }
-
-                setSideMenuOpen(open);
-            };
-
 
     const pushAndClose = (url: string) => {
         push(url)
         setSideMenuOpen(false)
     }
 
+    const siteIcon = require('/src/assets/logo.png');
+
 
     return (
         <>
             {isMobile ?
-                <Box sx={{ display: 'fixed', justifyContent: 'space-around', flexDirection: 'row', paddingTop: 2, paddingX: 10, marginBottom: 0, backgroundColor: isHome ? 'transparent' : 'white' }}>
+                <Box sx={{ display: 'fixed', justifyContent: 'space-around', flexDirection: 'row', paddingTop: 2, paddingX: 10, marginBottom: 10, backgroundColor: isHome ? 'transparent' : 'white', zIndex: 200 }}>
 
                     <IconButton sx={{ position: 'absolute', right: 10, color: 'white' }} onClick={() => setSideMenuOpen(true)}>
                         <Menu />
@@ -157,6 +142,7 @@ export function Header({ lng }: Props) {
                             </List>
                         </Box>
                     </Drawer>
+
                 </Box>
                 :
                 <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 2, paddingX: 10, marginBottom: 0 }}>

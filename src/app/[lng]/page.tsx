@@ -53,10 +53,10 @@ export default function Page({
 
     return (
         <Grid container gap={isMobile ? 2 : 10} justifyContent={'center'}>
-            <Image style={{ position: 'absolute', 'top': 0, right: 0, width: '100%', height: isMobile ? '700px' : '550px', objectFit: 'cover' }} src={backgroundImage} alt=""></Image>
-            <Grid container item sx={{ backgroundImage: "url('')", width: "100%", marginTop: -8, zIndex: 2, padding: isMobile ? 2 : 0 }} justifyContent={'space-around'} alignItems={'center'}>
+            <Image style={{ position: 'absolute', 'top': 0, right: 0, width: '100%', height: isMobile ? '750px' : '600px', objectFit: 'cover' }} src={backgroundImage} alt=""></Image>
+            <Grid container item sx={{ backgroundImage: "url('')", width: "100%", marginTop: 0, zIndex: 2, paddingX: isMobile ? 4 : 0 }} justifyContent={'space-around'} alignItems={'center'}>
                 {
-                    isMobile && <Image src={logoImage} alt="" style={{ marginRight: 0, width: '200px', height: '200px', marginTop: 100 }} />
+                    isMobile && <Image src={logoImage} alt="" style={{ marginRight: 0, width: '200px', height: '200px', marginTop: 0 }} />
                 }
                 <Grid>
                     <Grid item sx={{ paddingTop: 10, paddingBottom: 10 }}>
