@@ -22,6 +22,8 @@ export function samePageLinkNavigation(
 interface LinkTabProps {
     label?: string;
     href?: string;
+    newTab?: boolean;
+
 }
 
 
@@ -36,10 +38,11 @@ export function LinkTab(props: LinkTabProps) {
             component="a"
             sx={{ fontSize: 24, textAlign: 'start', fontWeight: 500, paddingX: 5, color: isHome ? 'white' : '#57AFA8' }}
             onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-                if (samePageLinkNavigation(event)) {
+                if (samePageLinkNavigation(event) && !props.newTab) {
                     event.preventDefault();
                 }
             }}
+            target={props.newTab ? '_blank' : '_self'}
             {...props}
         />
     );

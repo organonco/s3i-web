@@ -19,6 +19,9 @@ const IconWithText = ({ title, icon, href }: { title: string, icon: ReactNode, h
 
 const isMobile = (window.innerWidth <= 768)
 
+const mailUrl = 'mailto:support@s3i.training'
+
+
 export const Footer: FC<Props> = (props) => {
     return (
         <Box sx={{ backgroundColor: 'primary.dark', width: '100%', height: isMobile ? null : 140, alignSelf: 'end', padding: 3, paddingInline: 10 }}>
@@ -33,6 +36,7 @@ export const Footer: FC<Props> = (props) => {
                 </Grid>
                 <Grid item style={{ display: 'flex', flexDirection: "column", gap: 10, textAlign: 'center' }}>
                     <Link href={sitemap.about_us.url}><LinkText title={sitemap.about_us.title} /></Link>
+                    <Link href={mailUrl}><LinkText title={'contact_us'} /></Link>
                 </Grid>
 
                 <Grid item style={{ display: 'flex', flexDirection: "row", gap: 10 }}>

@@ -28,14 +28,18 @@ export function Header({ lng }: Props) {
     let pathname = usePathname().split('/')[2] ?? ''
     pathname = '/' + pathname
     const isHome = pathname == '/'
-
+    const mailUrl = 'mailto:support@s3i.training'
     const tabArray =
         authenticatedStatus == USER_STATUS.LOGGED_IN ?
-            [sitemap.home.url, sitemap.my_courses.url, sitemap.courses.index.url, sitemap.teachers.url, sitemap.partners.url, sitemap.about_us.url] :
-            [sitemap.home.url, sitemap.courses.index.url, sitemap.teachers.url, sitemap.partners.url, sitemap.about_us.url]
+            [sitemap.home.url, sitemap.my_courses.url, sitemap.courses.index.url, sitemap.teachers.url, sitemap.partners.url, sitemap.about_us.url, mailUrl] :
+            [sitemap.home.url, sitemap.courses.index.url, sitemap.teachers.url, sitemap.partners.url, sitemap.about_us.url, mailUrl]
 
     const { t } = useTranslation(lng, 'translation')
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+
+        if (tabArray[newValue] == mailUrl)
+            return;
+
         if (
             event.type !== 'click' ||
             (event.type === 'click' &&
@@ -128,6 +132,12 @@ export function Header({ lng }: Props) {
                                     </ListItemButton>
                                 </ListItem>
 
+                                <ListItem disablePadding>
+                                    <ListItemButton>
+                                        <ListItemText primary={t('pages.contact_us')} onClick={() => pushAndClose(mailUrl)} sx={{ textAlign: 'center' }} />
+                                    </ListItemButton>
+                                </ListItem>
+
 
                                 {
                                     authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN &&
@@ -156,6 +166,7 @@ export function Header({ lng }: Props) {
                             <LinkTab label={t('pages.' + sitemap.teachers.title)} href={sitemap.teachers.url} />
                             <LinkTab label={t('pages.' + sitemap.partners.title)} href={sitemap.partners.url} />
                             <LinkTab label={t('pages.' + sitemap.about_us.title)} href={sitemap.about_us.url} />
+                            <LinkTab label={t('pages.contact_us')} href={mailUrl} newTab />
                         </Tabs>
                     </Box>
 
