@@ -80,7 +80,7 @@ export function Header({ lng }: Props) {
                             <IconButton sx={{ color: 'white' }} onClick={() => setSideMenuOpen(true)}>
                                 <Menu />
                             </IconButton>
-                            <Image src={siteIcon} alt="logo" width={150} style={{ float: 'left', padding: 2 }} />
+                            {!isHome && <Image src={siteIcon} alt="logo" width={150} style={{ float: 'left', padding: 2 }} />}
                         </Grid>
                     </Box>
                     <Drawer

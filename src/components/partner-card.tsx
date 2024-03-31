@@ -28,7 +28,7 @@ export const PartnerCard: FC<Props> = (props) => {
             'object-fit': 'cover',
         },
         mainDiv: {
-            width: 400,
+            width: 380,
             display: 'flex',
             flexDirection: 'column',
             'align-items': 'center',

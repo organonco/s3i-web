@@ -53,15 +53,15 @@ export default function Page({
 
     return (
         <Grid container gap={isMobile ? 2 : 10} justifyContent={'center'}>
-            <Image style={{ position: 'absolute', 'top': 0, right: 0, width: '100%', height: isMobile ? '750px' : '600px', objectFit: 'cover' }} src={backgroundImage} alt=""></Image>
+            <Image style={{ position: 'absolute', 'top': 0, right: 0, width: '100%', height: isMobile ? '820px' : '600px', objectFit: 'cover' }} src={backgroundImage} alt=""></Image>
             <Grid container item sx={{ backgroundImage: "url('')", width: "100%", marginTop: 0, zIndex: 2, paddingX: isMobile ? 4 : 0 }} justifyContent={'space-around'} alignItems={'center'}>
                 {
-                    isMobile && <Image src={logoImage} alt="" style={{ marginRight: 0, width: '200px', height: '200px', marginTop: 0 }} />
+                    isMobile && <Image src={logoImage} alt="" style={{ width: '200px', height: '200px', marginTop: 0 }} />
                 }
                 <Grid>
-                    <Grid item sx={{ paddingTop: 10, paddingBottom: 10 }}>
-                        <Typography variant='h2' sx={{ color: 'white', fontWeight: 'bold', fontSize: isMobile ? 40 : 64 }}>منصة سعي للتدريب والتأهيل </Typography>
-                        <Typography variant='h2' sx={{ color: 'white', lineHeight: 2, fontSize: isMobile ? 30 : 50, fontWeight: 'bold' }}>Study Without Ink</Typography>
+                    <Grid item sx={{ paddingTop: isMobile ? 4 : 10, paddingBottom: 10, alignContent: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Typography variant='h2' sx={{ color: 'white', fontWeight: 'bold', fontSize: isMobile ? 40 : 64, lineHeight: 1.7, textAlign: isMobile ? 'center' : 'right' }}>منصة سعي للتدريب والتأهيل </Typography>
+                        <Typography variant='h2' sx={{ color: 'white', lineHeight: 2, fontSize: isMobile ? 30 : 50, fontWeight: 'bold', textAlign: isMobile ? 'center' : 'right' }}>Study Without Ink</Typography>
                         {
                             authenticatedStatus == USER_STATUS.NOT_LOGGEN_IN &&
                             <Button style={{ backgroundColor: "#FFFFFF77", color: "white", padding: 5, paddingRight: 80, paddingLeft: 80, fontSize: 24, marginTop: 20, marginBottom: 20 }} onClick={() => push(sitemap.register.url)}>التسجيل</Button>
