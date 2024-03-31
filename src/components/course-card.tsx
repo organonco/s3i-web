@@ -15,7 +15,7 @@ export const CourseCard: FC<props> = (props) => {
             <Box sx={{ width: '100%', justifyContent: 'space-between', display: 'flex', flexDirection: 'column', gap: 1, paddingX: 2, paddingTop: 1, paddingBottom: 3 }}>
                 <Box sx={{ justifyContent: 'space-between', display: 'flex', flexDirection: 'row', gap: 1, alignItems: 'center' }}>
                     <Typography color='white' fontWeight={'bold'} fontSize={18} textAlign={'right'}>{props.title}</Typography>
-                    {!props.isSubscribed && <Typography variant="caption" color="white" fontWeight={'bold'} sx={{ backgroundColor: 'primary.main', borderRadius: 5, paddingY: 1, paddingX: 2, width: 100, height: 40, borderColor: 'white', borderWidth: 1 }}> سجل الآن </Typography>}
+                    {!props.isSubscribed && <Typography variant="caption" color="white" fontWeight={'bold'} sx={{ backgroundColor: 'primary.main', borderRadius: 5, paddingY: 1, paddingX: 2, width: 120, height: 40, borderColor: 'white', borderWidth: 1 }}> سجل الآن </Typography>}
                 </Box>
                 <Typography color='white' fontWeight={'bold'} fontSize={12} textAlign={'right'} textOverflow={'ellipsis'} noWrap >{props.subTitle}</Typography>
             </Box>
