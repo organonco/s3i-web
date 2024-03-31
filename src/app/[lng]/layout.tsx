@@ -14,10 +14,10 @@ export default function Layout({
     return (
         <AppProvider>
             <Grid container sx={{ minHeight: '98vh' }} >
-                <Grid item lg={12} sx={{ zIndex: 1 }}>
+                <Grid item lg={12} sx={{ zIndex: 1, width: '100%' }}>
                     <Header lng={lng} />
                 </Grid>
-                <Grid item lg={12} style={{ paddingBottom: 200, width: "100%"}}>
+                <Grid item lg={12} style={{ paddingBottom: 200, width: "100%" }}>
                     <main>{children}</main>
                 </Grid>
                 <Footer />

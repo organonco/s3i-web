@@ -14,3 +14,5 @@ export * from './radio-button'
 export * from './select'
 export * from './text-field'
 export * from './timer-button'
+export * from "./partner-card"
+export * from "./scollable-grid"

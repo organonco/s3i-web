@@ -30,31 +30,31 @@ const baseOptions: ThemeOptions = {
     },
     palette: {
         primary: {
-            main: '#57AFA8',
-            light: '#DAF4F4',
-            dark: '#2D6276'
+            main: '#2D6176',
+            light: '#F0F9FB',
+            dark: '#1D3840'
             // dark: will be calculated from palette.primary.main,
             // contrastText: will be calculated to contrast with palette.primary.main
         },
         secondary: {
-            main: '#FFFFFF',
-            light: '#F5EBFF',
+            main: '#F0F9FB',
+            light: '#F0F9FB',
             // dark: will be calculated from palette.secondary.main,
             contrastText: '#47008F',
         },
         background: {
             primary: {
-                main: '#57AFA8',
+                main: '#2D6176',
                 active: '#92D6D1',
                 hover: '#92D6D1',
             },
-            paper: '#F9F9F9',
-            // primary: '#57AFA8',
-            shadow: '#F6F6F6',
-            lightShadow: '#F9FFFF',
+            paper: '#F0F9FB',
+            // primary: '#2D6176',
+            shadow: '#F0F9FB',
+            lightShadow: '#F0F9FB',
         },
         action: {
-            disabledBackground: '#E5E5E5 !important',
+            disabledBackground: '#F0F9FB !important',
         },
         text: {
             primary: '#000000',
@@ -62,7 +62,7 @@ const baseOptions: ThemeOptions = {
         },
         success: {
             main: '#49BF89',
-            light: '#FFFFFF'
+            light: '#F0F9FB'
         }
     },
     components: {
@@ -120,7 +120,7 @@ const baseOptions: ThemeOptions = {
                     color: 'white'
                 },
                 containedPrimary: {
-                    backgroundColor: '#57AFA8 !important',
+                    backgroundColor: '#2D6176 !important',
                 },
                 containedSecondary: {
                     backgroundColor: '#3D86AA !important',
@@ -129,7 +129,7 @@ const baseOptions: ThemeOptions = {
                     backgroundColor: '#E64646 !important',
                 },
                 outlined: {
-                    backgroundColor: '#DAE9E8 !important',
+                    backgroundColor: '#F0F9FB !important',
                     borderColor: 'inherit !important'
                 }
             }
@@ -147,5 +147,5 @@ export const theme = createTheme({
         fontFamily: [
             cairo.style.fontFamily
         ]
-    }    
+    }
 });

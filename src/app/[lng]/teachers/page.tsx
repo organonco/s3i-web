@@ -22,8 +22,8 @@ export default function Page({
     }, [lng])
 
     return (
-        <Grid container gap={15} justifyContent={'center'} >
-            {teachers?.map(teacher => <TeacherCard bio={teacher.bio} education={teacher.education} name={teacher.name} key={teacher.name} imageUrl={teacher.image_url}/>)}
+        <Grid container gap={2} justifyContent={'center'} >
+            {teachers?.map(teacher => <TeacherCard bio={teacher.bio} education={teacher.education} name={teacher.name} key={teacher.name} imageUrl={teacher.image_url} />)}
         </Grid>
     )
 }

@@ -36,7 +36,7 @@ export function LinkTab(props: LinkTabProps) {
     return (
         <Tab
             component="a"
-            sx={{ fontSize: 24, textAlign: 'start', fontWeight: 500, paddingX: 5, color: isHome ? 'white' : '#57AFA8' }}
+            sx={{ fontSize: 24, textAlign: 'start', fontWeight: 500, paddingX: 5, color: 'white' }}
             onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
                 if (samePageLinkNavigation(event) && !props.newTab) {
                     event.preventDefault();

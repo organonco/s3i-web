@@ -1,5 +1,5 @@
 "use client";
-import { AddvertisedCard } from '@/components';
+import { AddvertisedCard, PartnerCard } from '@/components';
 import { CourseCard } from '@/components/course-card';
 import { USER_STATUS } from '@/logic/config';
 import { Course } from '@/logic/interfaces';
@@ -64,7 +64,7 @@ export default function Page({
                         <Typography variant='h2' sx={{ color: 'white', lineHeight: 2, fontSize: isMobile ? 30 : 50, fontWeight: 'bold' }}>Study Without Ink</Typography>
                         {
                             authenticatedStatus == USER_STATUS.NOT_LOGGEN_IN &&
-                            <Button style={{ backgroundColor: "#FFFFFF77", color: "white", padding: 5, paddingRight: 80, paddingLeft: 80, fontSize: 24, marginTop: 20, marginBottom: 20 }} onClick={() => push(sitemap.login.url)}>تسجيل الدخول</Button>
+                            <Button style={{ backgroundColor: "#FFFFFF77", color: "white", padding: 5, paddingRight: 80, paddingLeft: 80, fontSize: 24, marginTop: 20, marginBottom: 20 }} onClick={() => push(sitemap.register.url)}>التسجيل</Button>
                         }
                         <Link href="https://admin.s3i.training/app.apk" target='_blank'>
                             <Button style={{ marginRight: isMobile ? 0 : 10, backgroundColor: "#FFFFFF77", color: "white", padding: 5, paddingRight: 80, paddingLeft: 80, fontSize: 24, marginTop: isMobile ? 10 : 20, marginBottom: 20 }}>تحميل التطبيق</Button>
@@ -76,9 +76,22 @@ export default function Page({
                 }
 
             </Grid>
+
+
             <Grid container item lg={10} sx={{ justifyContent: 'center' }} >
                 <Image src={middleImage} alt="" style={{ width: '80%' }}></Image>
             </Grid>
+
+            <Grid item lg={12} alignItems='center' textAlign='center' mt={6} py={6} sx={{ backgroundColor: 'primary.main' }}>
+                <Typography color='white' variant='h3' marginBottom={isMobile ? 2 : 5} fontWeight={'bold'} fontSize={isMobile ? 25 : 50}>{t('texts.partners')}</Typography>
+                <Grid container gap={5} justifyContent={'center'} >
+                    <PartnerCard name={"الهيئة الوطنية لخدمات تقانة المعلومات"} imageUrl={"https://admin.s3i.training/partners/1.png"} height={320} ></PartnerCard>
+                    <PartnerCard name={"وزارة التنمية الإدارية"} imageUrl={"https://admin.s3i.training/partners/2.png"} height={320}></PartnerCard>
+                    <PartnerCard name={"غرفة تجارة دمشق"} imageUrl={"https://admin.s3i.training/partners/3.jpg"} height={320}></PartnerCard>
+                </Grid>
+            </Grid>
+
+
             <Grid item lg={12} alignItems='center' textAlign='center' mt={6}>
                 <Typography color='primary.dark' variant='h3' marginBottom={isMobile ? 2 : 5} fontWeight={'bold'} fontSize={isMobile ? 25 : 50}>{t('texts.new_courses')}</Typography>
                 <Grid container item lg={12} sx={{ justifyContent: 'center' }} >

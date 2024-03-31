@@ -3,7 +3,7 @@ import { useTranslation } from '@/app/i18n/client';
 import { USER_STATUS } from '@/logic/config';
 import { useCoursesStore } from '@/logic/store';
 import { sitemap } from '@/site-map';
-import { Inbox, InsertComment, Mail, Menu, Notifications } from '@mui/icons-material';
+import { Inbox, InsertComment, Mail, Menu, Notifications, AccountCircle } from '@mui/icons-material';
 import { Badge, Button, Drawer, Grid, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Popper, SwipeableDrawer, Tabs } from '@mui/material';
 import Box from '@mui/material/Box';
 import { usePathname, useRouter } from 'next/navigation';
@@ -31,8 +31,8 @@ export function Header({ lng }: Props) {
     const mailUrl = 'mailto:support@s3i.training'
     const tabArray =
         authenticatedStatus == USER_STATUS.LOGGED_IN ?
-            [sitemap.home.url, sitemap.my_courses.url, sitemap.courses.index.url, sitemap.teachers.url, sitemap.partners.url, sitemap.about_us.url, mailUrl] :
-            [sitemap.home.url, sitemap.courses.index.url, sitemap.teachers.url, sitemap.partners.url, sitemap.about_us.url, mailUrl]
+            [sitemap.home.url, sitemap.my_courses.url, sitemap.courses.index.url, sitemap.teachers.url, sitemap.about_us.url, mailUrl] :
+            [sitemap.home.url, sitemap.courses.index.url, sitemap.teachers.url, sitemap.about_us.url, mailUrl]
 
     const { t } = useTranslation(lng, 'translation')
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -74,12 +74,15 @@ export function Header({ lng }: Props) {
     return (
         <>
             {isMobile ?
-                <Box sx={{ display: 'fixed', justifyContent: 'space-around', flexDirection: 'row', paddingTop: 2, paddingX: 10, marginBottom: 10, backgroundColor: isHome ? 'transparent' : 'white', zIndex: 200 }}>
-
-                    <IconButton sx={{ position: 'absolute', right: 10, color: 'white' }} onClick={() => setSideMenuOpen(true)}>
-                        <Menu />
-                    </IconButton>
-
+                <>
+                    <Box sx={{ padding: 2, marginBottom: 10, backgroundColor: isHome ? 'transparent' : 'primary.main', zIndex: 200 }}>
+                        <Grid sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', width: "100%" }}>
+                            <IconButton sx={{ color: 'white' }} onClick={() => setSideMenuOpen(true)}>
+                                <Menu />
+                            </IconButton>
+                            <Image src={siteIcon} alt="logo" width={150} style={{ float: 'left', padding: 2 }} />
+                        </Grid>
+                    </Box>
                     <Drawer
                         anchor='right'
                         open={sideMenuOpen}
@@ -122,12 +125,6 @@ export function Header({ lng }: Props) {
 
                                 <ListItem disablePadding>
                                     <ListItemButton>
-                                        <ListItemText primary={t('pages.' + sitemap.partners.title)} onClick={() => pushAndClose(sitemap.partners.url)} sx={{ textAlign: 'center' }} />
-                                    </ListItemButton>
-                                </ListItem>
-
-                                <ListItem disablePadding>
-                                    <ListItemButton>
                                         <ListItemText primary={t('pages.' + sitemap.about_us.title)} onClick={() => pushAndClose(sitemap.about_us.url)} sx={{ textAlign: 'center' }} />
                                     </ListItemButton>
                                 </ListItem>
@@ -143,39 +140,36 @@ export function Header({ lng }: Props) {
                                     authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN &&
                                     <ListItem disablePadding>
                                         <ListItemButton>
-                                            <ListItemText primary={t('buttons.register')} onClick={() => pushAndClose(sitemap.register.url)} sx={{ textAlign: 'center', color: "primary.main" }} />
+                                            <ListItemText primary={t('buttons.login')} onClick={() => pushAndClose(sitemap.login.url)} sx={{ textAlign: 'center', color: "primary.main" }} />
                                         </ListItemButton>
                                     </ListItem>
                                 }
 
-
                             </List>
                         </Box>
                     </Drawer>
-
-                </Box>
+                </>
                 :
-                <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 2, paddingX: 10, marginBottom: 0 }}>
+                <Box sx={{ width: '100%', display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', paddingTop: 2, paddingX: 10, marginBottom: 4, backgroundColor: isHome ? 'transparent' : 'primary.main' }}>
                     <Box>
-                        <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '5%', marginRight: 40, marginLeft: 50, height: 4, borderRadius: 20, backgroundColor: isHome ? 'white' : '#57AFA8' } }} textColor='white'>
+                        <Tabs value={tabArray.indexOf(pathname) ?? 0} onChange={handleChange} aria-label="nav tabs example" TabIndicatorProps={{ style: { width: '5%', marginRight: 40, marginLeft: 50, height: 4, borderRadius: 20, backgroundColor: 'white' } }} textColor='white'>
                             <LinkTab label={t('pages.' + sitemap.home.title)} href={sitemap.home.url} />
                             {authenticatedStatus == USER_STATUS.LOGGED_IN &&
                                 <LinkTab label={t('pages.' + sitemap.my_courses.title)} href={sitemap.my_courses.url} />
                             }
                             <LinkTab label={t('pages.' + sitemap.courses.index.title)} href={sitemap.courses.index.url} />
                             <LinkTab label={t('pages.' + sitemap.teachers.title)} href={sitemap.teachers.url} />
-                            <LinkTab label={t('pages.' + sitemap.partners.title)} href={sitemap.partners.url} />
                             <LinkTab label={t('pages.' + sitemap.about_us.title)} href={sitemap.about_us.url} />
                             <LinkTab label={t('pages.contact_us')} href={mailUrl} newTab />
                         </Tabs>
                     </Box>
 
-                    <Box sx={{ display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', marginBottom: 10 }} gap={4}>
+                    <Box sx={{ display: 'fixed', justifyContent: 'space-between', flexDirection: 'row', alignSelf: 'center', marginBottom: 2 }} gap={4}>
                         <Box>
                             {authenticatedStatus === USER_STATUS.LOGGED_IN ? <Grid container alignItems={'center'} gap={2}>
                                 <UserProfilePopper />
 
-                                <IconButton size='large' onClick={handleClick}>
+                                <IconButton onClick={handleClick}>
                                     <Badge badgeContent={notificationNumber} color="info">
                                         <Notifications sx={{ height: 30, width: 30 }} />
                                     </Badge>
@@ -190,8 +184,10 @@ export function Header({ lng }: Props) {
                                     <NotificationList open handleClick={handleClick} />
                                 </Popper>
                             </Grid>
-                                : authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button variant="outlined" style={{ color: "#329996", padding: 10, paddingRight: 40, paddingLeft: 40, fontSize: 24, marginTop: 0 }} onClick={() => push(sitemap.register.url)}>{t('buttons.register')}</Button>
-                                    : <></>}
+                                : authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN && isHome ?
+                                    <IconButton style={{ color: "white", marginTop: 0 }} onClick={() => push(sitemap.login.url)}><AccountCircle sx={{ fontSize: 50 }}></AccountCircle></IconButton>
+                                    : (!isHome ? <Image src={siteIcon} alt="logo" width={150} /> : <></>)
+                            }
 
                         </Box>
                     </Box>

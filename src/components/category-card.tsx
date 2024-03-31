@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import { FC } from "react";
 import { StyledBox } from "./box";
@@ -11,19 +11,43 @@ interface Props {
 
 const isMobile = (window.innerWidth <= 768)
 
+const styles = {
+    box: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignContent: 'center',
+        cursor: 'pointer',
+        "&:hover": {
+            transform: "scale3d(1.02, 1.02, 1)"
+        },
+        borderRadius: 2,
+        height: 50,
+        backgroundColor: 'primary.main',
+        width: 'max-content'
+    },
+    image: {
+    },
+    text: {
+        marginX: 1,
+        fontSize: isMobile ? 15 : 20,
+        color: 'white'
+    }
+}
 
 export const CategoryCard: FC<Props> = (props) => {
     return (
-        <StyledBox>
-            <div style={{ width: '100%', height: '100%', position: 'relative'}}>
-                <Image
-                    alt=""
-                    src={props.icon}
-                    layout='fill'
-                    objectFit='contain'
-                />
-            </div>
-            <Typography variant='h6' sx={{mt: isMobile ? 1 : 2, fontSize: isMobile ? 10 : 20}}>{props.name}</Typography>
-        </StyledBox>
+        <Box padding={1} sx={styles.box}>
+            <Image
+                alt=""
+                src={props.icon}
+                width={40}
+                height={40}
+                objectFit="contain"
+                style={styles.image}
+            />
+            <Typography sx={styles.text} variant='h6'>{props.name}</Typography>
+        </Box>
     )
 }
