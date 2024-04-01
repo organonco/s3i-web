@@ -59,7 +59,7 @@ export default function Page({
                     isMobile && <Image src={logoImage} alt="" style={{ width: '200px', height: '200px', marginTop: 0 }} />
                 }
                 <Grid>
-                    <Grid item sx={{ paddingTop: isMobile ? 4 : 10, paddingBottom: 10, alignContent: 'center', display: isMobile ? 'flex' : "block", flexDirection: 'column' }}>
+                    <Grid item sx={{ paddingTop: isMobile ? 4 : 10, paddingBottom: 10, alignItems: 'center', display: isMobile ? 'flex' : "block", flexDirection: 'column' }}>
                         <Typography variant='h2' sx={{ color: 'white', fontWeight: 'bold', fontSize: isMobile ? 40 : 64, lineHeight: 1.7, textAlign: isMobile ? 'center' : 'right' }}>منصة سعي للتدريب والتأهيل </Typography>
                         <Typography variant='h2' sx={{ color: 'white', lineHeight: 2, fontSize: isMobile ? 30 : 50, fontWeight: 'bold', textAlign: isMobile ? 'center' : 'right' }}>Study Without Ink</Typography>
                         {
