@@ -9,6 +9,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import { Form, Formik } from 'formik';
 import { t } from 'i18next';
 import { useRouter } from 'next/navigation';
+import { Router } from 'next/router';
 import { FC, useEffect } from 'react';
 import * as Yup from 'yup';
 
@@ -37,26 +38,26 @@ export default function Page({
                     <StyledImage imageURL={courseDetails?.image_url} />
                 </div>
                 <Grid item md={6} container sx={{ alignContent: 'center', paddingX: isMobile ? 4 : 10 }}>
-                    <Typography variant='h3' color={'primary.main'} sx={{marginBottom: 5}}>{courseDetails?.name}</Typography>
-                    <Typography textAlign={'right'} sx={{whiteSpace: 'pre-wrap'}}>{courseDetails?.description}</Typography>
+                    <Typography variant='h3' color={'primary.main'} sx={{ marginBottom: 5 }}>{courseDetails?.name}</Typography>
+                    <Typography textAlign={'right'} sx={{ whiteSpace: 'pre-wrap' }}>{courseDetails?.description}</Typography>
                 </Grid>
             </Grid>
             <Grid item container md={7} direction={'column'} justifyContent={'center'}>
 
                 <Button color='error' sx={{ backgroundColor: 'white', borderColor: 'red', borderWidth: 1, borderStyle: 'solid', paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 10 }} href={courseDetails?.introduction_video_url} target='_blank'> فيديو تعريفي</Button>
-                {authenticatedStatus === USER_STATUS.LOGGED_IN && courseDetails?.is_subscribed && <Button variant="contained" sx={{paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 1}} href={courseDetails?.telegram_url} target='_blank'> مجموعة التلغرام</Button>}
+                {authenticatedStatus === USER_STATUS.LOGGED_IN && courseDetails?.is_subscribed && <Button variant="contained" sx={{ paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 1 }} href={courseDetails?.telegram_url} target='_blank'> مجموعة التلغرام</Button>}
 
-                {authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button onClick={redirectToLogin} variant='contained' sx={{paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 1}}>
+                {authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button onClick={redirectToLogin} variant='contained' sx={{ paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 1 }}>
                     {t('buttons.login')}
                 </Button>
-                    : courseDetails?.is_subscribed ? <Grid container sx={{marginTop: 10}}>
-                        {courseDetails?.items?.map(courseItem => <Grid item md={12} key={courseItem.id} container direction='column' gap={5} sx={{marginBottom: 2}}>
+                    : courseDetails?.is_subscribed ? <Grid container sx={{ marginTop: 10 }}>
+                        {courseDetails?.items?.map(courseItem => <Grid item md={12} key={courseItem.id} container direction='column' gap={5} sx={{ marginBottom: 2 }}>
                             <CourseItemComponent courseItem={courseItem} courseDetails={courseDetails} />
                         </Grid>)}
                     </Grid>
                         // if the user is logged in but not subscribed to the course
                         : courseDetails?.is_subscribed === false ? <>
-                            <Button variant='contained' onClick={subscribePopup.handleOpen} sx={{paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 1}}>{t('buttons.subscribe')}</Button>
+                            <Button variant='contained' onClick={subscribePopup.handleOpen} sx={{ paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 1 }}>{t('buttons.subscribe')}</Button>
                             <Dialog
                                 open={subscribePopup.isOpen}
                                 onClose={subscribePopup.handleClose}
@@ -73,23 +74,46 @@ export default function Page({
 
 
 const SubscribeDialogContent: FC<{ closePopup: () => void }> = (props) => {
-    const { courseDetails, subscribeToCourse } = useCoursesStore()
+    const { courseDetails, subscribeToCourse, purchaseCourse } = useCoursesStore()
+    const router = useRouter()
+
     const handleSubmit = (values: { token: string }, { setSubmitting }) => {
         subscribeToCourse(values, courseDetails?.id ?? '', props.closePopup, () => setSubmitting(false))
     }
+
+    const redirect = (redirect_url: string) => {
+        router.push(redirect_url)
+    }
+
+    const handlePurchase = (values: { course_id: string }, { setSubmitting }) => {
+        purchaseCourse(values, redirect)
+    }
     return (
-        <Formik initialValues={{ token: '' }} validationSchema={Yup.object().shape({ token: Yup.string().required('required') })} onSubmit={handleSubmit}>
-            {({ isSubmitting }) => (
-                <Form>
-                    <DialogTitle>{t('popup.subtitle.subscribe')}</DialogTitle>
-                    <DialogContent>
-                        <StyledTextField translateKey="token" name="token" required type="password" />
-                    </DialogContent>
-                    <DialogActions>
-                        <Button type="submit" fullWidth variant='contained'>{t('buttons.subscribe')}</Button>
-                    </DialogActions>
-                </Form>
-            )}
-        </Formik>
+        <>
+            <DialogTitle>{t('popup.subtitle.subscribe')}</DialogTitle>
+            <Formik initialValues={{ token: '' }} validationSchema={Yup.object().shape({ token: Yup.string().required('required') })} onSubmit={handleSubmit}>
+                {({ isSubmitting }) => (
+                    <Form>
+                        <DialogContent>
+                            <StyledTextField translateKey="token" name="token" required type="password" />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button type="submit" fullWidth variant='contained'>{t('buttons.subscribe')}</Button>
+                        </DialogActions>
+                    </Form>
+                )}
+            </Formik>
+            <DialogTitle>{t('popup.subtitle.purchase')}</DialogTitle>
+            <Formik initialValues={{ course_id: courseDetails?.id }} onSubmit={handlePurchase}>
+                {({ isSubmitting }) => (
+                    <Form>
+                        <DialogActions>
+                            <Button type="submit" fullWidth variant='contained'>{t('popup.subtitle.purchase_button')}</Button>
+                        </DialogActions>
+                    </Form>
+                )}
+            </Formik>
+        </>
+
     )
 }

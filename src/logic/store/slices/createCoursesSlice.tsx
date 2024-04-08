@@ -1,5 +1,5 @@
 import { Category, Course, CourseDetails, CourseItemDetails, QuizDetails, RegisterInfoAPI } from "@/logic/interfaces"
-import { fetchCategories, fetchCategoryDetails, fetchCourseDetails, fetchCourseQuiz, fetchHomeworkDetails, fetchNewCourses, fetchUserCourses, handleUploadFile, submitUserQuiz, subscribeCourse, fetchTeachers } from "@/logic/services"
+import { fetchCategories, fetchCategoryDetails, fetchCourseDetails, fetchCourseQuiz, fetchHomeworkDetails, fetchNewCourses, fetchUserCourses, handleUploadFile, submitUserQuiz, subscribeCourse, fetchTeachers, purchaseCourse } from "@/logic/services"
 import { t } from "i18next"
 import { produce } from "immer"
 import { toast } from "react-toastify"
@@ -36,6 +36,7 @@ export interface CoursesSlice {
     fetchCourseHomeworkDetails: (id: string) => void
     fetchMyCourses: () => void
     subscribeToCourse: (values: { token: string }, courseId: string, closeDialog: () => void, stopLoading: () => void) => void
+    purchaseCourse: (values: { course_id: string }, redirect: (redirect_url: string) => void) => void
     submitQuiz: (id: string, quizDetails: QuizDetails, stopLoading: () => void) => void
     uploadFile: (id: string, file: File) => void
     startQuiz: (id: string) => string
@@ -86,6 +87,11 @@ export const createCoursesSlice: StateCreator<CoursesSlice> = (set, get, api) =>
             stopLoading()
             get().fetchCourseDetails(courseId)
         }).catch(() => stopLoading())
+    },
+    purchaseCourse: (values: { course_id: string }, redirect: (redirect_url: string) => void) => {
+        purchaseCourse(values).then((response) => {
+            redirect(response)
+        })
     },
     fetchCategoryCourses: (categoryId: string) => {
         set(produce(draftState => {
@@ -155,15 +161,15 @@ export const createCoursesSlice: StateCreator<CoursesSlice> = (set, get, api) =>
             if (id == QuizTimer.id)
                 startedAt = QuizTimer.startedAt
         })
-        if(startedAt != null)
+        if (startedAt != null)
             return startedAt;
-        
+
         let now = Date()
 
         quizTimers.push({
             id: id, startedAt: now
         })
-        
+
         localStorage.setItem('quizTimers', JSON.stringify(quizTimers));
 
         return now

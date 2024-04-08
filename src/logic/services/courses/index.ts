@@ -23,6 +23,11 @@ export const subscribeCourse = (values: { token: string }) => {
   return apiClient({ url: API_URLS.token, method: "POST", data: values })
 }
 
+
+export const purchaseCourse = (values: { course_id: string }) => {
+  return apiClient({ url: API_URLS.purchaseCourse, method: "POST", data: values })
+}
+
 export const fetchCourseQuiz = (course_id: string) => {
   return apiClient({ url: API_URLS.quiz + '/' + course_id, method: "GET" })
 }
@@ -66,6 +71,6 @@ export const handleUploadFile = (id: string, file: File) => {
 
 export const fetchTeachers = () => {
   return axios.get(API_BASE_URL.baseURL + API_URLS.teachers, {
-    headers: {Accept: "application/json",}
+    headers: { Accept: "application/json", }
   });
 }

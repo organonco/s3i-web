@@ -18,6 +18,7 @@ export const API_URLS = {
     new: '/new',
     quiz: '/quiz',
     token: '/token',
+    purchaseCourse: '/purchase/course',
     myCourses: '/my-courses',
     homework: '/homework',
     // Add more API URLs here as needed
