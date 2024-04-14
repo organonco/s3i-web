@@ -18,6 +18,7 @@ export interface CourseDetails extends Course {
     introduction_video_url: string
     is_subscribed: boolean
     items: CourseItem[]
+    price: number
 }
 export interface CourseItem {
     id: string

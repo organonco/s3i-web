@@ -103,16 +103,21 @@ const SubscribeDialogContent: FC<{ closePopup: () => void }> = (props) => {
                     </Form>
                 )}
             </Formik>
-            <DialogTitle>{t('popup.subtitle.purchase')}</DialogTitle>
-            <Formik initialValues={{ course_id: courseDetails?.id }} onSubmit={handlePurchase}>
-                {({ isSubmitting }) => (
-                    <Form>
-                        <DialogActions>
-                            <Button type="submit" fullWidth variant='contained'>{t('popup.subtitle.purchase_button')}</Button>
-                        </DialogActions>
-                    </Form>
-                )}
-            </Formik>
+            {
+                courseDetails?.price > 0 &&
+                <>
+                    <DialogTitle>{t('popup.subtitle.purchase')}</DialogTitle>
+                    <Formik initialValues={{ course_id: courseDetails?.id }} onSubmit={handlePurchase}>
+                        {({ isSubmitting }) => (
+                            <Form>
+                                <DialogActions>
+                                    <Button type="submit" fullWidth variant='contained'>{t('popup.subtitle.purchase_button')}</Button>
+                                </DialogActions>
+                            </Form>
+                        )}
+                    </Formik>
+                </>
+            }
         </>
 
     )
