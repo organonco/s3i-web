@@ -87,6 +87,7 @@ export const TeacherCard: FC<Props> = (props) => {
       flexDirection: "row",
       flexWrap: "nowrap",
       gap: 10,
+      "justify-content": "space-evenly",
     },
 
     verticalLine: {
@@ -158,7 +159,12 @@ export const TeacherCard: FC<Props> = (props) => {
       </Grid>
       <Grid sx={styles.verticalLine}></Grid>
       <Grid sx={styles.innerGrid}>
-        <Typography sx={styles.text} fontSize={18} fontWeight={"regular"}>
+        <Typography
+          sx={styles.text}
+          fontSize={18}
+          fontWeight={"regular"}
+          component="pre"
+        >
           {props.bio}
         </Typography>
       </Grid>
