@@ -19,9 +19,29 @@ const LinkText = (props: { title: string }) => (
   </Typography>
 );
 
-const IconLink = ({ icon, href }: { icon: ReactNode; href: string }) => (
-  <Link href={href} target="_blank">
-    {icon}
+const IconLink = ({
+  icon,
+  href,
+  text,
+}: {
+  icon: ReactNode;
+  href: string;
+  text: string;
+}) => (
+  <Link
+    href={href}
+    target="_blank"
+    style={{
+      color: "white",
+      direction: "ltr",
+      display: "flex",
+      alignItems: "center",
+      gap: 40,
+      fontSize: "22px",
+    }}
+  >
+    <p>{text}</p>
+    <p>{icon}</p>
   </Link>
 );
 
@@ -158,27 +178,7 @@ export const Footer: FC = () => {
                 <PhoneOutlined sx={{ color: "white", width: 40, height: 40 }} />
               }
               href="tel:963954141451"
-            />
-
-            <IconLink
-              icon={
-                <FacebookOutlined
-                  sx={{ color: "white", width: 40, height: 40 }}
-                />
-              }
-              href="https://www.facebook.com/s3i.training/"
-            />
-
-            <IconLink
-              icon={
-                <Instagram sx={{ color: "white", width: 40, height: 40 }} />
-              }
-              href="https://www.instagram.com/s3i.platform/"
-            />
-
-            <IconLink
-              icon={<WhatsApp sx={{ color: "white", width: 40, height: 40 }} />}
-              href="https://api.whatsapp.com/send?phone=963954141451"
+              text="+963 945 330 652"
             />
           </Grid>
         </Grid>

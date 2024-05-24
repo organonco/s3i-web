@@ -35,9 +35,9 @@ export default function Page({ params: { lng } }) {
       color: "#666666",
     },
   };
-
   return (
     <Grid container width={"100%"}>
+      <Link href={whoAreWe.default.src}> fads fdas </Link>
       <Image src={whoAreWe} alt="who_are_we" style={{ width: "100%" }} />
     </Grid>
   );
