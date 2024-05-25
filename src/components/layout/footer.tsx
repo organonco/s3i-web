@@ -48,6 +48,8 @@ const IconLink = ({
 const isMobile = window.innerWidth <= 768;
 
 const mailUrl = "mailto:support@s3i.training";
+const privacyPolicyUrl = "https://admin.s3i.training/privacy-policy.pdf";
+const rulesPolicyUrl = "https://admin.s3i.training/rules.pdf";
 
 const styles = {
   mainContainer: {
@@ -149,6 +151,9 @@ export const Footer: FC = () => {
               <Link href={sitemap.teachers.url}>
                 <LinkText title={sitemap.teachers.title} />
               </Link>
+              <Link href={privacyPolicyUrl}>
+                <LinkText title={"privacy_policy"} />
+              </Link>
             </Grid>
             <Grid sx={styles.innerLinksContainer}>
               <Link href={sitemap.partners.url}>
@@ -159,6 +164,9 @@ export const Footer: FC = () => {
               </Link>
               <Link href={mailUrl}>
                 <LinkText title={"contact_us"} />
+              </Link>
+              <Link href={rulesPolicyUrl}>
+                <LinkText title={"rules_policy"} />
               </Link>
             </Grid>
           </Grid>

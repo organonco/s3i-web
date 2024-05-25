@@ -7,7 +7,9 @@
         "partners": "شركائنا",
         "teachers": "الكادر التدريبي",
         "my_courses": "دوراتي",
-        "contact_us": "تواصل معنا"
+        "contact_us": "تواصل معنا",
+        "rules_policy": "سياسة وشروط الاستخدام",
+        "privacy_policy": "سياسة الخصوصية"
     },
     "titles": {
         "thanks_for_registration": "شكرا على انشاء حساب جديد",
