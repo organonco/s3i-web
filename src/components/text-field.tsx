@@ -36,7 +36,7 @@ export const StyledTextField: FC<Props> = (props) => {
     return (
         <TextField
             id="outlined"
-            label={t('labels.' + props.translateKey)}
+            label={props.translateKey ? t('labels.' + props.translateKey) : ""}
             dir='rtl'
             {...field}
             InputLabelProps={{ dir: 'rtl' }}
