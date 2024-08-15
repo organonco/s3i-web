@@ -25,7 +25,8 @@ export const API_URLS = {
     notification: '/notifications',
     count: '/count',
     markAsRead: '/mark-as-read',
-    teachers: '/teachers'
+    teachers: '/teachers',
+	verify: "/verification/verify"
 };
 
 

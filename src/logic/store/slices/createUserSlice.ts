@@ -1,6 +1,6 @@
 import { USER_STATUS } from "@/logic/config"
 import { EditProfileInfo, LoginInfo, PasswordConfigs, ProfileInfo, RegisterInfo, RegisterInfoAPI } from "@/logic/interfaces"
-import { changePassword, fetchProfileData, fetchRegisterData, getNotification, getNotificationNumber, login, readNotifications, registerUser, updateProfileInfo } from "@/logic/services"
+import { changePassword, fetchProfileData, fetchRegisterData, getNotification, getNotificationNumber, login, readNotifications, registerUser, updateProfileInfo, verify } from "@/logic/services"
 import { t } from "i18next"
 import { produce } from "immer"
 import { toast } from 'react-toastify'
@@ -15,8 +15,8 @@ export interface UserSlice {
     notifications: Notification[]
     notificationNumber: number
     fetchRegisterInfo: () => void
-    registerUser: (userInfo: RegisterInfo, redirectToThankYou: () => void, setSubmitting: Function) => void
-    loginUser: (userInfo: LoginInfo, redirectToApp: () => void, setSubmitting: Function) => void
+    registerUser: (userInfo: RegisterInfo, redirectToVerify: (id: string) => void, setSubmitting: Function) => void
+    loginUser: (userInfo: LoginInfo, redirectToApp: () => void, redirectToVerify: (id: string) => void, setSubmitting: Function) => void
     fetchProfileInfo: () => void
     logUserOut: () => void
     updatePassword: (passwordConfigs: PasswordConfigs, redirectAfterUpdate: () => void, setSubmitting: Function) => void
@@ -25,6 +25,7 @@ export interface UserSlice {
     fetchNotificationCount: () => void
     markNotificationsAsRead: (id: string) => void
     updateUserStatus: (status: USER_STATUS) => void
+	verifyUser: (info: {code: string, id: string}, redirectToApp: () => void, setSubmitting: Function) => void
 }
 
 
@@ -47,17 +48,16 @@ export const createUserSlice: StateCreator<UserSlice> = (set, get, api) => ({
             }))
         })
     },
-    registerUser: (userInfo: RegisterInfo, redirectToThankYou: () => void, setSubmitting: Function) => registerUser(userInfo).then(data => {
-        set(produce(draftState => {
-            draftState.token = data.token
-            draftState.authenticatedStatus = USER_STATUS.LOGGED_IN
-        }))
-        localStorage.setItem('token', data.token);
-        setSubmitting(false)
-        redirectToThankYou()
+    registerUser: (userInfo: RegisterInfo, redirectToVerify: (id: string) => void, setSubmitting: Function) => registerUser(userInfo).then(data => {
+		redirectToVerify(data.data.id)
+		setSubmitting(false)
     }),
-    loginUser: (userInfo: LoginInfo, redirectToApp: () => void, setSubmitting: Function) => {
+    loginUser: (userInfo: LoginInfo, redirectToApp: () => void, redirectToVerify: (id: string) => void, setSubmitting: Function) => {
         login(userInfo).then((data) => {
+			if(data.data.id){
+				redirectToVerify(data.data.id)
+				return;
+			}
             set(produce(draftState => {
                 draftState.token = data.token
                 draftState.authenticatedStatus = USER_STATUS.LOGGED_IN
@@ -69,6 +69,23 @@ export const createUserSlice: StateCreator<UserSlice> = (set, get, api) => ({
             setSubmitting(false)
             if (error.data.code == 'invalid_credentials') toast.error(t('toast.' + error.data.code));
             if (error.data.code == 'account_frozen') toast.error(t('toast.' + error.data.code));
+        })
+    },
+	verifyUser: (info: {code: string, id: string}, redirectToApp: () => void, setSubmitting: Function) => {
+        verify(info).then((data) => {
+			set(produce(draftState => {
+                draftState.token = data.token
+                draftState.authenticatedStatus = USER_STATUS.LOGGED_IN
+            }))
+            localStorage.setItem('token', data.token);
+            setSubmitting(false)
+            redirectToApp()
+		}).catch((error) => {
+            setSubmitting(false)
+            if (error.data.code == 'account_already_verified' 
+				|| error.data.code == 'code_expired' 
+				|| error.data.code == 'invalid_code' 
+			) toast.error(t('toast.' + error.data.code));
         })
     },
     fetchProfileInfo: () => fetchProfileData().then((data) => set(produce(draftState => { draftState.profileInfo = data.data }))),

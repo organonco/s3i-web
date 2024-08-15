@@ -20,7 +20,8 @@ export default function Page({
 
     const handleSubmit = (values: FormikValues, { setSubmitting }) => {
         const valuesredirectToApp = () => push(sitemap.home.url)
-        loginUser(values, valuesredirectToApp, (value: boolean) => setSubmitting(value))
+		const redirectToVerify = (id: string) => push(sitemap.verify.url + id)
+        loginUser(values, valuesredirectToApp, redirectToVerify, (value: boolean) => setSubmitting(value))
     }
     const handleRedirectToRegister = () => push(sitemap.register.url)
 

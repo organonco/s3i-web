@@ -8,6 +8,10 @@ export const login = async (userInfo: LoginInfo) => {
   return apiClient({ url: API_URLS.login, method: "POST", data: { ...userInfo2 } })
 };
 
+export const verify = async (info: {code: string, id: string}) => {
+	return apiClient({ url: API_URLS.verify + "/" + info.id, method: "POST", data: { code: info.code } })
+  };
+
 export const fetchRegisterData = () => {
   return apiClient({ url: API_URLS.register, method: "GET" })
 };

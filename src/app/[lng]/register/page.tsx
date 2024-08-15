@@ -43,12 +43,12 @@ export default function Page({ params: { lng } }: { params: { lng: any } }) {
   const { registerUser, fetchRegisterInfo, registerInfo } = useCoursesStore();
 
   const handleSubmit = (values: FormikValues, { setSubmitting }) => {
-    const redirectToThankYou = () => push(sitemap.home.url);
+    const redirectToVerify = (id: string) => push(sitemap.verify.url + id)
     const newValues = {
       ...values,
       date_of_birth: moment(values.date_of_birth).format("YYYY-MM-DD"),
     };
-    registerUser(newValues, redirectToThankYou, (value: boolean) =>
+    registerUser(newValues, redirectToVerify, (value: boolean) =>
       setSubmitting(value)
     );
   };
