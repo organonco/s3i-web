@@ -145,7 +145,7 @@ export default function Page({ params: { lng } }: { params: { lng: any } }) {
                           <>
                             أنا أوافق على{" "}
                             <Link
-                              href={"https://admin.s3i.training/rules.pdf"}
+                              href={sitemap.terms.url}
                               target="_blank"
                               style={{ color: "blue" }}
                             >
@@ -153,9 +153,7 @@ export default function Page({ params: { lng } }: { params: { lng: any } }) {
                             </Link>{" "}
                             و
                             <Link
-                              href={
-                                "https://admin.s3i.training/privacy-policy.pdf"
-                              }
+                              href={sitemap.privacy.url}
                               target="_blank"
                               style={{ color: "blue" }}
                             >

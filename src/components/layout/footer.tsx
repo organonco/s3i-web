@@ -156,17 +156,17 @@ export const Footer: FC = () => {
               </Link>
             </Grid>
             <Grid sx={styles.innerLinksContainer}>
-              <Link href={sitemap.partners.url}>
-                <LinkText title={sitemap.partners.title} />
-              </Link>
               <Link href={sitemap.about_us.url}>
                 <LinkText title={sitemap.about_us.title} />
               </Link>
               <Link href={mailUrl}>
                 <LinkText title={"contact_us"} />
               </Link>
-              <Link href={rulesPolicyUrl}>
-                <LinkText title={"rules_policy"} />
+			  <Link href={sitemap.privacy.url}>
+                <LinkText title={sitemap.privacy.title} />
+              </Link>
+              <Link href={sitemap.terms.url}>
+                <LinkText title={sitemap.terms.title} />
               </Link>
             </Grid>
           </Grid>

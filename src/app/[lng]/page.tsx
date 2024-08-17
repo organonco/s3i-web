@@ -81,7 +81,7 @@ export default function Page({
             <Grid container item lg={10} sx={{ justifyContent: 'center' }} >
                 <Image src={middleImage} alt="" style={{ width: '80%' }}></Image>
             </Grid>
-
+{/* 
             <Grid item lg={12} alignItems='center' textAlign='center' mt={6} py={6} sx={{ backgroundColor: 'primary.main' }}>
                 <Typography color='white' variant='h3' marginBottom={isMobile ? 2 : 5} fontWeight={'bold'} fontSize={isMobile ? 25 : 50}>{t('texts.partners')}</Typography>
                 <Grid container gap={5} justifyContent={'center'} >
@@ -89,7 +89,7 @@ export default function Page({
                     <PartnerCard name={"وزارة التنمية الإدارية"} imageUrl={"https://admin.s3i.training/partners/2.png"} height={320}></PartnerCard>
                     <PartnerCard name={"غرفة تجارة دمشق"} imageUrl={"https://admin.s3i.training/partners/3.jpg"} height={320}></PartnerCard>
                 </Grid>
-            </Grid>
+            </Grid> */}
 
 
             <Grid item lg={12} alignItems='center' textAlign='center' mt={6}>

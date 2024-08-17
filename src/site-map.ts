@@ -26,5 +26,7 @@ export const sitemap = makeSiteMap({
     teachers: { title: 'teachers', url: '/teachers' },
     profile: { title: 'profile', url: '/profile' },
     my_courses: {title: 'my_courses', url: '/my-courses'},
-	verify: {title: 'verify', url: '/verify/'}
+	verify: {title: 'verify', url: '/verify/'},
+	privacy: {title: "privacy_policy", url: '/privacy-policy'},
+	terms: {title: "rules_policy", url: '/terms'}
 });
