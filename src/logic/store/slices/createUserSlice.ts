@@ -1,6 +1,6 @@
 import { USER_STATUS } from "@/logic/config"
 import { EditProfileInfo, LoginInfo, PasswordConfigs, ProfileInfo, RegisterInfo, RegisterInfoAPI } from "@/logic/interfaces"
-import { changePassword, fetchProfileData, fetchRegisterData, getNotification, getNotificationNumber, login, readNotifications, registerUser, updateProfileInfo, verify } from "@/logic/services"
+import { changePassword, fetchProfileData, fetchRegisterData, getNotification, getNotificationNumber, login, readNotifications, registerUser, resetForgetPassword, sendForgetPassword, updateProfileInfo, verify } from "@/logic/services"
 import { t } from "i18next"
 import { produce } from "immer"
 import { toast } from 'react-toastify'
@@ -26,6 +26,8 @@ export interface UserSlice {
     markNotificationsAsRead: (id: string) => void
     updateUserStatus: (status: USER_STATUS) => void
 	verifyUser: (info: {code: string, id: string}, redirectToApp: () => void, setSubmitting: Function) => void
+	sendForgetPassword: (info: {phone: string}, redirectToForgetPasswordReset: (id: string) => void, setSubmitting: Function) => void
+	resetForgetPassword: (info: {id: string, code: string, password: string}, redirectToLogin: () => void, setSubmitting: Function) => void
 }
 
 
@@ -54,7 +56,7 @@ export const createUserSlice: StateCreator<UserSlice> = (set, get, api) => ({
     }),
     loginUser: (userInfo: LoginInfo, redirectToApp: () => void, redirectToVerify: (id: string) => void, setSubmitting: Function) => {
         login(userInfo).then((data) => {
-			if(data.data.id){
+			if(data.data?.id){
 				redirectToVerify(data.data.id)
 				return;
 			}
@@ -133,5 +135,27 @@ export const createUserSlice: StateCreator<UserSlice> = (set, get, api) => ({
             draftState.authenticatedStatus = status
         }))
 
-    }
+    },
+
+	sendForgetPassword: (info: {phone: string}, redirectToForgetPasswordReset: (id: string) => void, setSubmitting: Function) => {
+        sendForgetPassword(info).then((data) => {
+			redirectToForgetPasswordReset(data.data.id)
+            setSubmitting(false)
+		}).catch((error) => {
+            setSubmitting(false)
+			toast.error(t('toast.incorrect_phone'));
+        })
+    },
+
+	resetForgetPassword: (info: {id: string, code: string, password: string}, redirectToLogin: () => void, setSubmitting: Function) => {
+        resetForgetPassword(info).then((data) => {
+			toast.success(t('toast.password_changed'));
+			redirectToLogin()
+            setSubmitting(false) 
+		}).catch((error) => {
+            setSubmitting(false)
+            if (error.data?.code == 'code_expired' || error.data?.code == 'invalid_code' ) 
+				toast.error(t('toast.' + error.data.code));
+        })
+    },
 })

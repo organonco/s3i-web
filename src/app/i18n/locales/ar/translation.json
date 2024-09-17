@@ -53,7 +53,8 @@
         "open_text": "الذهاب الى الوظيفة",
         "view_feedback": "الذهاب الى النتيجة",
         "ignore": "تجاهل",
-		"verify": "تأكيد الحساب"
+		"verify": "تأكيد الحساب",
+		"send_verification_code": "إرسال رمز التحقق"
     },
     "placeholders": {
         "token": "رمز الاشتراك",
@@ -164,10 +165,11 @@
         "quiz_submitted": "تم تقديم الاختبار بنجاح",
         "invalid_token": "رمز خاطئ",
         "profile_updated": "تم تعديل البروفايل بنجاح",
-        "password_changed": "تم تغيير كلمة السر",
 		"account_already_verified": "الحساب مفعل مسبقاً",
 		"invalid_code": "رمز التأكيد خاطئ",
-		"code_expired": "انتهت صلاحية رمز التفعيل، الرجاء إعادة المحاولة"
+		"code_expired": "انتهت صلاحية رمز التفعيل، الرجاء إعادة المحاولة",
+		"incorrect_phone": "الرقم غير مسجل",
+		"password_changed": "تم تغيير كلمة المرور"
     },
     "popup": {
         "title": {

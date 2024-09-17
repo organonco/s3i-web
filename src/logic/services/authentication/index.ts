@@ -44,3 +44,12 @@ export const getNotificationNumber = () => {
 export const readNotifications = (id: string) => {
   return apiClient({ url: API_URLS.notification + "/" + id + API_URLS.markAsRead, method: "GET" })
 }
+
+
+export const sendForgetPassword = async (info: {phone: string}) => {
+	return apiClient({ url: API_URLS.sendForgetPassword, method: "POST", data: { phone: info.phone.slice(2) } })
+}
+
+export const resetForgetPassword = async (info: {id: string, code: string, password: string}) => {
+	return apiClient({ url: API_URLS.resetForgetPassword + info.id, method: "POST", data: { code: info.code, password: info.password, password_confirmation: info.password } })
+}

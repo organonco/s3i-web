@@ -26,7 +26,9 @@ export const API_URLS = {
     count: '/count',
     markAsRead: '/mark-as-read',
     teachers: '/teachers',
-	verify: "/verification/verify"
+	verify: "/verification/verify",
+	sendForgetPassword: '/password/send',
+	resetForgetPassword: '/password/reset/'
 };
 
 

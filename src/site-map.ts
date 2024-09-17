@@ -28,5 +28,7 @@ export const sitemap = makeSiteMap({
     my_courses: {title: 'my_courses', url: '/my-courses'},
 	verify: {title: 'verify', url: '/verify/'},
 	privacy: {title: "privacy_policy", url: '/privacy-policy'},
-	terms: {title: "rules_policy", url: '/terms'}
+	terms: {title: "rules_policy", url: '/terms'},
+	forget_password: {title: "forget_password", url: '/forget-password'},
+	forget_password_reset: {title: "forget_password_reset", url: '/forget-password-reset/'},
 });
