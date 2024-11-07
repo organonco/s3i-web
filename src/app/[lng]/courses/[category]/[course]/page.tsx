@@ -91,18 +91,6 @@ const SubscribeDialogContent: FC<{ closePopup: () => void }> = (props) => {
     return (
         <>
             <DialogTitle>{t('popup.subtitle.subscribe')}</DialogTitle>
-            <Formik initialValues={{ token: '' }} validationSchema={Yup.object().shape({ token: Yup.string().required('required') })} onSubmit={handleSubmit}>
-                {({ isSubmitting }) => (
-                    <Form>
-                        <DialogContent>
-                            <StyledTextField translateKey="token" name="token" required type="password" />
-                        </DialogContent>
-                        <DialogActions>
-                            <Button type="submit" fullWidth variant='contained'>{t('buttons.subscribe')}</Button>
-                        </DialogActions>
-                    </Form>
-                )}
-            </Formik>
             {
                 courseDetails?.price > 0 &&
                 <>
