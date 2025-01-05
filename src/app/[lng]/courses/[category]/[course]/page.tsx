@@ -45,7 +45,7 @@ export default function Page({
             <Grid item container md={7} direction={'column'} justifyContent={'center'}>
 
                 <Button color='error' sx={{ backgroundColor: 'white', borderColor: 'red', borderWidth: 1, borderStyle: 'solid', paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 10 }} href={courseDetails?.introduction_video_url} target='_blank'> فيديو تعريفي</Button>
-                {/* {authenticatedStatus === USER_STATUS.LOGGED_IN && courseDetails?.is_subscribed && <Button variant="contained" sx={{ paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 1 }} href={courseDetails?.telegram_url} target='_blank'> مجموعة التلغرام</Button>} */}
+                {authenticatedStatus === USER_STATUS.LOGGED_IN && courseDetails?.is_subscribed && courseDetails.telegram_url &&<Button variant="contained" sx={{ paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 1 }} href={courseDetails?.telegram_url} target='_blank'> مجموعة التلغرام</Button>}
 
                 {authenticatedStatus === USER_STATUS.NOT_LOGGEN_IN ? <Button onClick={redirectToLogin} variant='contained' sx={{ paddingX: 10, marginX: isMobile ? 4 : 20, marginTop: 1 }}>
                     {t('buttons.login')}
@@ -91,6 +91,18 @@ const SubscribeDialogContent: FC<{ closePopup: () => void }> = (props) => {
     return (
         <>
             <DialogTitle>{t('popup.subtitle.subscribe')}</DialogTitle>
+            <Formik initialValues={{ token: '' }} validationSchema={Yup.object().shape({ token: Yup.string().required('required') })} onSubmit={handleSubmit}>
+                {({ isSubmitting }) => (
+                    <Form>
+                        <DialogContent>
+                            <StyledTextField translateKey="token" name="token" required type="password" />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button type="submit" fullWidth variant='contained'>{t('buttons.subscribe')}</Button>
+                        </DialogActions>
+                    </Form>
+                )}
+            </Formik>
             {
                 courseDetails?.price > 0 &&
                 <>

@@ -116,7 +116,7 @@ export const Footer: FC = () => {
             fontWeight="bolder"
             style={{ marginBottom: 5, textAlign: "center", lineHeight: 2 }}
           >
-            منصعة سعي للتدريب والتأهيل
+            منصة سعي للتدريب والتأهيل
           </Typography>
           <Typography
             variant="h4"
@@ -151,17 +151,14 @@ export const Footer: FC = () => {
               </Link>
             </Grid>
             <Grid sx={styles.innerLinksContainer}>
+              <Link href={sitemap.partners.url}>
+                <LinkText title={sitemap.partners.title} />
+              </Link>
               <Link href={sitemap.about_us.url}>
                 <LinkText title={sitemap.about_us.title} />
               </Link>
               <Link href={mailUrl}>
                 <LinkText title={"contact_us"} />
-              </Link>
-			  <Link href={sitemap.privacy.url}>
-                <LinkText title={sitemap.privacy.title} />
-              </Link>
-              <Link href={sitemap.terms.url}>
-                <LinkText title={sitemap.terms.title} />
               </Link>
             </Grid>
           </Grid>
@@ -181,7 +178,27 @@ export const Footer: FC = () => {
                 <PhoneOutlined sx={{ color: "white", width: 40, height: 40 }} />
               }
               href="tel:963954141451"
-              text="+963 945 330 652"
+            />
+
+            <IconLink
+              icon={
+                <FacebookOutlined
+                  sx={{ color: "white", width: 40, height: 40 }}
+                />
+              }
+              href="https://www.facebook.com/s3i.training/"
+            />
+
+            <IconLink
+              icon={
+                <Instagram sx={{ color: "white", width: 40, height: 40 }} />
+              }
+              href="https://www.instagram.com/s3i.training/"
+            />
+
+            <IconLink
+              icon={<WhatsApp sx={{ color: "white", width: 40, height: 40 }} />}
+              href="https://api.whatsapp.com/send?phone=963954141451"
             />
           </Grid>
         </Grid>
