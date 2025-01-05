@@ -1,7 +1,7 @@
 import { COURSE_ITEM } from "@/logic/config";
 import { CourseDetails, CourseItemDetails } from "@/logic/interfaces";
 import { sitemap } from "@/site-map";
-import { AttachFile, CameraAlt, Check, Note, Timer, Upload, VideoCameraFront, VideoFile, YouTube } from "@mui/icons-material";
+import { AttachFile, CameraAlt, Check, Note, Star, Timer, Upload, VideoCameraFront, VideoFile, YouTube } from "@mui/icons-material";
 import { Grid, Typography } from "@mui/material";
 import { t } from "i18next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -24,7 +24,8 @@ const iconsMap: { [key: string]: ReactNode } = {
     "text": <Note />,
     "multiple_choice": <Check />,
     "homework": <Upload />,
-    "file": <AttachFile />
+    "file": <AttachFile />,
+    "review": <Star />
 }
 
 
@@ -116,7 +117,7 @@ export const CourseItemComponent: FC<CourseItemComponentPropsInterface> = (props
                                 props.courseItem.object.time_limit ?
                                     <Typography style={{ textAlign: 'center' }}>{t('labels.quiz_time_limit') + props.courseItem.object.time_limit + t('labels.minute')}</Typography>
                                     :
-                                    <Typography style={{ textAlign: 'center' }}>{t('labels_no_time_limit')}</Typography>
+                                    <Typography style={{ textAlign: 'center' }}>{t('labels.no_time_limit')}</Typography>
                             )
                     }
                     <StyledButton onClick={goToQuiz} title={props.courseItem.object.is_submitted ? t('buttons.view_feedback') : t('buttons.open_multiple')}
@@ -138,6 +139,16 @@ export const CourseItemComponent: FC<CourseItemComponentPropsInterface> = (props
                             <Typography style={{ textAlign: 'center' }}>{t('labels.file_submitted')}</Typography>
                     }
                     <Homework courseDetails={props.courseDetails} courseItem={props.courseItem} />
+                </>
+            case COURSE_ITEM.REVIEW:
+                return <>
+                    {
+                        props.courseItem.object.is_submitted ?
+                            <Typography style={{ textAlign: 'center' }}>{t('labels.review_submitted')}</Typography>
+                            :
+                            <StyledButton onClick={goToQuiz} title={t('buttons.open_review')}
+                            />
+                    }
                 </>
         }
     }

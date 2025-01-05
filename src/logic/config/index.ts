@@ -46,7 +46,8 @@ export enum COURSE_ITEM {
     VIDEO = 'video',
     QUIZ = 'quiz',
     MULTIPLE = 'multiple_choice',
-    TEXT = 'text'
+    TEXT = 'text',
+    REVIEW = 'review'
 }
 
 export enum QUESTION_TYPE {

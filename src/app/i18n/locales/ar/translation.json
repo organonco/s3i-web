@@ -50,6 +50,7 @@
         "open_meeting": "الذهاب الى الاجتماع",
         "open_video": "الذهاب الى الدرس",
         "open_multiple": "الذهاب الى الاختبار",
+        "open_review": "بدء التقييم",
         "open_text": "الذهاب الى الوظيفة",
         "view_feedback": "الذهاب الى النتيجة",
         "ignore": "تجاهل",
@@ -91,7 +92,9 @@
         "quiz_submitted": "تم تقديم الاختبار",
         "no_feedback": "يتم عرض النتيجة بعد تصحيح الأستاذ",
         "quiz_expired": "انتهى وقت الاختبار",
-		"code": "رمز التأكيد"
+		"code": "رمز التأكيد",
+		"review_submitted": "تم تقديم التقييم",
+        "gender": "الجنس"
     },
     "error": {
         "phone": {
@@ -169,7 +172,8 @@
 		"invalid_code": "رمز التأكيد خاطئ",
 		"code_expired": "انتهت صلاحية رمز التفعيل، الرجاء إعادة المحاولة",
 		"incorrect_phone": "الرقم غير مسجل",
-		"password_changed": "تم تغيير كلمة المرور"
+		"password_changed": "تم تغيير كلمة المرور",
+        "review_submitted": "تم تقديم التقييم"
     },
     "popup": {
         "title": {
@@ -190,7 +194,8 @@
         "text": "وظيفة",
         "multiple_choice": "اختبار",
         "homework": "رفع ملف",
-        "file": "ملف مرفق"
+        "file": "ملف مرفق",
+        "review": "تقييم الدورة"
     },
     "who-are-we": {
         "intro": {

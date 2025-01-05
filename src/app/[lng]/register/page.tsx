@@ -113,6 +113,20 @@ export default function Page({ params: { lng } }: { params: { lng: any } }) {
 											name="nationality_id"
 											options={registerInfo?.nationalities ?? []}
 										/>
+										<StyledSelect
+											options={[
+												{
+													"id": "1",
+													"name": "ذكر"
+												},
+												{
+													"id": "0",
+													"name": "أنثى"
+												}
+											]}
+											name="gender"
+											translateKey="gender"
+										/>
 										<StyledTextField translateKey="address" name="address" />
 										<StyledSelect
 											translateKey="education_level"

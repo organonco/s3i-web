@@ -50,6 +50,15 @@ export default function Page({
   const [expired, setExpired] = useState(false);
   const is_limited = quizDetails?.time_limit;
 
+  let correctAnswersCount = 0;
+  quizDetails?.questions.forEach((question) => {
+    question.options?.forEach((option) => {
+      if (question.answer == option.id && option.is_correct)
+        correctAnswersCount++
+    })
+  })
+  console.log(correctAnswersCount)
+
   useEffect(() => {
     if (startedAt != null) {
       let time_limit = quizDetails?.time_limit;
@@ -103,12 +112,12 @@ export default function Page({
                     color="primary.main"
                   >
                     {isQuizSubmitted
-                      ? t("labels.quiz_submitted")
+                    ? quizDetails.type == "multiple_choice" ? (t("labels.quiz_submitted") + "   (" + correctAnswersCount) + "/" + quizDetails.questions.length + ")": (quizDetails.type == "text" ? t("labels.homework_submitted") : t("labels.review_submitted"))
                       : is_limited && expired
                       ? t("labels.quiz_expired")
                       : countDownText}
                   </Typography>
-                  {isQuizSubmitted && !quizDetails?.feedback && (
+                  {isQuizSubmitted && !quizDetails?.feedback && !quizDetails.type == 'review' && (
                     <Typography
                       variant="h5"
                       mb={4}
@@ -138,7 +147,8 @@ export default function Page({
                           question,
                           index,
                           isQuizSubmitted,
-                          expired
+                          expired && is_limited,
+                          quizDetails.type == 'review'
                         )}
                         <Divider sx={{ my: 4 }} />
                       </Grid>
@@ -186,7 +196,8 @@ const RenderSwitchQuizItem = (
   question: QuizQuestion,
   index: number,
   isQuizSubmitted: boolean,
-  expired: boolean
+  expired: boolean,
+  isReview: boolean,
 ) => {
   switch (question.type) {
     case QUESTION_TYPE.TEXT:
@@ -205,6 +216,7 @@ const RenderSwitchQuizItem = (
           name={`questions[${index}].object.value`}
           options={question.options}
           disabled={isQuizSubmitted || expired}
+          is_review={isReview}
         />
       );
     case QUESTION_TYPE.CHECK:
@@ -213,7 +225,8 @@ const RenderSwitchQuizItem = (
           key={question.id}
           name={`questions[${index}].object.value`}
           options={question.options}
-          disabled={isQuizSubmitted}
+          disabled={isQuizSubmitted || expired}
+          is_review={isReview}
         />
       );
     default:

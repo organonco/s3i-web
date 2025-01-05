@@ -7,6 +7,7 @@ interface Props {
     options: { id: string, text: string; value: string, is_correct?: 1 | 0 }[]
     disabled?: boolean
     name: string
+    is_review?: boolean
 }
 
 export const StyledCheckBox: FC<Props> = (props) => {
@@ -18,7 +19,7 @@ export const StyledCheckBox: FC<Props> = (props) => {
                 {/* <Field name={props.name}> */}
                 {props.options.map(option => <FormControlLabel
                     key={option.id}
-                    color={currentValue.includes(option.id) ? "red" : 'text.primary'}
+                    color={currentValue.includes(option.id) && !props.is_review ? "red" : 'text.primary'}
                     control={<Checkbox checked={currentValue.includes(option.id)} />}
                     {...props} {...field}
                     label={option.text}
