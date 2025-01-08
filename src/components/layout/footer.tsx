@@ -177,7 +177,7 @@ export const Footer: FC = () => {
               icon={
                 <PhoneOutlined sx={{ color: "white", width: 40, height: 40 }} />
               }
-              href="tel:963954141451"
+              href="tel:963945330652"
             />
 
             <IconLink
@@ -198,7 +198,7 @@ export const Footer: FC = () => {
 
             <IconLink
               icon={<WhatsApp sx={{ color: "white", width: 40, height: 40 }} />}
-              href="https://api.whatsapp.com/send?phone=963954141451"
+              href="https://api.whatsapp.com/send?phone=963945330652"
             />
           </Grid>
         </Grid>
