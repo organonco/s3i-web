@@ -151,9 +151,9 @@ export const Footer: FC = () => {
               </Link>
             </Grid>
             <Grid sx={styles.innerLinksContainer}>
-              <Link href={sitemap.partners.url}>
+              {/* <Link href={sitemap.partners.url}>
                 <LinkText title={sitemap.partners.title} />
-              </Link>
+              </Link> */}
               <Link href={sitemap.about_us.url}>
                 <LinkText title={sitemap.about_us.title} />
               </Link>
